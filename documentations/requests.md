@@ -23,6 +23,8 @@ JSON de réponse:
 > * data: (multi) les données (si non `e` ; optionnel)
 
 # Collections
-* u
-* pos
-* conf
+* /u/
+	* [id-user]/
+* /pos/
+	* [id-user]/
+* /conf/
