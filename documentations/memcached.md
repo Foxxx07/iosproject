@@ -5,9 +5,10 @@
 >
 > Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering.
 >
-> Memcached is simple yet powerful. Its simple design promotes quick deployment, ease of development, and solves many problems facing large data caches. Its API is available for most popular languages.
+> Memcached is simple yet powerful.
+> Its simple design promotes quick deployment, ease of development, and solves many problems facing large data caches. Its API is available for most popular languages.
 >
-> Source: [https://memcached.org/](https://memcached.org/)
+> *Source: [https://memcached.org/](https://memcached.org/)*
 
 Brièvement, Memcached permet de stocker des données directement en RAM sous la forme clé-valeur .<br>
 Ceci peut être par exemple un resultat d'une requête SQL mise en cache, des sessions, des données d'échange rapide entre programme, etc...
@@ -34,4 +35,4 @@ Les détails des commandes sont accéssible via: [https://github.com/memcached/m
 
 # Liens
 * [Site officiel](https://memcached.org/)
-* [Github](https://github.com/memcached/memcached)
+* [Github de Memcached](https://github.com/memcached/memcached)
