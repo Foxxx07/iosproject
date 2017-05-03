@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D61BCE911E8BEF9B00991275"
+               BlueprintIdentifier = "D67154151EB2286100017D55"
                BuildableName = "iMapContacts.app"
                BlueprintName = "iMapContacts"
                ReferencedContainer = "container:iMapContacts.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D61BCE911E8BEF9B00991275"
+            BlueprintIdentifier = "D67154151EB2286100017D55"
             BuildableName = "iMapContacts.app"
             BlueprintName = "iMapContacts"
             ReferencedContainer = "container:iMapContacts.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D61BCE911E8BEF9B00991275"
+            BlueprintIdentifier = "D67154151EB2286100017D55"
             BuildableName = "iMapContacts.app"
             BlueprintName = "iMapContacts"
             ReferencedContainer = "container:iMapContacts.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D61BCE911E8BEF9B00991275"
+            BlueprintIdentifier = "D67154151EB2286100017D55"
             BuildableName = "iMapContacts.app"
             BlueprintName = "iMapContacts"
             ReferencedContainer = "container:iMapContacts.xcodeproj">

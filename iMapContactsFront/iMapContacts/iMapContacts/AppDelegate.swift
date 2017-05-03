@@ -2,20 +2,21 @@
 //  AppDelegate.swift
 //  iMapContacts
 //
-//  Created by m2sar on 29/03/17.
+//  Created by m2sar on 27/04/17.
 //  Copyright © 2017 m2sar. All rights reserved.
 //
 
 import UIKit
-
+import CoreLocation
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        locationManager.requestWhenInUseAuthorization()
         return true
     }
 
