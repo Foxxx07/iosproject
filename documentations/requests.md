@@ -28,7 +28,6 @@ fname=john&lname=doe&email=john.doe%40protonmail.ch&message=hello+you
 
 # Serveur
 L'API répondra en JSON, sous la forme:
-
 ```json
 {
 	"e": 0,
@@ -53,35 +52,46 @@ Les méthodes HTTP utilisé seront:
 # Collections
 Les collections utilisé seront:
 
-* `/u`
-	* *[id-user]*
-* `/friends`
+* `/friends/`
 	* *[id-user-b]*
-* `/pos`
+* `/u/`
+	* *[n]*
 	* *[id-user]*
-* `/conf`
+	* *me*
+* `/pos/`
+	* *[id-user]*
+* `/conf/`
 
 > Note:<br>
+> * **/friends/**	: collection des relations d'amis.<br>
 > * **/u/**			: collection des utilisateurs.<br>
-> * **/friends/**	: collection de raltion d'ami.<br>
 > * **/pos/**		: collection des positions.<br>
 > * **/conf/**		: collection des configuration.
-
-## Collection: /u/
-* **GET** :
-	* /u/				: liste les méta-données de tous les utilisateurs.
-	* /u/*[n]*			: pagination à la position `[n]`.
-	* /u/*[id-user]*	: liste les méta-données de l'utilisateur `[id-user]`.
-* **POST** :
-	* /u/				: créer un utilisateur.
-	* /u/*[id-user]*	: met à jour les méta-données de l'utilisateur `[id-user]`.
 
 ## Collection: /friends/
 * **GET** :
 * **POST** :
 
+## Collection: /u/
+* **GET** :
+	* /u/*?search*		: liste les méta-données des utilisateurs, trouvé après une recherche en base via `search=...`.
+	* /u/*?search&n*	: pagination à la position `n`.
+	* /u/*[id-user]*	: liste les méta-données de l'utilisateur `[id-user]`.
+	* /u/me :
+		* liste les méta-données de l'utilisateur actuellement connecté.
+		* si la session existe, alors: 200, sinon: 404.
+* **POST** :
+	* /u/				: créer un utilisateur.
+	* /u/me :
+		* met à jour les méta-données de l'utilisateur actuellement connecté.
+		* ou, connecte l'utilisateur.
+
 ## Collection: /pos/
 * **GET** :
+	* /pos/					: récupère la position de l'utilisateur actuellement connecté.
+	* /pos/friends			: récupère les positions des amis de l'utilisateur actuellement connecté.
+	* /pos/friends/*[n]*	: pagination à la position `[n]`.
+	* /pos/*[id-user]*		: récupère la position de l'utilisateur `[id-user]`.
 * **POST** :
 
 ## Collection: /config/
