@@ -31,9 +31,9 @@ L'API répondra en JSON, sous la forme:
 # Méthodes
 Les méthodes HTTP utilisé seront:
 
-* `DELETE`	: supprime des (ressources|informations|méta-données).
-* `GET`		: (récupère|liste) des (ressources|informations|méta-données).
-* `HEAD`	: récupère les informations des (ressources|fichiers).
+* `DELETE`	: supprime des (ressources|informations|méta-données|fichiers).
+* `GET`		: (récupère|liste) des (ressources|informations|méta-données|fichiers).
+* `HEAD`	: récupère les informations d'un(e) (ressource|fichier).
 * `POST`	: envoi des (informations|méta-données).
 * `PUT`		: (créer|met à jour) un fichier.
 
