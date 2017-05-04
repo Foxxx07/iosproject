@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `imap_contacts`.`users` (
 	`registration`	BIGINT UNSIGNED NOT NULL DEFAULT 0	COMMENT 'Timestamp de création du compte',
 PRIMARY KEY (`key`),
 UNIQUE		INDEX `email_UNIQUE`	USING BTREE (`email` ASC)				COMMENT 'Index unique d’une adresse e-mail d’un utilisateur',
-FULLTEXT	INDEX `names_FULLTEXT`	USING BTREE (`fname` ASC, `lname` ASC)	COMMENT 'Index pour la recherche FULLTEXT d’un utilisateur, par son prénom-nom')
+FULLTEXT	INDEX `names_FULLTEXT`				(`fname` ASC, `lname` ASC)	COMMENT 'Index pour la recherche FULLTEXT d’un utilisateur, par son prénom-nom')
 ENGINE	= InnoDB
 COMMENT	= 'Tables contenant les méta données des utilisateurs';
 
