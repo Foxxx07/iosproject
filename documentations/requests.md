@@ -1,4 +1,17 @@
 # Comminication vers l'API
+
+## Sommaire
+* Résumé
+* Client
+* Serveur
+* Méthodes
+* Collections
+	* Collection: /u/
+	* Collection: /friends/
+	* Collection: /pos/
+	* Collection: /config/
+
+# Résumé
 * Les messages envoyé à l'API sera sous:
 	* `application/x-www-form-urlencoded`: pour l'envoi de text (converti en ASCII)
 	* `multipart/form-data`: pour l'envoi de données tel quel, utilisé pour l'envoi de fichier.
@@ -6,9 +19,9 @@
 * Les réponse de l'API sera en **JSON**.
 
 # Client
+L'application envera des message sous la forme:<br>
+*URL encoded data, example:*
 ```plain
-URL encoded data, example:
-
 fname=john&lname=doe&email=john.doe%40protonmail.ch&message=hello+you
 ```
 > Note: les données envoyé diffère suivant la ressource distante.
@@ -40,13 +53,13 @@ Les méthodes HTTP utilisé seront:
 # Collections
 Les collections utilisé seront:
 
-* `/u/`
-	* [id-user]/
-* `/friends/`
-	* [id-user-b]/
-* `/pos/`
-	* [id-user]/
-* `/conf/`
+* `/u`
+	* *[id-user]*
+* `/friends`
+	* *[id-user-b]*
+* `/pos`
+	* *[id-user]*
+* `/conf`
 
 > Note:<br>
 > * **/u/**			: collection des utilisateurs.<br>
@@ -56,12 +69,12 @@ Les collections utilisé seront:
 
 ## Collection: /u/
 * **GET** :
-	* /u/			: liste les méta-données de tous les utilisateurs.
-	* /u/[n]		: pagination à la position `[n]`.
-	* /u/[id-user]	: liste les méta-données de l'utilisateur `[id-user]`.
+	* /u/				: liste les méta-données de tous les utilisateurs.
+	* /u/*[n]*			: pagination à la position `[n]`.
+	* /u/*[id-user]*	: liste les méta-données de l'utilisateur `[id-user]`.
 * **POST** :
-	* /u/			: créer un utilisateur.
-	* /u/[id-user]	: met à jour les méta-données de l'utilisateur `[id-user]`.
+	* /u/				: créer un utilisateur.
+	* /u/*[id-user]*	: met à jour les méta-données de l'utilisateur `[id-user]`.
 
 ## Collection: /friends/
 * **GET** :
