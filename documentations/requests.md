@@ -9,7 +9,7 @@
 ```plain
 URL encoded data, example:
 
-fname=john&lname=doe&email=john.doe@protonmail.ch&message=hello+you
+fname=john&lname=doe&email=john.doe%40protonmail.ch&message=hello+you
 ```
 > Note: les données envoyé diffère suivant la ressource distante.
 
