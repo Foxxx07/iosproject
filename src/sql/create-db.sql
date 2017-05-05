@@ -15,7 +15,6 @@ FULLTEXT	INDEX `names_FULLTEXT`				(`fname` ASC, `lname` ASC)	COMMENT 'Index pou
 ENGINE	= InnoDB
 COMMENT	= 'Tables contenant les méta données des utilisateurs';
 
-
 CREATE TABLE IF NOT EXISTS `imap_contacts`.`friends` (
 	`relation_key`	BINARY(64)	NOT NULL				COMMENT 'Clé indéxant la relation',
 	`user_a`		BINARY(8)	NOT NULL				COMMENT 'Identifiant de l\'utilisateur A, l\'initiateur de la relation',

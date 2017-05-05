@@ -1,0 +1,4 @@
+CREATE USER IF NOT EXISTS 'imap_contacts'@'%' IDENTIFIED BY 'azerty123';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'imap_contacts'@'%';
+GRANT SELECT, UPDATE, INSERT, DELETE, EXECUTE ON `imap_contacts`.* TO 'imap_contacts'@'%';
+FLUSH PRIVILEGES;
