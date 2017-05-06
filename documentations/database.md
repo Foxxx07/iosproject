@@ -97,3 +97,11 @@ CreateUser(0x00000002, "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", 0xf2d
 -- OU
 CreateUser(x'00000002', "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", x'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9');
 ```
+**Erreurs**
+
+| N     | Condition                           |
+|:-----:| ----------------------------------- |
+| 10000 | 0 = LENGTH(`u_fname`)               |
+| 10001 | 0 = LENGTH(`u_lname`)               |
+| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
+| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
