@@ -63,7 +63,7 @@ Les méthodes HTTP utilisé seront:
 * **POST** :
 	* /friends/[id-user]	: créer une demande d'ami à `[id-user]`.
 * **DELETE** :
-	* /friends/[id-user]	: supprime la demande d'ami à `[id-user]`.
+	* /friends/[id-user]	: supprime la relations avec `[id-user]`.
 
 ## Collection: /u/
 * **GET** :
