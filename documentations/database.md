@@ -84,6 +84,13 @@ CALL CheckCredentials("maiuri.gaetan@protonmail.ch", x'52a664c8e678831be343774d6
 > |:----:|
 > | 1    |
 
+**Erreurs**
+
+| N     | Condition                           |
+|:-----:| ----------------------------------- |
+| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
+| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
+
 ## GetUserById
 ```sql
 GetUserById (IN u_key BINARY(4))
@@ -107,10 +114,3 @@ CALL GetUserById(x'00000001');
 > | fname   | lname  | email                       | registration |
 > | ------- | ------ | --------------------------- | ------------ |
 > | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
-
-**Erreurs**
-
-| N     | Condition                           |
-|:-----:| ----------------------------------- |
-| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
-| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
