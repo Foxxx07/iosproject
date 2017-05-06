@@ -38,7 +38,7 @@ CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), 
 
 > Note: `u_password` est le hash *sha256* du mot de passe.
 
-**Exmple**
+**Exemple**
  ```sql
 -- Créer un nouvel utilisateur.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
@@ -67,7 +67,7 @@ CheckCredentials (IN u_email BINARY(120), IN u_password BINARY(32))
 
 > Note: `u_password` est le hash *sha256* du mot de passe.
 
-**Exmple**
+**Exemple**
  ```sql
 -- Test l'authentification d'un utilisateur.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
@@ -99,7 +99,7 @@ GetUserById (IN u_key BINARY(4))
 
 `GetUserById` récupère les méta-données d'un utilisateur par sa clé.
 
-**Exmple**
+**Exemple**
  ```sql
 -- Récupère les méta-données d'un utilisateur par sa clé.
 CALL GetUserById(0x00000001);
