@@ -76,6 +76,14 @@ CALL GetUserById(x'00000001');
 > | ------- | ------ | --------------------------- | ------------ |
 > | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
 
+**Erreurs**
+
+| N     | Condition                           |
+|:-----:| ----------------------------------- |
+| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
+| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
+
+
 ## CreateUser
 ```sql
 CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), IN u_email BINARY(120), IN u_password BINARY(32))
