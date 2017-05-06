@@ -58,12 +58,12 @@ Les méthodes HTTP utilisé seront:
 
 ## Collection: /friends/
 * **GET** :
-	* /friends/[id-user]	: test si l'utilisateur actuellement connecté est ami avec `[id-user]`.
+	* /friends/*[id-user]*	: test si l'utilisateur actuellement connecté est ami avec `[id-user]`.
 		* 200:oui, 404: non.
 * **POST** :
-	* /friends/[id-user]	: créer une demande d'ami à `[id-user]`.
+	* /friends/*[id-user]*	: créer une demande d'ami à `[id-user]`.
 * **DELETE** :
-	* /friends/[id-user]	: supprime la relations avec `[id-user]`.
+	* /friends/*[id-user]*	: supprime la relations avec `[id-user]`.
 
 ## Collection: /u/
 * **GET** :
