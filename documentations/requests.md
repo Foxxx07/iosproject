@@ -6,8 +6,8 @@
 * Serveur
 * Méthodes
 * Collections
-	* Collection: /u/
 	* Collection: /friends/
+	* Collection: /u/
 	* Collection: /pos/
 	* Collection: /config/
 
@@ -50,19 +50,7 @@ Les méthodes HTTP utilisé seront:
 * `PUT`		: (créer|met à jour) un fichier.
 
 # Collections
-Les collections utilisé seront:
-
-* `/friends/`
-	* *[id-user-b]*
-* `/u/`
-	* *[n]*
-	* *[id-user]*
-	* *me*
-* `/pos/`
-	* *[id-user]*
-* `/conf/`
-
-> Note:<br>
+> Note:
 > * **/friends/**	: collection des relations d'amis.<br>
 > * **/u/**			: collection des utilisateurs.<br>
 > * **/pos/**		: collection des positions.<br>
@@ -70,13 +58,21 @@ Les collections utilisé seront:
 
 ## Collection: /friends/
 * **GET** :
+	* /friends/[id-user]	: test si l'utilisateur actuellement connecté est ami avec `[id-user]`.
+		* 200:oui, 404: non.
 * **POST** :
+	* /friends/[id-user]	: créer une demande d'ami à `[id-user]`.
+* **DELETE** :
+	* /friends/[id-user]	: supprime la demande d'ami à `[id-user]`.
 
 ## Collection: /u/
 * **GET** :
 	* /u/*?search*		: liste les méta-données des utilisateurs, trouvé après une recherche en base via `search=...`.
+		* 404: aucun résultat.
 	* /u/*?search&n*	: pagination à la position `n`.
+		* 404: aucun résultat.
 	* /u/*[id-user]*	: liste les méta-données de l'utilisateur `[id-user]`.
+		* 404: l'utilisateur `[id-user]` n'exist pas.
 	* /u/me :
 		* liste les méta-données de l'utilisateur actuellement connecté.
 		* si la session existe, alors: 200, sinon: 404.
@@ -93,7 +89,7 @@ Les collections utilisé seront:
 	* /pos/friends/*[n]*	: pagination à la position `[n]`.
 	* /pos/*[id-user]*		: récupère la position de l'utilisateur `[id-user]`.
 * **POST** :
+	* /pos/					: met à jour la position de l'utilisateur actuellement connecté.
 
 ## Collection: /config/
-* **GET** :
-* **POST** :
+> TODO: à définir.
