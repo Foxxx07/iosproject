@@ -4,7 +4,7 @@ DELIMITER |
 
 CREATE DEFINER = `imap_contacts` PROCEDURE `imap_contacts`.`GetUserByCredentials` (IN u_email VARBINARY(254), IN u_password BINARY(32))
 LANGUAGE SQL
-NOT DETERMINISTIC
+DETERMINISTIC
 READS SQL DATA
 SQL SECURITY DEFINER
 COMMENT 'Test les informations d\'identification'

@@ -4,7 +4,7 @@ DELIMITER |
 
 CREATE DEFINER = `imap_contacts` PROCEDURE `imap_contacts`.`CreateUser` (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), IN u_email VARBINARY(254), IN u_password BINARY(32))
 LANGUAGE SQL
-DETERMINISTIC
+NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 COMMENT 'Créer un utilisateur'
