@@ -26,7 +26,7 @@
 
 ## CreateUser
 ```sql
-CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), IN u_email BINARY(120), IN u_password BINARY(32))
+CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), IN u_email VARBINARY(254), IN u_password BINARY(32))
 ```
 * `u_key`		: Clé unique de l'utilisateur.
 * `u_fname`		: Prénom de l'utilisateur.
@@ -42,9 +42,14 @@ CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), 
  ```sql
 -- Créer un nouvel utilisateur.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
-CreateUser(0x00000001, "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
+CALL CreateUser(0x00000001, "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
 -- OU
-CreateUser(x'00000001', "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
+CALL CreateUser(x'00000001', "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
+
+-- Avec l'adresse e-mail en héxadecimal.
+CALL CreateUser(0x00000001, "Gaëtan", "Maiuri", 0x6d61697572692e67616574616e4070726f746f6e6d61696c2e6368, 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
+-- OU
+CALL CreateUser(x'00000001', "Gaëtan", "Maiuri", x'6d61697572692e67616574616e4070726f746f6e6d61696c2e6368', x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
 ```
 **Erreurs**
 
@@ -52,43 +57,48 @@ CreateUser(x'00000001', "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", x'52
 |:-----:| ----------------------------------- |
 | 10000 | 0 = LENGTH(`u_fname`)               |
 | 10001 | 0 = LENGTH(`u_lname`)               |
-| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
+| 10002 | RPAD(0x00, 254, 0x00) <=> u_email   |
 | 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
 
 
-## CheckCredentials
+## GetUserByCredentials
 ```sql
-CheckCredentials (IN u_email BINARY(120), IN u_password BINARY(32))
+GetUserByCredentials (IN u_email VARBINARY(254), IN u_password BINARY(32))
 ```
 * `u_email`		: Adresse e-mail de l'utilisateur.
 * `u_password`	: Mot de passe de l'utilisateur.
 
-`CheckCredentials` test l'authentification d'un utilisateur.
+`GetUserByCredentials` récupère les méta-données d'un utilisateur par ses informations de connexion.
 
 > Note: `u_password` est le hash *sha256* du mot de passe.
 
 **Exemple**
  ```sql
--- Test l'authentification d'un utilisateur.
+-- Récupère les méta-données d'un utilisateur par ses informations de connexion.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
-CALL CheckCredentials("maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
+CALL GetUserByCredentials("maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
 -- OU
-CALL CheckCredentials("maiuri.gaetan@protonmail.ch", x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
+CALL GetUserByCredentials("maiuri.gaetan@protonmail.ch", x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
+
+-- Avec l'adresse e-mail en héxadecimal.
+CALL GetUserByCredentials(0x6d61697572692e67616574616e4070726f746f6e6d61696c2e6368, 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
+-- OU
+CALL GetUserByCredentials(x'6d61697572692e67616574616e4070726f746f6e6d61696c2e6368', x'52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12');
 ```
 
 **Retour**
 * Si l'authentification échoue, alors aucune ligne n'est retourné.
-* Si l'authentification à réussi, alors le retour sera:
+* Si l'authentification à réussi, alors le résultat sera le retour de:
 
-> | TRUE |
-> |:----:|
-> | 1    |
+```sql
+CALL GetUserById(`[user-id]`);
+```
 
 **Erreurs**
 
 | N     | Condition                           |
 |:-----:| ----------------------------------- |
-| 10002 | RPAD(0x00, 120, 0x00) <=> u_email   |
+| 10002 | RPAD(0x00, 254, 0x00) <=> u_email   |
 | 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
 
 ## GetUserById

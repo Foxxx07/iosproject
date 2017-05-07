@@ -9,7 +9,7 @@ READS SQL DATA
 SQL SECURITY DEFINER
 COMMENT 'Retourne les méta-données d\'un utilisateur'
 BEGIN
-	SELECT `fname`, `lname`, REPLACE(`email`, 0x00, '') AS `email`, `registration` FROM `users` WHERE `key` = u_key;
+	SELECT `fname`, `lname`, `email`, `registration` FROM `users` WHERE `key` = u_key;
 END;
 |
 

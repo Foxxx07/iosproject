@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `imap_contacts`.`users` (
 	`key`			BINARY(4)		NOT NULL			COMMENT 'Identifiant unique d’un utilisateur',
 	`fname`			VARCHAR(50)		NOT NULL			COMMENT 'Prénom de l’utilisateur',
 	`lname`			VARCHAR(50)		NOT NULL			COMMENT 'Nom de famille de l’utilisateur',
-	`email`			BINARY(120)		NOT NULL			COMMENT 'e-mail principal de l’utilisateur',
+	`email`			VARBINARY(254)	NOT NULL			COMMENT 'e-mail principal de l’utilisateur (RFC 5321 - Section: 4.5.3.1.3)',
 	`password`		BINARY(32)		NOT NULL			COMMENT 'Hash: SHA256',
 	`registration`	BIGINT UNSIGNED NOT NULL DEFAULT 0	COMMENT 'Timestamp de création du compte',
 PRIMARY KEY (`key`),
