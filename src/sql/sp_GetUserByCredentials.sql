@@ -7,7 +7,7 @@ LANGUAGE SQL
 DETERMINISTIC
 READS SQL DATA
 SQL SECURITY DEFINER
-COMMENT 'Test les informations d\'identification'
+COMMENT 'Retourne les méta-données d\'un utilisateur via ses informations d\'identification'
 BEGIN
 	DECLARE STORED_KEY			BINARY(4)	DEFAULT NULL;
 	-- DECLARE STORED_PASSWORD	BINARY(32)	DEFAULT NULL;
