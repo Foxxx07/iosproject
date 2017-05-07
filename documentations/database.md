@@ -121,6 +121,6 @@ CALL GetUserById(x'00000001');
 * Si l'utilisateur n'existe pas, alors aucune ligne n'est retourné.
 * Si l'utilisateur existe, alors le retour sera:
 
-> | fname   | lname  | email                       | registration |
-> | ------- | ------ | --------------------------- | ------------ |
-> | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
+> | key      | fname   | lname  | email                       | registration |
+> | -------- | ------- | ------ | --------------------------- | ------------ |
+> | 00000001 | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
