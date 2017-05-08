@@ -182,3 +182,42 @@ CALL DeleteFriendship(x'00000001', x'00000002');
 | 10004 | u_key_a <=> u_key_b   |
 | 10005 | u_key_a IS NULL       |
 | 10005 | u_key_b IS NULL       |
+
+## GetFriendship
+```sql
+GetFriendship (IN u_key_a BINARY(4), IN u_key_b BINARY(4))
+```
+* `u_key_a`		: Clé unique de l'utilisateur (créant|acceptant) la demande.
+* `u_key_b`		: Clé unique de l'utilisateur (reçevant|ayant créé) la demande.
+
+`GetFriendship` récupère l'état d'une relation d'ami.
+
+**Exemple**
+ ```sql
+-- Récupère l'état d'une relation d'ami entre 'A' et 'B'.
+CALL GetFriendship(0x00000001, 0x00000002);
+-- OU
+CALL GetFriendship(x'00000001', x'00000002');
+```
+
+**Retour**
+* Si la relation n'existe pas, alors aucune ligne n'est retourné.
+* Si la relation existe, mais que l'utilisateur 'B' n'a pas encore accepté la demande, alors le retour sera:
+
+> | confirmed |
+> |:---------:|
+> | 0         |
+
+* Sinon:
+
+> | confirmed |
+> |:---------:|
+> | 1         |
+
+**Erreurs**
+
+| N     | Condition             |
+|:-----:| --------------------- |
+| 10004 | u_key_a <=> u_key_b   |
+| 10005 | u_key_a IS NULL       |
+| 10005 | u_key_b IS NULL       |
