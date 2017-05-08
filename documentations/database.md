@@ -229,7 +229,7 @@ SearchUser (IN search_str VARCHAR(100), IN offset_pos INT, IN limit_l INT, IN in
 * `search_str`		: La chaîne à rechercher.
 * `offset_pos`		: Position de la pagination du résultat. (Si `NULL`, alors: 0)
 * `limit_l`			: Limiter le nombre de résultat. (Si `NULL`, alors: -1)
-* `in_bool_mode`	: TRUE si la recherche doit avoir l'attribut `IN BOOLEAN MODE`, sinon la recherche se fera avec l'attribut `IN NATURAL LANGUAGE MODE`.
+* `in_bool_mode`	: `TRUE` si la recherche doit avoir l'attribut `IN BOOLEAN MODE`, sinon la recherche se fera avec l'attribut `IN NATURAL LANGUAGE MODE`.
 
 `SearchUser` recherche un utilisateur.
 
