@@ -60,7 +60,6 @@ CALL CreateUser(x'00000001', "Gaëtan", "Maiuri", x'6d61697572692e67616574616e40
 | 10002 | RPAD(0x00, 254, 0x00) <=> u_email   |
 | 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
 
-
 ## GetUserByCredentials
 ```sql
 GetUserByCredentials (IN u_email VARBINARY(254), IN u_password BINARY(32))
@@ -124,3 +123,62 @@ CALL GetUserById(x'00000001');
 > | key      | fname   | lname  | email                       | registration |
 > | -------- | ------- | ------ | --------------------------- | ------------ |
 > | 00000001 | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
+
+## SetFriendship
+```sql
+SetFriendship (IN r_key BINARY(64), IN u_key_a BINARY(4), IN u_key_b BINARY(4))
+```
+* `r_key`		: La clé de relation à utiliser si aucune entrée n'existe, sinon: `NULL`.
+* `u_key_a`		: Clé unique de l'utilisateur (créant|acceptant) la demande.
+* `u_key_b`		: Clé unique de l'utilisateur (reçevant|ayant créé) la demande.
+
+`SetFriendship` créer ou confirme une demande d'amis.
+
+**Exemple**
+ ```sql
+-- Créer une demande d'amis de la part de 'A' pour 'B'.
+CALL SetFriendship(0xd212cab79eac2f5438d8120664c13174d02cce8dd13d97fa585a77534316a82d1e99dfbcb031fbbe3854e3d18f39938ec6ab3f7f7d39338f8c2038f8757bb80d, 0x00000001, 0x00000002);
+-- OU
+CALL SetFriendship(x'd212cab79eac2f5438d8120664c13174d02cce8dd13d97fa585a77534316a82d1e99dfbcb031fbbe3854e3d18f39938ec6ab3f7f7d39338f8c2038f8757bb80d', x'00000001', x'00000002');
+
+-- Accepte la demande d'amis de la part de 'A' pour 'B'.
+-- `r_key` peut être à NULL, car nous savons avec certitude qu'une entrée existe,
+-- sinon, l'erreur 10006 sera émise.
+CALL SetFriendship(NULL, 0x00000002, 0x00000001);
+-- OU
+CALL SetFriendship(NULL, x'00000002', x'00000001');
+```
+
+**Erreurs**
+
+| N     | Condition             |
+|:-----:| --------------------- |
+| 10004 | u_key_a <=> u_key_b   |
+| 10005 | u_key_a IS NULL       |
+| 10005 | u_key_b IS NULL       |
+| 10006 | r_key IS NULL         |
+
+## DeleteFriendship
+```sql
+DeleteFriendship (IN u_key_a BINARY(4), IN u_key_b BINARY(4))
+```
+* `u_key_a`		: Clé unique de l'utilisateur (créant|acceptant) la demande.
+* `u_key_b`		: Clé unique de l'utilisateur (reçevant|ayant créé) la demande.
+
+`DeleteFriendship` supprime une relation d'amis.
+
+**Exemple**
+ ```sql
+-- Supprime une relation d'amis entre 'A' et 'B'.
+CALL DeleteFriendship(0x00000001, 0x00000002);
+-- OU
+CALL DeleteFriendship(x'00000001', x'00000002');
+```
+
+**Erreurs**
+
+| N     | Condition             |
+|:-----:| --------------------- |
+| 10004 | u_key_a <=> u_key_b   |
+| 10005 | u_key_a IS NULL       |
+| 10005 | u_key_b IS NULL       |
