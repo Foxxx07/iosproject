@@ -224,9 +224,11 @@ CALL GetFriendship(x'00000001', x'00000002');
 
 ## SearchUser
 ```sql
-SearchUser (IN search_str VARCHAR(100), IN in_bool_mode BOOLEAN)
+SearchUser (IN search_str VARCHAR(100), IN offset_pos INT, IN limit_l INT, IN in_bool_mode BOOLEAN)
 ```
 * `search_str`		: La chaîne à rechercher.
+* `offset_pos`		: Position de la pagination du résultat. (Si `NULL`, alors: 0)
+* `limit_l`			: Limiter le nombre de résultat. (Si `NULL`, alors: -1)
 * `in_bool_mode`	: TRUE si la recherche doit avoir l'attribut `IN BOOLEAN MODE`, sinon la recherche se fera avec l'attribut `IN NATURAL LANGUAGE MODE`.
 
 `SearchUser` recherche un utilisateur.
@@ -235,16 +237,18 @@ SearchUser (IN search_str VARCHAR(100), IN in_bool_mode BOOLEAN)
 >
 > Exemple:
 > ```sql
-CALL SearchUser("ga*,+", TRUE);
+CALL SearchUser("ga*,+", NULL, NULL, TRUE);
 -- ERROR 1064 (42000): syntax error, unexpected $end
 ```
+
+> Note 2: la pagination est utile lorsque les résultats sont limité.
 
 **Exemple**
  ```sql
 -- Recherche un utilisateur.
-CALL SearchUser("ga*", TRUE);
+CALL SearchUser("ga*", NULL, NULL, TRUE);
 -- OU
-CALL SearchUser("gaetan", FALSE);
+CALL SearchUser("gaetan", NULL, NULL, FALSE);
 ```
 
 **Retour**
