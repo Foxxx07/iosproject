@@ -39,7 +39,7 @@ CreateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), 
 > Note: `u_password` est le hash *sha256* du mot de passe.
 
 **Exemple**
- ```sql
+```sql
 -- Créer un nouvel utilisateur.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
 CALL CreateUser(0x00000001, "Gaëtan", "Maiuri", "maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
@@ -72,7 +72,7 @@ GetUserByCredentials (IN u_email VARBINARY(254), IN u_password BINARY(32))
 > Note: `u_password` est le hash *sha256* du mot de passe.
 
 **Exemple**
- ```sql
+```sql
 -- Récupère les méta-données d'un utilisateur par ses informations de connexion.
 -- 52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12 : $ sha256sum <(echo -n "@azerty123#")
 CALL GetUserByCredentials("maiuri.gaetan@protonmail.ch", 0x52a664c8e678831be343774d67febd9f193ff7dea63f36172b90b1706f477d12);
@@ -109,7 +109,7 @@ GetUserById (IN u_key BINARY(4))
 `GetUserById` récupère les méta-données d'un utilisateur par sa clé.
 
 **Exemple**
- ```sql
+```sql
 -- Récupère les méta-données d'un utilisateur par sa clé.
 CALL GetUserById(0x00000001);
 -- OU
@@ -135,7 +135,7 @@ SetFriendship (IN r_key BINARY(64), IN u_key_a BINARY(4), IN u_key_b BINARY(4))
 `SetFriendship` créer ou confirme une demande d'amis.
 
 **Exemple**
- ```sql
+```sql
 -- Créer une demande d'amis de la part de 'A' pour 'B'.
 CALL SetFriendship(0xd212cab79eac2f5438d8120664c13174d02cce8dd13d97fa585a77534316a82d1e99dfbcb031fbbe3854e3d18f39938ec6ab3f7f7d39338f8c2038f8757bb80d, 0x00000001, 0x00000002);
 -- OU
@@ -168,7 +168,7 @@ DeleteFriendship (IN u_key_a BINARY(4), IN u_key_b BINARY(4))
 `DeleteFriendship` supprime une relation d'amis.
 
 **Exemple**
- ```sql
+```sql
 -- Supprime une relation d'amis entre 'A' et 'B'.
 CALL DeleteFriendship(0x00000001, 0x00000002);
 -- OU
@@ -193,7 +193,7 @@ GetFriendship (IN u_key_a BINARY(4), IN u_key_b BINARY(4))
 `GetFriendship` récupère l'état d'une relation d'ami.
 
 **Exemple**
- ```sql
+```sql
 -- Récupère l'état d'une relation d'ami entre 'A' et 'B'.
 CALL GetFriendship(0x00000001, 0x00000002);
 -- OU
@@ -236,7 +236,8 @@ SearchUser (IN search_str VARCHAR(100), IN offset_pos INT, IN limit_l INT, IN in
 > Note: si `in_bool_mode` est à `TRUE`, alors la chaîne doit êtres formaté correctement, sinon, la recherche se pourra se faire, et une erreur sera retournée.
 >
 > Exemple:
-> ```sql
+>
+ ```sql
 CALL SearchUser("ga*,+", NULL, NULL, TRUE);
 -- ERROR 1064 (42000): syntax error, unexpected $end
 ```
@@ -244,7 +245,7 @@ CALL SearchUser("ga*,+", NULL, NULL, TRUE);
 > Note 2: la pagination est utile lorsque les résultats sont limité.
 
 **Exemple**
- ```sql
+```sql
 -- Recherche un utilisateur.
 CALL SearchUser("ga*", NULL, NULL, TRUE);
 -- OU
