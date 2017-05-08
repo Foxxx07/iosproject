@@ -57,8 +57,8 @@ CALL CreateUser(x'00000001', "Gaëtan", "Maiuri", x'6d61697572692e67616574616e40
 |:-----:| ----------------------------------- |
 | 10000 | 0 = LENGTH(`u_fname`)               |
 | 10001 | 0 = LENGTH(`u_lname`)               |
-| 10002 | RPAD(0x00, 254, 0x00) <=> u_email   |
-| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
+| 10002 | RPAD(0x00, 254, 0x00) <=> `u_email`   |
+| 10003 | RPAD(0x00, 32, 0x00) <=> `u_password` |
 
 ## GetUserByCredentials
 ```sql
@@ -97,8 +97,8 @@ CALL GetUserById(`[user-id]`);
 
 | N     | Condition                           |
 |:-----:| ----------------------------------- |
-| 10002 | RPAD(0x00, 254, 0x00) <=> u_email   |
-| 10003 | RPAD(0x00, 32, 0x00) <=> u_password |
+| 10002 | RPAD(0x00, 254, 0x00) <=> `u_email`   |
+| 10003 | RPAD(0x00, 32, 0x00) <=> `u_password` |
 
 ## GetUserById
 ```sql
@@ -153,10 +153,10 @@ CALL SetFriendship(NULL, x'00000002', x'00000001');
 
 | N     | Condition             |
 |:-----:| --------------------- |
-| 10004 | u_key_a <=> u_key_b   |
-| 10005 | u_key_a IS NULL       |
-| 10005 | u_key_b IS NULL       |
-| 10006 | r_key IS NULL         |
+| 10004 | `u_key_a` <=> u_key_b   |
+| 10005 | `u_key_a` IS NULL       |
+| 10005 | `u_key_b` IS NULL       |
+| 10006 | `r_key` IS NULL         |
 
 ## DeleteFriendship
 ```sql
@@ -179,9 +179,9 @@ CALL DeleteFriendship(x'00000001', x'00000002');
 
 | N     | Condition             |
 |:-----:| --------------------- |
-| 10004 | u_key_a <=> u_key_b   |
-| 10005 | u_key_a IS NULL       |
-| 10005 | u_key_b IS NULL       |
+| 10004 | `u_key_a` <=> u_key_b   |
+| 10005 | `u_key_a` IS NULL       |
+| 10005 | `u_key_b` IS NULL       |
 
 ## GetFriendship
 ```sql
@@ -218,6 +218,39 @@ CALL GetFriendship(x'00000001', x'00000002');
 
 | N     | Condition             |
 |:-----:| --------------------- |
-| 10004 | u_key_a <=> u_key_b   |
-| 10005 | u_key_a IS NULL       |
-| 10005 | u_key_b IS NULL       |
+| 10004 | `u_key_a` <=> `u_key_b`   |
+| 10005 | `u_key_a` IS NULL       |
+| 10005 | `u_key_b` IS NULL       |
+
+## SearchUser
+```sql
+SearchUser (IN search_str VARCHAR(100), IN in_bool_mode BOOLEAN)
+```
+* `search_str`		: La chaîne à rechercher.
+* `in_bool_mode`	: TRUE si la recherche doit avoir l'attribut `IN BOOLEAN MODE`, sinon la recherche se fera avec l'attribut `IN NATURAL LANGUAGE MODE`.
+
+`SearchUser` recherche un utilisateur.
+
+> Note: si `in_bool_mode` est à `TRUE`, alors la chaîne doit êtres formaté correctement, sinon, la recherche se pourra se faire, et une erreur sera retournée.
+>
+> Exemple:
+> ```sql
+CALL SearchUser("ga*,+", TRUE);
+-- ERROR 1064 (42000): syntax error, unexpected $end
+```
+
+**Exemple**
+ ```sql
+-- Recherche un utilisateur.
+CALL SearchUser("ga*", TRUE);
+-- OU
+CALL SearchUser("gaetan", FALSE);
+```
+
+**Retour**
+* Si il n'y a aucun résultat, alors aucune ligne n'est retourné.
+* Sinon:
+
+> | key |
+> | --------- |
+> | 00000001  |
