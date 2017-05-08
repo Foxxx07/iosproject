@@ -240,7 +240,7 @@ SearchUser (IN search_str VARCHAR(100), IN offset_pos INT, IN limit_l INT, IN in
 CALL SearchUser("ga*,+", NULL, NULL, TRUE);
 -- ERROR 1064 (42000): syntax error, unexpected $end
 ```
-
+>
 > Note 2: la pagination est utile lorsque les résultats sont limité.
 
 **Exemple**
