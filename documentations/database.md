@@ -22,6 +22,15 @@
 | *password*     | Le mot de passe d'authentification de l'utilisateur, hashé avec sha256.                   |
 | *registration* | Le timestamp d'enregistrement du compte.                                                  |
 
+## friends
+
+| Nom            | Information                                                                               |
+| -------------- | ------------------------------------------------------------------------------------------|
+| *relation_key* | La clé unique identifiant la relation.<br>La valeur est une clé sur 64 octects.           |
+| *user_a*       | La clé unique identifiant l'utilisateur A.                                                |
+| *user_b*       | La clé unique identifiant l'utilisateur B.                                                |
+| *state*        | L'état de la relation.                                                                    |
+
 # Procédures
 
 ## CreateUser
