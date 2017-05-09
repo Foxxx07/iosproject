@@ -7,24 +7,25 @@
 //
 
 import Foundation
+import UIKit
 
 class UrlUtils {
-    let url = "http://www.google.fr"
-    
-    func sendToServ(httpMethod : String , collection : String , data : URLComponents ) {
+    func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents ) {
         
-        var request = URLRequest(url: URL(string: url+collection)!)
-        request.httpMethod = httpMethod
-    
-        guard let parameters = data.query else { return }
+        var request = URLRequest(url: URL(string:"http://www.google.fr\(collection)")!)
+        request.httpMethod = httpMethod.rawValue
+       
+        guard let parameters = urlComponents.query else {return}
         request.httpBody = parameters.data(using: .ascii)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
         let task = URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in })
-    
+        
+        print( request.httpBody)
+        print(urlComponents.url)
+        
         task.resume()
         
         
-        
     }
-    
 }

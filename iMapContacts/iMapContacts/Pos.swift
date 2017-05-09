@@ -7,9 +7,9 @@
 //
 
 import Foundation
-//
-//enum Collection: String{
-////    case USER = "/u"
-////    case FRIENDS = "/friends"
-////    case POSITION =  "
-//}
+
+enum POS: String{
+    case ROOT = "/pos/"
+    case FRIENDS = "pos/%s/%d"
+    case IDUSER = "pos/%s"
+}

@@ -14,6 +14,7 @@ class Connexion: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -24,27 +25,20 @@ class Connexion: UIViewController {
     }
     
     private func sendConnexion() {
-        //on suppose que sa marche aussi !
-        var request = URLRequest(url: URL(string:"http://www.google.fr/u/")!)
-        request.httpMethod = "POST"
-        
+     
         var urlComponents = URLComponents()
         urlComponents.queryItems = [
-            URLQueryItem(name: "email" , value : email.text),
-            URLQueryItem(name: "password", value : password.text)
+            URLQueryItem(name: "email" , value : email.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
+            URLQueryItem(name: "password", value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics))
         ]
-        
         guard let mail = email.text, let pass = password.text else { return } //todo
         guard mail.characters.count >= 6, pass.characters.count >= 4 else { return } // Handle error todo
-        guard let parameters = urlComponents.query?.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) else { return }
-        request.httpBody = parameters.data(using: .ascii)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in })
-        print( request.httpBody)
-        print(urlComponents.url)
-        task.resume()
+      
+//        print( request.httpBody)
+//        print(urlComponents.url)
         
-            
+        UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
+        
 //        let session = URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in
 
             

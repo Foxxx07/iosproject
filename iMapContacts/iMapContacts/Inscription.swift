@@ -51,7 +51,6 @@ class Inscription: UIViewController {
         else {
             return true
         }
-        
     }
     
     @IBAction func valider_Action(_ sender: UIButton) {
@@ -69,7 +68,6 @@ class Inscription: UIViewController {
             }
         }
     }
-    
     
     //        let jsonObject: NSMutableDictionary = NSMutableDictionary()
     //        let jsonData : NSData
