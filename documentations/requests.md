@@ -58,6 +58,7 @@ Les méthodes HTTP utilisé seront:
 
 ## Collection: /friends/
 * **GET** :
+	* /friends		: récupère la liste des amis de l'utilisateur actuellement connecté.
 	* /friends/*[id-user]*	: test si l'utilisateur actuellement connecté est ami avec `[id-user]`.
 		* 200:oui, 404: non.
 * **POST** :
