@@ -14,7 +14,7 @@ class UrlUtils {
         
         var request = URLRequest(url: URL(string:"http://www.google.fr\(collection)")!)
         request.httpMethod = httpMethod.rawValue
-       
+        
         guard let parameters = urlComponents.query else {return}
         request.httpBody = parameters.data(using: .ascii)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -25,7 +25,6 @@ class UrlUtils {
         print(urlComponents.url)
         
         task.resume()
-        
         
     }
 }

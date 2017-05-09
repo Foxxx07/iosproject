@@ -22,6 +22,7 @@
 		D6ACE2731EC2065D00A7FE41 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ACE26E1EC2065D00A7FE41 /* HttpMethod.swift */; };
 		D6ACE2741EC2065D00A7FE41 /* Pos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ACE26F1EC2065D00A7FE41 /* Pos.swift */; };
 		D6ACE2751EC2065D00A7FE41 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ACE2701EC2065D00A7FE41 /* User.swift */; };
+		D6ACE2781EC220C100A7FE41 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ACE2771EC220C100A7FE41 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D6ACE26E1EC2065D00A7FE41 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		D6ACE26F1EC2065D00A7FE41 /* Pos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pos.swift; sourceTree = "<group>"; };
 		D6ACE2701EC2065D00A7FE41 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6ACE2771EC220C100A7FE41 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,20 +79,17 @@
 		D67154181EB2286100017D55 /* iMapContacts */ = {
 			isa = PBXGroup;
 			children = (
-				D6ACE26C1EC2065D00A7FE41 /* Conf.swift */,
-				D6ACE26D1EC2065D00A7FE41 /* Friends.swift */,
-				D6ACE26E1EC2065D00A7FE41 /* HttpMethod.swift */,
-				D6ACE26F1EC2065D00A7FE41 /* Pos.swift */,
-				D6ACE2701EC2065D00A7FE41 /* User.swift */,
 				D67154191EB2286100017D55 /* AppDelegate.swift */,
-				D671541B1EB2286100017D55 /* Connexion.swift */,
 				D671541D1EB2286100017D55 /* Main.storyboard */,
 				D67154201EB2286100017D55 /* Assets.xcassets */,
 				D67154251EB2286100017D55 /* Info.plist */,
+				D671541B1EB2286100017D55 /* Connexion.swift */,
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D60A263F1EBA0E9000A3048F /* Contacts.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
+				D6ACE2771EC220C100A7FE41 /* AlertView.swift */,
+				D6ACE2761EC214A600A7FE41 /* Collections */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -102,6 +101,18 @@
 				D67154321EB2462700017D55 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6ACE2761EC214A600A7FE41 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				D6ACE26C1EC2065D00A7FE41 /* Conf.swift */,
+				D6ACE26D1EC2065D00A7FE41 /* Friends.swift */,
+				D6ACE26E1EC2065D00A7FE41 /* HttpMethod.swift */,
+				D6ACE26F1EC2065D00A7FE41 /* Pos.swift */,
+				D6ACE2701EC2065D00A7FE41 /* User.swift */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 				D671542E1EB228F000017D55 /* Acceuil.swift in Sources */,
 				D67154301EB2290B00017D55 /* Inscription.swift in Sources */,
 				D6ACE2721EC2065D00A7FE41 /* Friends.swift in Sources */,
+				D6ACE2781EC220C100A7FE41 /* AlertView.swift in Sources */,
 				D6ACE2731EC2065D00A7FE41 /* HttpMethod.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D6ACE2711EC2065D00A7FE41 /* Conf.swift in Sources */,
