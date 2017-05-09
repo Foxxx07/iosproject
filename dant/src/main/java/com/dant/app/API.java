@@ -24,11 +24,35 @@ public class API {
 			@DefaultValue("Null") @FormParam("email") String email,
 			@DefaultValue("Null") @FormParam("password") String password)
 	{
+		System.out.println("Input :");
 		System.out.println(fname);
 		System.out.println(lname);
 		System.out.println(email);
 		System.out.println(password);
-		return fname.toString();}
+		return fname.toString();
+	}
+	
+
+	@POST 
+	@Path("/u")
+	public String createUser(@DefaultValue("Null") @FormParam("fname") String fname)
+	{
+		System.out.println("Input :");
+		System.out.println("fname : " +fname);
+		return fname.toString();
+	}
+	
+
+	@POST 
+	@Path("/u")
+	public String createUser2(@DefaultValue("Null") @FormParam("lname") String lname)
+	{
+		System.out.println("Input :");
+		System.out.println("lname : " +lname);
+		return lname.toString();
+	}
+	
+	
 
 	@GET
 	@Path("/u")
