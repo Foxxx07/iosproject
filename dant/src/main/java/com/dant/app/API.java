@@ -19,10 +19,12 @@ public class API {
 
 	@POST 
 	@Path("/u")
-	public String createUser(@DefaultValue("Null") @FormParam("fname") String fname,
+	public String addUser(
+			@DefaultValue("Null") @FormParam("fname") String fname,
 			@DefaultValue("Null") @FormParam("lname") String lname,
 			@DefaultValue("Null") @FormParam("email") String email,
-			@DefaultValue("Null") @FormParam("password") String password)
+			@DefaultValue("Null") @FormParam("password") String password
+		)
 	{
 		System.out.println("Input :");
 		System.out.println(fname);
@@ -32,31 +34,44 @@ public class API {
 		return fname.toString();
 	}
 	
-
-	@POST 
-	@Path("/u")
-	public String createUser(@DefaultValue("Null") @FormParam("fname") String fname)
-	{
-		System.out.println("Input :");
-		System.out.println("fname : " +fname);
-		return fname.toString();
-	}
-	
-
-	@POST 
-	@Path("/u")
-	public String createUser2(@DefaultValue("Null") @FormParam("lname") String lname)
-	{
-		System.out.println("Input :");
-		System.out.println("lname : " +lname);
-		return lname.toString();
-	}
-	
+//	@POST
+//	@Path("/u/me")
+//	public String createUser(
+//			@DefaultValue("Null") @FormParam("fname") String fname,
+//			@DefaultValue("Null") @FormParam("lname") String lname,
+//			@DefaultValue("Null") @FormParam("email") String email,
+//			@DefaultValue("Null") @FormParam("password") String password
+//		)
+//	{
+//		// Si connecté, alors on met à jour ses données.
+//		/*
+//		 * @DefaultValue("Null") @FormParam("fname") String fname,
+//			@DefaultValue("Null") @FormParam("lname") String lname,
+//			@DefaultValue("Null") @FormParam("email") String email,
+//			@DefaultValue("Null") @FormParam("password") String password
+//		 * */
+//		
+//		// Sinon, on le connecte.
+//		/*
+//			@DefaultValue("Null") @FormParam("email") String email,
+//			@DefaultValue("Null") @FormParam("password") String password
+//		 * */
+//		
+//		return "";
+//	}
 	
 
 	@GET
 	@Path("/u")
 	public void getUsers(){
+		// Si connecté, on récupère les méta-données, puis HTTP 200 OK
+		// Sinon, HTTP 404 Not Found
+		Session s = Session.getSess(...)
+		if (s == NULL) {
+			// 404
+			
+		}
+		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} 
