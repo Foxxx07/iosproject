@@ -22,14 +22,18 @@ Les entrées sont manipulable par des commandes Memcached.
 ## iMap Contacts
 Le projet **iMap Contacts** utilise Memcached, afin de stocker l'ID de la session, et les coordonnées de géolocalisation d'un utilisateur, sous la forme:
 
-| Clé            | Valeur                                                        |
-| -------------- | ------------------------------------------------------------- |
-| ID_UTILISATEUR | { "sId":[string], "lt":[float], "lg":[float], "time":[long] } |
+| Clé            | Valeur                                                          |
+| -------------- | --------------------------------------------------------------- |
+| ID_UTILISATEUR | { "sId":ID_SESSION, "lt":[float], "lg":[float], "time":[long] } |
 
-* `ID_UTILISATEUR`	: est l'identifiant unique d'un utilisateur.
-* `sId`				: est l'identifiant unique d'une session.
-* `lt` et `lg`		: sont les coordonnées de géolocalisation rafraichi avec la session.
-* `time`			: est le timestamp de mis à jour de la position.
+| Clé            | Valeur         |
+| -------------- | -------------- |
+| ID_SESSION     | ID_UTILISATEUR |
+
+* `ID_UTILISATEUR`		: est l'identifiant unique d'un utilisateur.
+* `sId`/`ID_SESSION`	: est l'identifiant unique d'une session.
+* `lt` et `lg`			: sont les coordonnées de géolocalisation rafraichi avec la session.
+* `time`				: est le timestamp de mis à jour de la position.
 
 # Commandes
 Les détails des commandes sont accéssible via: [https://github.com/memcached/memcached/wiki/Commands](https://github.com/memcached/memcached/wiki/Commands) .
