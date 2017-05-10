@@ -76,10 +76,13 @@ public class API {
 			@DefaultValue("") @FormParam("email") String email,
 			@DefaultValue("") @FormParam("password") String password) throws SQLException, NoSuchAlgorithmException
 			{
-	 
-		
-		JDBCCalls.CreateUser(new User(fname,lname,email,Hex.encodeHexString(MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8)))));	
-		return null;
+	 System.out.println("Input:");
+	 System.out.println("fname ::" +fname);
+	 System.out.println("lname ::" +lname);
+	 System.out.println("email::" +email);
+	 System.out.println("password::" +password);
+		JDBCCalls.CreateUser(new User(fname,lname,email,password));	
+		return "J'ai créé le user";
 			}
 
 	// - /u/me/
@@ -111,6 +114,14 @@ public class API {
 
 	// ------ Collection /friends/
 	// --- GET
+	// - /friends
+	@GET
+	@Path("/friends")
+	public void listFriends(){
+		//Lister les amis de l'utilisateur connecté
+	}
+	
+	
 	// - /friends/{idUser}
 	@GET
 	@Path("/friends/{idUser}")
