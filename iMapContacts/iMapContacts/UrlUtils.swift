@@ -19,12 +19,11 @@ class UrlUtils {
         request.httpBody = parameters.data(using: .ascii)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in })
+        let session = URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in })
         
         print( request.httpBody)
         print(urlComponents.url)
-        
-        task.resume()
+        session.resume()
         
     }
 }

@@ -12,9 +12,9 @@ import UIKit
 class AlertView {
     
     func showAlertView(targetVC : UIViewController , title : String , message : String){
-        let alertView = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
-//        alertView.addAction(UIAlertAction(title: title, style: .cancel, handler: {(action: UIAlertAction!) in
-//            }))
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {(action: UIAlertAction!) in
+           }))
         targetVC.present(alertView, animated: true, completion: nil)
         
     }

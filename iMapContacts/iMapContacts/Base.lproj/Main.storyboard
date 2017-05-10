@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="florent.dijx@gmail.com" borderStyle="roundedRect" placeholder="Identifiant" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-lj-wMB">
@@ -87,7 +87,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qbX-Gu-Lyz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lfJ-xW-fp9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nom" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-JH-x0G">
@@ -183,7 +183,7 @@
                         <viewControllerLayoutGuide type="bottom" id="diD-Q5-zu5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gkz-PX-Jun">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eBj-hZ-Kcy">
@@ -211,13 +211,13 @@
         <!--Map-->
         <scene sceneID="1Ph-GB-0x2">
             <objects>
-                <viewController id="W8F-pg-WdA" customClass="Accueil" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W8F-pg-WdA" customClass="Map" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mgh-qO-SIi"/>
                         <viewControllerLayoutGuide type="bottom" id="yz1-hr-iKi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iPo-0i-xe5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0e9-ym-jDq">
@@ -226,7 +226,7 @@
                                     <constraint firstAttribute="width" constant="618" id="eiA-rg-5c5"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="delegate" destination="W8F-pg-WdA" id="fkC-cE-15J"/>
+                                    <outlet property="delegate" destination="W8F-pg-WdA" id="d57-uF-iMA"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -239,7 +239,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="2Ob-Gt-cad"/>
                     <connections>
-                        <outlet property="viewMap" destination="0e9-ym-jDq" id="FGY-Ym-fp1"/>
+                        <outlet property="viewMap" destination="0e9-ym-jDq" id="Xmj-Qc-RRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mak-ao-iDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
