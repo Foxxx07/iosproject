@@ -182,23 +182,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="UWV-Sy-AsU">
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="oHc-L8-NGF" customClass="ButtonCell" customModule="iMapContacts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oHc-L8-NGF" id="V0l-7C-rOP">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymf-7B-AYz">
-                                            <frame key="frameInset" minX="258" minY="5" width="99" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Ajouter en ami"/>
-                                            <connections>
-                                                <action selector="buttonTap:" destination="oHc-L8-NGF" eventType="touchUpInside" id="q2i-8R-u2f"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -209,8 +204,27 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="rFS-YE-sbg"/>
                     <navigationItem key="navigationItem" id="heo-Av-wVz"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="o8A-dK-6NJ" id="Bry-lZ-Ggh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sPt-CZ-1ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="S9t-fu-p7s">
+                    <connections>
+                        <outlet property="delegate" destination="8wq-rX-nmd" id="HAW-3B-ThY"/>
+                        <outlet property="searchContentsController" destination="8wq-rX-nmd" id="xDK-Z5-IHk"/>
+                        <outlet property="searchResultsDataSource" destination="8wq-rX-nmd" id="NkF-oP-yse"/>
+                        <outlet property="searchResultsDelegate" destination="8wq-rX-nmd" id="B5m-cx-ncj"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="o8A-dK-6NJ">
+                    <connections>
+                        <outlet property="delegate" destination="8wq-rX-nmd" id="VVc-NR-Hyx"/>
+                        <outlet property="searchContentsController" destination="8wq-rX-nmd" id="7FW-5h-8Oj"/>
+                        <outlet property="searchResultsDataSource" destination="8wq-rX-nmd" id="6uE-dQ-Xf8"/>
+                        <outlet property="searchResultsDelegate" destination="8wq-rX-nmd" id="zqy-JD-r4O"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3444" y="72"/>
         </scene>

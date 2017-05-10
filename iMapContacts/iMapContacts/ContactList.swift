@@ -15,5 +15,6 @@ class ContactList:NSObject{
         let names:[String] = [
             "Contact1","Contact2",
             "Contact3","Contact4"]
+        let friends:[Bool] = [false, true, false, false]
     
   }
