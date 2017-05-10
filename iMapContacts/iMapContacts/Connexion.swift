@@ -28,31 +28,29 @@ class Connexion: UIViewController {
      
         var urlComponents = URLComponents()
         
-        guard let mail = email.text, let pass = password.text else {
-            
-            return false
-        }
+        guard let mail = email.text, let pass = password.text else {return false}
         guard mail.characters.count >= 6, pass.characters.count >= 4 else { return false } // Handle error todo
         
         urlComponents.queryItems = [
             URLQueryItem(name: "email" , value : email.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
             URLQueryItem(name: "password", value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics))
             ]
-        if (true){
-            UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
         
+        let dictionary =  UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
+        let ableToConnect : Bool = false
+        //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
+        
+        if (ableToConnect) {
+            return true
         }else{
-            
             return false
         }
-        return true
     }
     
     @IBAction func seConnecter(_ sender: UIButton) {
-        let a: Bool = sendConnexion()
+        let ableToConect: Bool = sendConnexion()
         
-        
-        if (a == true) {
+        if (ableToConect) {
             self.performSegue(withIdentifier: "acceuil", sender: self)
         }
         else {

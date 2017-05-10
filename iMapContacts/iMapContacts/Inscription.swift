@@ -24,6 +24,7 @@ class Inscription: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
     private func checkPassword() -> Bool{
         return ( !(password.text! == passwordRepeat.text) && !(password.text!.isEmpty) && !(passwordRepeat.text!.isEmpty) )
     }
@@ -39,7 +40,7 @@ class Inscription: UIViewController {
             URLQueryItem(name: "email" , value : email.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
             URLQueryItem(name: "password" , value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
         ]
-        UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents)
+        let urlUtils = UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents)
         print("pika")
     }
     
