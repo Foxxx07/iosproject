@@ -42,6 +42,7 @@ class Connexion: UIViewController {
             UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
         
         }else{
+            
             return false
         }
         return true
