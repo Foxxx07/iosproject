@@ -17,6 +17,7 @@
 		D67154301EB2290B00017D55 /* Inscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671542F1EB2290B00017D55 /* Inscription.swift */; };
 		D67154331EB2462700017D55 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67154321EB2462700017D55 /* MapKit.framework */; };
 		D67154351EB2543600017D55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67154341EB2543600017D55 /* CoreLocation.framework */; };
+		D67D669F1EC4C8AA00D7A93C /* SearchContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */; };
 		D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0331EBB7BD50001FD91 /* UrlUtils.swift */; };
 		D695D0361EBB7E720001FD91 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0351EBB7E720001FD91 /* Collection.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		D671542F1EB2290B00017D55 /* Inscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inscription.swift; sourceTree = "<group>"; };
 		D67154321EB2462700017D55 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D67154341EB2543600017D55 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContact.swift; sourceTree = "<group>"; };
 		D695D0331EBB7BD50001FD91 /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		D695D0351EBB7E720001FD91 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				D60A263F1EBA0E9000A3048F /* ListeAmis.swift */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
 				D65F838B1EC203380074B5FD /* Amis.swift */,
+				D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				D671541C1EB2286100017D55 /* Connexion.swift in Sources */,
 				D671542E1EB228F000017D55 /* Acceuil.swift in Sources */,
 				D67154301EB2290B00017D55 /* Inscription.swift in Sources */,
+				D67D669F1EC4C8AA00D7A93C /* SearchContact.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D65F838C1EC203380074B5FD /* Amis.swift in Sources */,
 				D60A26401EBA0E9000A3048F /* ListeAmis.swift in Sources */,
