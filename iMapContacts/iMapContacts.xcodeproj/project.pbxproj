@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D60A26401EBA0E9000A3048F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A263F1EBA0E9000A3048F /* Contacts.swift */; };
-		D65F838C1EC203380074B5FD /* ContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F838B1EC203380074B5FD /* ContactList.swift */; };
-		D65F838E1EC21B160074B5FD /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F838D1EC21B160074B5FD /* ButtonCell.swift */; };
+		D60A26401EBA0E9000A3048F /* ListeAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A263F1EBA0E9000A3048F /* ListeAmis.swift */; };
+		D65F838C1EC203380074B5FD /* Amis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F838B1EC203380074B5FD /* Amis.swift */; };
 		D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67154191EB2286100017D55 /* AppDelegate.swift */; };
 		D671541C1EB2286100017D55 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671541B1EB2286100017D55 /* Connexion.swift */; };
 		D671541F1EB2286100017D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D671541D1EB2286100017D55 /* Main.storyboard */; };
@@ -23,9 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D60A263F1EBA0E9000A3048F /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		D65F838B1EC203380074B5FD /* ContactList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactList.swift; sourceTree = "<group>"; };
-		D65F838D1EC21B160074B5FD /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		D60A263F1EBA0E9000A3048F /* ListeAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeAmis.swift; sourceTree = "<group>"; };
+		D65F838B1EC203380074B5FD /* Amis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amis.swift; sourceTree = "<group>"; };
 		D67154161EB2286100017D55 /* iMapContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMapContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67154191EB2286100017D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D671541B1EB2286100017D55 /* Connexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
@@ -81,10 +79,9 @@
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
-				D60A263F1EBA0E9000A3048F /* Contacts.swift */,
+				D60A263F1EBA0E9000A3048F /* ListeAmis.swift */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
-				D65F838B1EC203380074B5FD /* ContactList.swift */,
-				D65F838D1EC21B160074B5FD /* ButtonCell.swift */,
+				D65F838B1EC203380074B5FD /* Amis.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -171,11 +168,10 @@
 			files = (
 				D671541C1EB2286100017D55 /* Connexion.swift in Sources */,
 				D671542E1EB228F000017D55 /* Acceuil.swift in Sources */,
-				D65F838E1EC21B160074B5FD /* ButtonCell.swift in Sources */,
 				D67154301EB2290B00017D55 /* Inscription.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
-				D65F838C1EC203380074B5FD /* ContactList.swift in Sources */,
-				D60A26401EBA0E9000A3048F /* Contacts.swift in Sources */,
+				D65F838C1EC203380074B5FD /* Amis.swift in Sources */,
+				D60A26401EBA0E9000A3048F /* ListeAmis.swift in Sources */,
 				D695D0361EBB7E720001FD91 /* Collection.swift in Sources */,
 				D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */,
 			);
