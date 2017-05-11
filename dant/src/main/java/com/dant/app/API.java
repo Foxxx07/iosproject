@@ -13,6 +13,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.mariadb.jdbc.Driver;
 
 import com.dant.dao.JDBCCalls;
+import com.dant.dao.UserDAO;
 import com.dant.entity.User;
 
 import javax.ws.rs.*;
@@ -28,31 +29,12 @@ public class API {
 	// --- GET	
 	// -- /u/?search
 	// -- /u/search?&n
-	@GET
-	@Path("/u")
-	public String searchP(@DefaultValue("Null") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
-		int limit = 10;
-		if (1 > page) {
-			limit = -1;
-			page = 0;
-		}
-
-		JDBCCalls.SearchUser(query, page, limit, false);
-		return null;
-	}
-
 
 	// -- /u/{idUser}
-	@GET
-	@Path("/u/{id}")
-	public String listMetaDataForUser(@PathParam("id") String id) throws SQLException {
-		JDBCCalls.getUserById(id);
-		return null;
-
-	}
+	
 
 	// -- /u/me
-	@GET
+	@GET 
 	@Path("/u/me")
 	public String listMetaData(){
 
@@ -68,23 +50,7 @@ public class API {
 
 	// --- POST
 	// - /u/
-	@POST 
-	@Path("/u")
-	public String createUser(
-			@DefaultValue("") @FormParam("fname") String fname,
-			@DefaultValue("") @FormParam("lname") String lname,
-			@DefaultValue("") @FormParam("email") String email,
-			@DefaultValue("") @FormParam("password") String password) throws SQLException, NoSuchAlgorithmException
-			{
-	 System.out.println("Input:");
-	 System.out.println("fname ::" +fname);
-	 System.out.println("lname ::" +lname);
-	 System.out.println("email::" +email);
-	 System.out.println("password::" +password);
-		JDBCCalls.CreateUser(new User(fname,lname,email,password));	
-		return "J'ai créé le user";
-			}
-
+	
 	// - /u/me/
 	@POST
 	@Path("/u/me")
@@ -141,7 +107,7 @@ public class API {
 	// --- DELETE
 	// - /friends/{idUser}
 	@DELETE
-	@Path("/firends/{iduser}")
+	@Path("/friends/{iduser}")
 	public void deleteFriend(@PathParam("idUser") String iduser){
 		//Delete friendship
 	}
@@ -169,7 +135,7 @@ public class API {
 	@Path("/pos/friends/{n}")
 	public String getFriendsPositionsP(@PathParam("n") int page){
 
-		return null;
+		return null;	
 	}
 
 	// - /pos/{idUser}

@@ -1,34 +1,20 @@
 package com.dant.entity;
-import java.security.Timestamp;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.TimeZone;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.dant.business.SessionManager;
-import com.dant.dao.JDBCCalls;
-
 public class User implements Serializable {
 	
-	String key,fname,lname,email,password;
-	long registration;
-	DateTimeFormatter parserDate = DateTimeFormat.forPattern("yyyy-MM-dd HH:MM:SS");
+	private String key,fname,lname,email,password;
+	private long registration;
+	private static final DateTimeFormatter parserDate = DateTimeFormat.forPattern("yyyy-MM-dd HH:MM:SS");
 
 	
-	public User(String fname, String lname, String email, String password) throws SQLException{
-	
-		while (true) {
-			this.key=SessionManager.generateKey(4);
-			if (!JDBCCalls.keyAlreadyExists(key))
-				break;
-		}
-		
+	public User(String fname, String lname, String email, String password) {
 		this.fname=fname;
 		this.lname=lname;
 		this.email=email;

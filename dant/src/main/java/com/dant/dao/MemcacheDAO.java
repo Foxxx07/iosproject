@@ -1,15 +1,12 @@
 package com.dant.dao; 
 
-import com.dant.entity.Position;
-import com.dant.entity.Session;
-
-import net.spy.memcached.CachedData;
 import net.spy.memcached.MemcachedClient;
-import net.spy.memcached.transcoders.Transcoder;
+
+import com.dant.entity.Session;
 
 public class MemcacheDAO {
 
-	private final MemcachedClient client = MemcacheInit.getInstance();
+	private final MemcachedClient client = Init.getMemcache();
 
 	@SuppressWarnings("unchecked")
 	public <T> T get(String key) {
