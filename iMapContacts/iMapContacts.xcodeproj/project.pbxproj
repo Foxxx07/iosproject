@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D60A26401EBA0E9000A3048F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A263F1EBA0E9000A3048F /* Contacts.swift */; };
+		D626C9081EC496EE003BAD9C /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626C9071EC496EE003BAD9C /* DataTask.swift */; };
 		D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67154191EB2286100017D55 /* AppDelegate.swift */; };
 		D671541C1EB2286100017D55 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671541B1EB2286100017D55 /* Connexion.swift */; };
 		D671541F1EB2286100017D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D671541D1EB2286100017D55 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		D60A263F1EBA0E9000A3048F /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		D626C9071EC496EE003BAD9C /* DataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
 		D67154161EB2286100017D55 /* iMapContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMapContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67154191EB2286100017D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D671541B1EB2286100017D55 /* Connexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
 				D6ACE2771EC220C100A7FE41 /* AlertView.swift */,
 				D6ACE2761EC214A600A7FE41 /* Collections */,
+				D626C9071EC496EE003BAD9C /* DataTask.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				D6ACE2721EC2065D00A7FE41 /* Friends.swift in Sources */,
 				D6ACE2781EC220C100A7FE41 /* AlertView.swift in Sources */,
 				D6ACE2731EC2065D00A7FE41 /* HttpMethod.swift in Sources */,
+				D626C9081EC496EE003BAD9C /* DataTask.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D6ACE2711EC2065D00A7FE41 /* Conf.swift in Sources */,
 				D60A26401EBA0E9000A3048F /* Contacts.swift in Sources */,

@@ -25,7 +25,6 @@ class Map: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
        
     }
-
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)

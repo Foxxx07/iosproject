@@ -36,7 +36,7 @@ class Connexion: UIViewController {
             URLQueryItem(name: "password", value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics))
             ]
         
-        let dictionary =  UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
+        let dataTask =  UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
         let ableToConnect : Bool = false
         //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
         
