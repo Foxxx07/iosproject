@@ -94,8 +94,8 @@
 				D60A263F1EBA0E9000A3048F /* Contacts.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
 				D6ACE2771EC220C100A7FE41 /* AlertView.swift */,
-				D6ACE2761EC214A600A7FE41 /* Collections */,
 				D626C9071EC496EE003BAD9C /* DataTask.swift */,
+				D6ACE2761EC214A600A7FE41 /* Collections */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";

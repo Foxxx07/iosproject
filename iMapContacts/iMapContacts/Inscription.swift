@@ -29,7 +29,7 @@ class Inscription: UIViewController {
         return ( !(password.text! == passwordRepeat.text) && !(password.text!.isEmpty) && !(passwordRepeat.text!.isEmpty) )
     }
     
-    private func sendInscription() {
+    private func sendInscription() -> Bool{
         var urlComponents = URLComponents()
         guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return }
         guard mail.characters.count >= 6, pass.characters.count >= 4 else { return } // Handle error todo
@@ -41,7 +41,15 @@ class Inscription: UIViewController {
             URLQueryItem(name: "password" , value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
         ]
         let urlUtils = UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents)
-        print("pika")
+        
+        let ableToConnect : Bool = true
+        //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
+        
+        if (ableToConnect) {
+            return true
+        }else{
+            return false
+        }
     }
     
     private func isNotEmpty() -> Bool {

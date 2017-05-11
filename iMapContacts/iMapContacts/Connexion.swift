@@ -37,7 +37,8 @@ class Connexion: UIViewController {
             ]
         
         let dataTask =  UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents)
-        let ableToConnect : Bool = false
+
+        let ableToConnect : Bool = true
         //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
         
         if (ableToConnect) {

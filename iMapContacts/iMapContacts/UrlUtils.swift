@@ -11,7 +11,7 @@ import UIKit
 
 class UrlUtils {
     
-    func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents  ) -> DataTask {
+    func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents  ) -> DataTask? {
         
         let dataTask : DataTask? = DataTask()
         var request = URLRequest(url: URL(string:"http://www.google.fr\(collection)")!)
@@ -22,20 +22,25 @@ class UrlUtils {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         let session = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data {
-                dataTask?.data = data
-            }
-            if let response = response {
-                dataTask?.response = response
-            }
-            if let error = error{
-                dataTask?.error = error
-            }
+            if let data = data { dataTask?.data = data }
+            if let response = response { dataTask?.response = response }
+            if let error = error{ dataTask?.error = error }
         })
         
 //        print( request.httpBody)
 //        print(urlComponents.url)
           session.resume()
-          return dataTask!
+          return dataTask
+    }
+    
+    func convertToJsonObject(data : Data?) -> Any? {
+        do {
+            return try  JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+        }
+        catch let jsonError {
+            print("problem to convert to json")
+        }
+        return nil
+        
     }
 }
