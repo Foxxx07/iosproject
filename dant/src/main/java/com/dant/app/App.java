@@ -18,9 +18,6 @@ import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by pitton on 2017-02-20.
- */
 @ApplicationPath("")
 public class App extends Application {
 

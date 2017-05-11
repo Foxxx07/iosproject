@@ -28,11 +28,11 @@ public class UserDAO {
 			call.setString(3,u.getEmail()); 
 			call.execute();
 
-			if (1 != call.getUpdateCount()) {
-				System.out.println("UpdateCount : " + call.getUpdateCount());
-
-			}
-			System.out.println("UpdateCount : " + call.getUpdateCount());
+//			if (1 != call.getUpdateCount()) {
+//				System.out.println("UpdateCount : " + call.getUpdateCount());
+//
+//			}
+//			System.out.println("UpdateCount : " + call.getUpdateCount());
 		}
 	}
 

@@ -2,6 +2,8 @@ package com.dant.entity;
 import java.io.Serializable;
 
 import org.json.*;
+
+import com.dant.util.KeyGeneratorUtil;
 @SuppressWarnings("serial")
 public class Session implements Serializable {
 
@@ -12,7 +14,15 @@ public class Session implements Serializable {
 	private long time;
 
 	public Session(String idUser, String rawData){
-		if(rawData.length()==0 || idUser.length()==0){}
+		if(idUser.length()==0){
+		}
+		else if(rawData.length()==0 ){
+			this.idUser=idUser;
+			this.sessionId=KeyGeneratorUtil.generateKey(4);
+			this.latitude=0;
+			this.longitude=0;
+			this.time=0;
+		}
 		else{
 			JSONObject obj = new JSONObject(rawData);
 			this.idUser=idUser;

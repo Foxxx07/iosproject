@@ -2,6 +2,8 @@ package com.dant.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.dant.business.SessionManager;
@@ -56,7 +58,13 @@ public class FriendshipDAO {
 		}
 	}
 	
-	public void listFriends(String id) throws SQLException{
+	public boolean listFriends(String id) throws SQLException{
+		String sql = "{call ListFriends(1)}";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet req = ps.executeQuery(sql)) {
+				return req.next();
+			}
+		}
 		
 	}
 

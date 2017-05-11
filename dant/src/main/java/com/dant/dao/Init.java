@@ -14,8 +14,6 @@ class Init {
 		return JDBCInit.jdbc;
 	}
 	
-
-	
 	public static MemcachedClient getMemcache() {
 		return MemcacheInit.mcc;
 	}

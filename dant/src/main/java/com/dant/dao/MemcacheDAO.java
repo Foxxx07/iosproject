@@ -6,15 +6,16 @@ import com.dant.entity.Session;
 
 public class MemcacheDAO {
 
-	private final MemcachedClient client = Init.getMemcache();
+	private final MemcachedClient memcachedClient = Init.getMemcache();
 
-	@SuppressWarnings("unchecked")
+	
+
 	public <T> T get(String key) {
-		return (T) client.get(key);
+		return (T) memcachedClient.get(key);
 	}
 
-	public void set(String key, Session ob) {
-		client.set(key, 10, ob);
+	public void setSessionByIdUser(String userKey, Session ob) {
+	//	memcachedClient.set
 	}
 
 

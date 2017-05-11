@@ -13,9 +13,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.mariadb.jdbc.internal.util.ExceptionMapper;
 
 import com.dant.business.UserBusiness;
 import com.dant.entity.User;
+import com.dant.exception.EmailException;
+import com.dant.exception.EmailExceptionMapper;
+import com.dant.exception.EmptyEmailException;
+import com.dant.exception.EmptyEmailExceptionMapper;
+import com.dant.exception.EmptyNameException;
+import com.dant.exception.EmptyNameExceptionMapper;
+import com.dant.exception.EmptyPasswordException;
+import com.dant.exception.EmptyPasswordExceptionMapper;
+import com.dant.exception.InvalidEmailException;
+import com.dant.exception.InvalidEmailExceptionMapper;
 
 
 @Path("/api/u")
@@ -26,15 +39,49 @@ public class UserController {
 	private UserBusiness userBusiness = new UserBusiness();
 
 	@POST
-	public User createUser(
+	public Response createUser(
 			@DefaultValue("") @FormParam("fname") String fname,
 			@DefaultValue("") @FormParam("lname") String lname,
 			@DefaultValue("") @FormParam("email") String email,
 			@DefaultValue("") @FormParam("password") String password) throws SQLException
 			{
 
-		return userBusiness.createUser(fname,lname,email,password);	
-			}
+
+		try {
+			userBusiness.createSession(userBusiness.createUser(fname,lname,email,password));
+			//Créer la session
+			return Response.status(200).build();
+		} 
+		catch (EmptyNameException e) {
+			EmptyNameExceptionMapper enem = new EmptyNameExceptionMapper();
+			return enem.toResponse(e);
+		}
+
+		catch (EmailException e) {
+			EmailExceptionMapper eem = new EmailExceptionMapper();
+			return eem.toResponse(e);
+		}	
+		
+		catch(EmptyEmailException e){
+			EmptyEmailExceptionMapper eeem = new EmptyEmailExceptionMapper();
+			return eeem.toResponse(e);
+		}
+		
+		catch(EmptyPasswordException e){
+			EmptyPasswordExceptionMapper epem = new EmptyPasswordExceptionMapper();
+			return epem.toResponse(e);
+		}
+		
+		catch(InvalidEmailException e){
+			InvalidEmailExceptionMapper ieem = new InvalidEmailExceptionMapper();
+			return ieem.toResponse(e);
+		}
+		
+		catch(SQLException e){
+			return Response.status(500).build();
+		}
+	}
+
 
 	@GET
 	public String searchP(@DefaultValue("Null") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
@@ -65,8 +112,8 @@ public class UserController {
 		//	}
 		return null;
 	}
-	
-	
+
+
 	@Path("/me")
 	@POST
 	public String updateUser(
@@ -75,11 +122,11 @@ public class UserController {
 			@DefaultValue("Null") @FormParam("email") String email,
 			@DefaultValue("Null") @FormParam("password") String password
 			) throws SQLException
-	{
+			{
 		//Récupérer l'id
 		String id=null;
 		userBusiness.updateUser(id,fname,lname,email,password);
 		return "";
-	}
+			}
 
 }
