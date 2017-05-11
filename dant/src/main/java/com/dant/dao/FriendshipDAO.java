@@ -13,7 +13,7 @@ public class FriendshipDAO {
 	public void setFriendship(String rkey, String akey, String bkey) throws SQLException{
 		String sql="{call SetFriendship(?,?,?)}";
 		try (CallableStatement call = connection.prepareCall(sql)) { 
-			call.setString(1,SessionManager.generateKey(4)); 
+			call.setString(1, rkey); 
 			call.setString(2, akey);
 			call.setString(3, bkey);
 
@@ -54,6 +54,10 @@ public class FriendshipDAO {
 				//Tout va mal
 			}
 		}
+	}
+	
+	public void listFriends(String id) throws SQLException{
+		
 	}
 
 

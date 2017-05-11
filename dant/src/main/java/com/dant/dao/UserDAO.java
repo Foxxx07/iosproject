@@ -50,15 +50,6 @@ public class UserDAO {
 	}
 
 	public void getUserById(String id) throws SQLException{
-		boolean isHexa=true;
-		if(id.length()==8){
-			for(int i=0; i<8;i++){
-				if(Character.digit(id.charAt(i),16)==-1)
-					isHexa=false;
-				break;
-				//pas hexa
-			}
-			if(isHexa){
 				String sql="{call getUserById(?)}";
 				try (CallableStatement call = connection.prepareCall(sql)) { 
 					call.setString(1,id);
@@ -69,14 +60,7 @@ public class UserDAO {
 						//Tout va mal
 					}
 				}
-			}
-			else{//pas une clé en hexa
-			}
-		}
-
-		else{
-			//pas une clé valide
-		}
+	
 	}
 
 	public void searchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException{
@@ -111,6 +95,10 @@ public class UserDAO {
 				return req.next();
 			}
 		}
+	}
+	
+	public void updateUser(String id, String fname, String lname, String email, String password){
+		//Requete mise à jour
 	}
 
 }

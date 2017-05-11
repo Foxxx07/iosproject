@@ -43,13 +43,43 @@ public class UserController {
 	}
 
 
-	@Path("/u/{id}")
+	@Path("/{id}")
 	@GET
 	public String listMetaDataForUser(@PathParam("id") String id) throws SQLException {
-		//JDBCCalls.getUserById(id);
+		userBusiness.getUserById(id);
 		return null;
 
 	}
 
+
+	@Path("/me")
+	@GET 
+	public String listMetaData(String id) throws SQLException{
+		userBusiness.listUserMetaData(id);
+		// Si connecté, on récupère les méta-données, puis HTTP 200 OK
+		// Sinon, HTTP 404 Not Found
+		//Session s = Session.getSess(...)
+		//if (s == NULL) {
+		// 404
+
+		//	}
+		return null;
+	}
+	
+	
+	@Path("/me")
+	@POST
+	public String updateUser(
+			@DefaultValue("Null") @FormParam("fname") String fname,
+			@DefaultValue("Null") @FormParam("lname") String lname,
+			@DefaultValue("Null") @FormParam("email") String email,
+			@DefaultValue("Null") @FormParam("password") String password
+			) throws SQLException
+	{
+		//Récupérer l'id
+		String id=null;
+		userBusiness.updateUser(id,fname,lname,email,password);
+		return "";
+	}
 
 }

@@ -1,6 +1,9 @@
 package com.dant.app;
 
-import com.dant.dao.JDBCCalls;
+import com.dant.controller.FriendshipController;
+import com.dant.controller.PositionController;
+import com.dant.controller.UserController;
+
 import com.dant.dao.MemcacheDAO;
 import com.dant.entity.Session;
 import com.dant.exception.RuntimeExceptionMapper;
@@ -21,11 +24,12 @@ import java.util.Set;
 @ApplicationPath("")
 public class App extends Application {
 
-	JDBCCalls jdbc = new JDBCCalls();
 	@Override
 	public Set<Object> getSingletons() {
 		Set<Object> sets = new HashSet<>(1);
-		sets.add(new API());
+		sets.add(new UserController());
+		sets.add(new FriendshipController());
+		sets.add(new PositionController());
 		return sets;
 	}
 
