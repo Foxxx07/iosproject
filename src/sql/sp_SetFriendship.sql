@@ -4,7 +4,7 @@ DELIMITER |
 
 CREATE DEFINER = `imap_contacts` PROCEDURE `imap_contacts`.`SetFriendship` (IN r_key BINARY(64), IN u_key_a BINARY(4), IN u_key_b BINARY(4))
 LANGUAGE SQL
-NOT DETERMINISTIC
+DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 COMMENT 'Ajoute/accepte une demande d\'ami'

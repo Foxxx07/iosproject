@@ -4,7 +4,7 @@ DELIMITER |
 
 CREATE DEFINER = `imap_contacts` PROCEDURE `imap_contacts`.`DeleteFriendship` (IN u_key_a BINARY(4), IN u_key_b BINARY(4))
 LANGUAGE SQL
-NOT DETERMINISTIC
+DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 COMMENT 'Supprime une relation d\'ami'

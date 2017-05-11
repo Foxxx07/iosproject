@@ -133,6 +133,34 @@ CALL GetUserById(x'00000001');
 > | -------- | ------- | ------ | --------------------------- | ------------ |
 > | 00000001 | Gaëtan  | Maiuri | maiuri.gaetan@protonmail.ch |   1494075896 |
 
+## UpdateUser
+```sql
+UpdateUser (IN u_key BINARY(4), IN u_fname VARCHAR(50), IN u_lname VARCHAR(50), IN u_email VARBINARY(254), IN u_password BINARY(32))
+```
+* `u_key`		: Clé unique de l'utilisateur.
+* `u_fname`		: Prénom de l'utilisateur.
+* `u_lname`		: Nom de l'utilisateur.
+* `u_email`		: Adresse e-mail de l'utilisateur.
+* `u_password`	: Mot de passe de l'utilisateur.
+
+`UpdateUser` modifie les méta-données d'un utilisateur
+
+> Note: `u_password` est le hash *sha256* du mot de passe.
+
+> Note 2: seul les champs à modifier doivent être indiqué.<br>
+> Les champs **ne devant pas** êtres modifié doivent avoir la valeur NULL.
+
+> Note 3: `u_key` ne peut être omis.
+
+**Exemple**
+```sql
+-- Modifie les méta-données d'un utilisateur
+-- Dans cet exemple, seul l'adresse e-mail est mis à jour.
+CALL UpdateUser(0x00000001, NULL, NULL, "m.gaetan@protonmail.ch", NULL);
+-- OU
+CALL UpdateUser(x'00000001', NULL, NULL, "m.gaetan@protonmail.ch", NULL);
+```
+
 ## SetFriendship
 ```sql
 SetFriendship (IN r_key BINARY(64), IN u_key_a BINARY(4), IN u_key_b BINARY(4))
