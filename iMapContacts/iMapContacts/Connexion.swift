@@ -43,13 +43,14 @@ class Connexion: UIViewController {
         
         if (ableToConnect) {
             return true
-        }else{
+        } else {
             return false
         }
     }
     
     @IBAction func seConnecter(_ sender: UIButton) {
-        let ableToConect: Bool = sendConnexion()
+        //let ableToConect: Bool = sendConnexion()
+        let ableToConect: Bool = true
         
         if (ableToConect) {
             self.performSegue(withIdentifier: "acceuil", sender: self)
