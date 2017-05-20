@@ -13,3 +13,4 @@ enum POS: String{
     case FRIENDS = "pos/%s/%d"
     case IDUSER = "pos/%s"
 }
+
