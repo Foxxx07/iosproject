@@ -18,7 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Identifiant" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-lj-wMB">
+=======
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="florent.dijx@gmail.com" borderStyle="roundedRect" placeholder="Identifiant" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-lj-wMB">
+>>>>>>> florent
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="v4U-f8-dBW"/>
                                 </constraints>
@@ -26,7 +30,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+<<<<<<< HEAD
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Aww-HQ-rmE">
+=======
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Aww-HQ-rmE">
+>>>>>>> florent
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="6n7-sX-28y"/>
                                 </constraints>
@@ -211,7 +219,11 @@
         <!--Map-->
         <scene sceneID="1Ph-GB-0x2">
             <objects>
+<<<<<<< HEAD
                 <viewController id="W8F-pg-WdA" customClass="Accueil" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
+=======
+                <viewController id="W8F-pg-WdA" customClass="Map" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
+>>>>>>> florent
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mgh-qO-SIi"/>
                         <viewControllerLayoutGuide type="bottom" id="yz1-hr-iKi"/>
@@ -226,7 +238,11 @@
                                     <constraint firstAttribute="width" constant="618" id="eiA-rg-5c5"/>
                                 </constraints>
                                 <connections>
+<<<<<<< HEAD
                                     <outlet property="delegate" destination="W8F-pg-WdA" id="fkC-cE-15J"/>
+=======
+                                    <outlet property="delegate" destination="W8F-pg-WdA" id="d57-uF-iMA"/>
+>>>>>>> florent
                                 </connections>
                             </mapView>
                         </subviews>
@@ -239,7 +255,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="2Ob-Gt-cad"/>
                     <connections>
+<<<<<<< HEAD
                         <outlet property="viewMap" destination="0e9-ym-jDq" id="FGY-Ym-fp1"/>
+=======
+                        <outlet property="viewMap" destination="0e9-ym-jDq" id="Xmj-Qc-RRg"/>
+>>>>>>> florent
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mak-ao-iDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
