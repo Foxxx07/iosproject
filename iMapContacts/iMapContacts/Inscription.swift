@@ -31,8 +31,8 @@ class Inscription: UIViewController {
     
     private func sendInscription() -> Bool{
         var urlComponents = URLComponents()
-        guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return }
-        guard mail.characters.count >= 6, pass.characters.count >= 4 else { return } // Handle error todo
+        guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return false }
+        guard mail.characters.count >= 6, pass.characters.count >= 4 else { return false} // Handle error todo
         
         urlComponents.queryItems = [
             URLQueryItem(name: "lname" , value : lastname.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),

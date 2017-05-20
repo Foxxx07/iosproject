@@ -19,7 +19,7 @@ class UrlUtils {
         
         guard let parameters = urlComponents.query else {return dataTask!}
         request.httpBody = parameters.data(using: .ascii)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type" )
         
         let session = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data { dataTask?.data = data }
@@ -41,6 +41,5 @@ class UrlUtils {
             print("problem to convert to json")
         }
         return nil
-        
     }
 }
