@@ -13,3 +13,4 @@ enum USER: String{
     case ME = "/u/me/"
     case SEARCH = "/u/?search=%s&n=%d"
 }
+

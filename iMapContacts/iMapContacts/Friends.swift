@@ -12,3 +12,4 @@ enum FRIENDS: String{
     case ROOT = "/friends/"
     case IDUSER = "/friends/%s"
 }
+
