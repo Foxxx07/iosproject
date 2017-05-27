@@ -46,7 +46,6 @@ public class UserController {
 			@DefaultValue("") @FormParam("password") String password) throws SQLException
 			{
 
-
 		try {
 			userBusiness.createSession(userBusiness.createUser(fname,lname,email,password));
 			//Créer la session
@@ -123,6 +122,10 @@ public class UserController {
 			@DefaultValue("Null") @FormParam("password") String password
 			) throws SQLException
 			{
+		System.out.println(fname);
+		System.out.println(lname);
+		System.out.println(email);
+		System.out.println(password);
 		//Récupérer l'id
 		String id=null;
 		userBusiness.updateUser(id,fname,lname,email,password);
