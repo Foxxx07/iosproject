@@ -326,3 +326,29 @@ Splitter Listener    | Splitter Service    | MySQLClient        | 0.0.0.0       
 CLI Listener         | CLI                 | maxscaled          | 127.0.0.1       |  6603 | Running
 ---------------------+---------------------+--------------------+-----------------+-------+--------
 ```
+
+ # Memcached
+ Une instance Memcached est configuré via `/etc/sysconfig/memcached` :
+ ```plain
+PORT="11211"
+USER="memcached"
+MAXCONN="1024"
+CACHESIZE="64"
+OPTIONS="-s /var/run/memcached/memcached.sock -a 777 -P /var/run/memcached/memcached.pid"
+ ```
+
+ Et le daemon dans `/usr/lib/systemd/system/memcached.service` :
+ ```plain
+[Unit]
+Description=Memcached
+After=network.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/memcached/memcached.pid
+EnvironmentFile=-/etc/sysconfig/memcached
+ExecStart=/usr/bin/memcached -u $USER -p $PORT -m $CACHESIZE -c $MAXCONN $OPTIONS
+
+[Install]
+WantedBy=multi-user.target
+ ```
