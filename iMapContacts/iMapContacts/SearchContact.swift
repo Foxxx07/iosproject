@@ -107,7 +107,10 @@ class SearchContact: UIViewController{
         return cell
     }
     
-    func recuperationData() {
-        UrlUtils.sendToServ(<#T##UrlUtils#>)
+    func findContacts() {
+        let urlComponents = URLComponents()
+        let dataTask = UrlUtils().sendToServ(httpMethod: HTTPMETHOD.GET, collection: USER.SEARCH.rawValue, urlComponents: urlComponents)
+        UrlUtils().convertToJsonObject(data: dataTask?.data)
+        
     }
 }

@@ -28,6 +28,7 @@
 		D684D74D1ED05A6800B98189 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7421ED05A6800B98189 /* User.swift */; };
 		D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0331EBB7BD50001FD91 /* UrlUtils.swift */; };
 		D695D0361EBB7E720001FD91 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0351EBB7E720001FD91 /* Collection.swift */; };
+		D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D684D7421ED05A6800B98189 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D695D0331EBB7BD50001FD91 /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		D695D0351EBB7E720001FD91 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
+				D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				D684D7461ED05A6800B98189 /* DataTask.swift in Sources */,
 				D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */,
 				D684D74B1ED05A6800B98189 /* Pos.swift in Sources */,
+				D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */,
 				D684D7451ED05A6800B98189 /* Conf.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */,
@@ -322,14 +326,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMapContacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -337,14 +338,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMapContacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

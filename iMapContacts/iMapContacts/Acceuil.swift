@@ -6,17 +6,22 @@
 //  Copyright © 2017 m2sar. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import MapKit
 
 class Accueil: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var viewMap: MKMapView!
+    @IBOutlet weak var recentrerButton: UIButton!
+    
+    @IBAction func recentrer(_ sender: AnyObject) {
+        viewMap.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewMap.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
-       
     }
     
     override func didReceiveMemoryWarning() {
