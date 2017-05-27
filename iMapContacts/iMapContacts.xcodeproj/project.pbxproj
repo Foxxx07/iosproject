@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D60A26401EBA0E9000A3048F /* ListeAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A263F1EBA0E9000A3048F /* ListeAmis.swift */; };
-		D65F838C1EC203380074B5FD /* Amis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F838B1EC203380074B5FD /* Amis.swift */; };
 		D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67154191EB2286100017D55 /* AppDelegate.swift */; };
 		D671541C1EB2286100017D55 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671541B1EB2286100017D55 /* Connexion.swift */; };
 		D671541F1EB2286100017D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D671541D1EB2286100017D55 /* Main.storyboard */; };
@@ -17,14 +15,22 @@
 		D67154301EB2290B00017D55 /* Inscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671542F1EB2290B00017D55 /* Inscription.swift */; };
 		D67154331EB2462700017D55 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67154321EB2462700017D55 /* MapKit.framework */; };
 		D67154351EB2543600017D55 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67154341EB2543600017D55 /* CoreLocation.framework */; };
-		D67D669F1EC4C8AA00D7A93C /* SearchContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */; };
+		D684D7431ED05A6800B98189 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7381ED05A6800B98189 /* AlertView.swift */; };
+		D684D7441ED05A6800B98189 /* Amis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7391ED05A6800B98189 /* Amis.swift */; };
+		D684D7451ED05A6800B98189 /* Conf.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73A1ED05A6800B98189 /* Conf.swift */; };
+		D684D7461ED05A6800B98189 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73B1ED05A6800B98189 /* DataTask.swift */; };
+		D684D7471ED05A6800B98189 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73C1ED05A6800B98189 /* Friends.swift */; };
+		D684D7481ED05A6800B98189 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73D1ED05A6800B98189 /* HttpMethod.swift */; };
+		D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73E1ED05A6800B98189 /* ListeAmis.swift */; };
+		D684D74A1ED05A6800B98189 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73F1ED05A6800B98189 /* Map.swift */; };
+		D684D74B1ED05A6800B98189 /* Pos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7401ED05A6800B98189 /* Pos.swift */; };
+		D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7411ED05A6800B98189 /* SearchContact.swift */; };
+		D684D74D1ED05A6800B98189 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7421ED05A6800B98189 /* User.swift */; };
 		D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0331EBB7BD50001FD91 /* UrlUtils.swift */; };
 		D695D0361EBB7E720001FD91 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0351EBB7E720001FD91 /* Collection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D60A263F1EBA0E9000A3048F /* ListeAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeAmis.swift; sourceTree = "<group>"; };
-		D65F838B1EC203380074B5FD /* Amis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amis.swift; sourceTree = "<group>"; };
 		D67154161EB2286100017D55 /* iMapContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMapContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67154191EB2286100017D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D671541B1EB2286100017D55 /* Connexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
@@ -35,7 +41,17 @@
 		D671542F1EB2290B00017D55 /* Inscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inscription.swift; sourceTree = "<group>"; };
 		D67154321EB2462700017D55 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D67154341EB2543600017D55 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContact.swift; sourceTree = "<group>"; };
+		D684D7381ED05A6800B98189 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		D684D7391ED05A6800B98189 /* Amis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amis.swift; sourceTree = "<group>"; };
+		D684D73A1ED05A6800B98189 /* Conf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conf.swift; sourceTree = "<group>"; };
+		D684D73B1ED05A6800B98189 /* DataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
+		D684D73C1ED05A6800B98189 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		D684D73D1ED05A6800B98189 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		D684D73E1ED05A6800B98189 /* ListeAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeAmis.swift; sourceTree = "<group>"; };
+		D684D73F1ED05A6800B98189 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		D684D7401ED05A6800B98189 /* Pos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pos.swift; sourceTree = "<group>"; };
+		D684D7411ED05A6800B98189 /* SearchContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContact.swift; sourceTree = "<group>"; };
+		D684D7421ED05A6800B98189 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D695D0331EBB7BD50001FD91 /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		D695D0351EBB7E720001FD91 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +89,17 @@
 		D67154181EB2286100017D55 /* iMapContacts */ = {
 			isa = PBXGroup;
 			children = (
+				D684D7381ED05A6800B98189 /* AlertView.swift */,
+				D684D7391ED05A6800B98189 /* Amis.swift */,
+				D684D73A1ED05A6800B98189 /* Conf.swift */,
+				D684D73B1ED05A6800B98189 /* DataTask.swift */,
+				D684D73C1ED05A6800B98189 /* Friends.swift */,
+				D684D73D1ED05A6800B98189 /* HttpMethod.swift */,
+				D684D73E1ED05A6800B98189 /* ListeAmis.swift */,
+				D684D73F1ED05A6800B98189 /* Map.swift */,
+				D684D7401ED05A6800B98189 /* Pos.swift */,
+				D684D7411ED05A6800B98189 /* SearchContact.swift */,
+				D684D7421ED05A6800B98189 /* User.swift */,
 				D67154191EB2286100017D55 /* AppDelegate.swift */,
 				D671541B1EB2286100017D55 /* Connexion.swift */,
 				D671541D1EB2286100017D55 /* Main.storyboard */,
@@ -81,10 +108,7 @@
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
-				D60A263F1EBA0E9000A3048F /* ListeAmis.swift */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
-				D65F838B1EC203380074B5FD /* Amis.swift */,
-				D67D669E1EC4C8AA00D7A93C /* SearchContact.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -171,12 +195,20 @@
 			files = (
 				D671541C1EB2286100017D55 /* Connexion.swift in Sources */,
 				D671542E1EB228F000017D55 /* Acceuil.swift in Sources */,
+				D684D7481ED05A6800B98189 /* HttpMethod.swift in Sources */,
 				D67154301EB2290B00017D55 /* Inscription.swift in Sources */,
-				D67D669F1EC4C8AA00D7A93C /* SearchContact.swift in Sources */,
+				D684D7461ED05A6800B98189 /* DataTask.swift in Sources */,
+				D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */,
+				D684D74B1ED05A6800B98189 /* Pos.swift in Sources */,
+				D684D7451ED05A6800B98189 /* Conf.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
-				D65F838C1EC203380074B5FD /* Amis.swift in Sources */,
-				D60A26401EBA0E9000A3048F /* ListeAmis.swift in Sources */,
+				D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */,
+				D684D7471ED05A6800B98189 /* Friends.swift in Sources */,
+				D684D74A1ED05A6800B98189 /* Map.swift in Sources */,
+				D684D7431ED05A6800B98189 /* AlertView.swift in Sources */,
+				D684D74D1ED05A6800B98189 /* User.swift in Sources */,
 				D695D0361EBB7E720001FD91 /* Collection.swift in Sources */,
+				D684D7441ED05A6800B98189 /* Amis.swift in Sources */,
 				D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

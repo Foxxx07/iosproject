@@ -8,7 +8,7 @@
 
 
 import UIKit
-class Contacts: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var contactList: [Amis] = []
     
