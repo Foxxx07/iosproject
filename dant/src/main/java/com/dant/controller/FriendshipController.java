@@ -20,20 +20,20 @@ import com.dant.business.UserBusiness;
 import com.dant.entity.User;
 
 
-@Path("/api/friends")
+@Path("/friends")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.APPLICATION_JSON)
 public class FriendshipController {
-	
+
 	private FriendshipBusiness friendshipBusiness = new FriendshipBusiness();
-	
+
 	@GET
 	public void listFriends(String id) throws SQLException{
 		friendshipBusiness.listFriends(id);
 		//Lister les amis de l'utilisateur connecté
 	}
-	
-	
+
+
 	// - /friends/{idUser}
 	@GET
 	@Path("/{idUser}")
@@ -63,5 +63,5 @@ public class FriendshipController {
 		friendshipBusiness.deleteFriend(id,idUser);
 		//Delete friendship
 	}
-	
+
 }

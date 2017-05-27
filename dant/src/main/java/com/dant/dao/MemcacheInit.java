@@ -6,17 +6,17 @@ import java.net.InetSocketAddress;
 import net.spy.memcached.MemcachedClient;
 
 class MemcacheInit {
-	
+
 	public static MemcachedClient getInstance() {
 		return Init.mcc;
 	}
 
 	private static class Init {
-		
-		private final static MemcachedClient mcc = init();		
+
+		private final static MemcachedClient mcc = init();
 
 		private static MemcachedClient init() {
-			System.out.println("init memcache");
+			System.out.println("init memcache 1");
 			 try {
 				return new MemcachedClient(new InetSocketAddress("127.0.0.1", 11211));
 			} catch (IOException e) {
@@ -25,7 +25,7 @@ class MemcacheInit {
 			 return null;
 		}
 	}
-	
-	
+
+
 
 }

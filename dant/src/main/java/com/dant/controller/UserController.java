@@ -31,7 +31,7 @@ import com.dant.exception.InvalidEmailException;
 import com.dant.exception.InvalidEmailExceptionMapper;
 
 
-@Path("/api/u")
+@Path("/u")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserController {
@@ -51,7 +51,7 @@ public class UserController {
 			userBusiness.createSession(userBusiness.createUser(fname,lname,email,password));
 			//Créer la session
 			return Response.status(200).build();
-		} 
+		}
 		catch (EmptyNameException e) {
 			EmptyNameExceptionMapper enem = new EmptyNameExceptionMapper();
 			return enem.toResponse(e);
@@ -60,23 +60,23 @@ public class UserController {
 		catch (EmailException e) {
 			EmailExceptionMapper eem = new EmailExceptionMapper();
 			return eem.toResponse(e);
-		}	
-		
+		}
+
 		catch(EmptyEmailException e){
 			EmptyEmailExceptionMapper eeem = new EmptyEmailExceptionMapper();
 			return eeem.toResponse(e);
 		}
-		
+
 		catch(EmptyPasswordException e){
 			EmptyPasswordExceptionMapper epem = new EmptyPasswordExceptionMapper();
 			return epem.toResponse(e);
 		}
-		
+
 		catch(InvalidEmailException e){
 			InvalidEmailExceptionMapper ieem = new InvalidEmailExceptionMapper();
 			return ieem.toResponse(e);
 		}
-		
+
 		catch(SQLException e){
 			return Response.status(500).build();
 		}
@@ -100,7 +100,7 @@ public class UserController {
 
 
 	@Path("/me")
-	@GET 
+	@GET
 	public String listMetaData(String id) throws SQLException{
 		userBusiness.listUserMetaData(id);
 		// Si connecté, on récupère les méta-données, puis HTTP 200 OK

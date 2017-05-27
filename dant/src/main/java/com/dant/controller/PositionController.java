@@ -13,19 +13,19 @@ import javax.ws.rs.core.MediaType;
 import com.dant.business.PositionBusiness;
 
 
-@Path("/api/pos")
+@Path("/pos")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.APPLICATION_JSON)
 public class PositionController {
-	
+
 	private PositionBusiness positionBusiness = new PositionBusiness();
-	
+
 	@POST
 	public void updatePosition(){
 	positionBusiness.updatePosition();
 		//Regle la nouvelle position du user à sa position actuelle
 	}
-	
+
 	@GET
 	public String getPosition(){
 		positionBusiness.getPosition();
@@ -47,7 +47,7 @@ public class PositionController {
 	@Path("/friends/{n}")
 	public String getFriendsPositionsP(@PathParam("n") int page){
 		positionBusiness.getFriendsPositionsP(page);
-		return null;	
+		return null;
 	}
 
 	// - /pos/{idUser}
