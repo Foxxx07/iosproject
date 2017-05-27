@@ -14,6 +14,7 @@ import org.apache.commons.codec.binary.Hex;
 
 import com.dant.business.SessionManager;
 import com.dant.entity.User;
+import com.dant.util.KeyGeneratorUtil;
 
 public class JDBCCalls {
 	static Connection conn=null;
@@ -23,7 +24,7 @@ public class JDBCCalls {
 	public JDBCCalls(){
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-		} 
+		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -39,20 +40,20 @@ public class JDBCCalls {
 
 	//			ResultSet req = stmt.executeQuery("Select * from users");
 	//			while(req.next()){
-	//				int id = req.getInt(1); 
-	//				String nom = req.getString(2); 
-	//				double prix = req.getDouble(3); 
-	//				java.sql.Date date = req.getDate(4); 
+	//				int id = req.getInt(1);
+	//				String nom = req.getString(2);
+	//				double prix = req.getDouble(3);
+	//				java.sql.Date date = req.getDate(4);
 
 
 
 	public static void CreateUser(User u) throws SQLException, NoSuchAlgorithmException{
 		String sql="{call CreateUser(0x" + u.getKey() + ",?,?,?, 0x" + Hex.encodeHexString(MessageDigest.getInstance("SHA-256").digest(u.getPassword().getBytes(StandardCharsets.UTF_8))) + ")}";
-		CallableStatement call = conn.prepareCall(sql); 
-		//e.g. passage de la chaîne userId comme valeur du premier paramètre 
-		call.setString(1,u.getFname()); 
-		call.setString(2,u.getLname()); 
-		call.setString(3,u.getEmail()); 
+		CallableStatement call = conn.prepareCall(sql);
+		//e.g. passage de la chaîne userId comme valeur du premier paramètre
+		call.setString(1,u.getFname());
+		call.setString(2,u.getLname());
+		call.setString(3,u.getEmail());
 		call.execute();
 
 		if (1 != call.getUpdateCount()) {
@@ -64,9 +65,9 @@ public class JDBCCalls {
 
 	public static void getUserByCredentials(String email, String password) throws SQLException, NoSuchAlgorithmException{
 		String sql="{call getUserByCredentials(?,0x" + Hex.encodeHexString(MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8))) + ")}";
-		CallableStatement call = conn.prepareCall(sql); 
+		CallableStatement call = conn.prepareCall(sql);
 		call.setString(1,email);
-		if(call.execute()){ 
+		if(call.execute()){
 			//Tout va bien
 		}
 		else{
@@ -85,9 +86,9 @@ public class JDBCCalls {
 			}
 			if(isHexa){
 				String sql="{call getUserById(?)}";
-				CallableStatement call = conn.prepareCall(sql); 
+				CallableStatement call = conn.prepareCall(sql);
 				call.setString(1,id);
-				if(call.execute()){ 
+				if(call.execute()){
 					//Tout va bien
 				}
 				else{
@@ -105,12 +106,12 @@ public class JDBCCalls {
 
 	public static void setFriendship(String rkey, String akey, String bkey) throws SQLException{
 		String sql="{call SetFriendship(?,?,?)}";
-		CallableStatement call = conn.prepareCall(sql); 
-		call.setString(1,SessionManager.generateKey(4)); 
+		CallableStatement call = conn.prepareCall(sql);
+		call.setString(1, KeyGeneratorUtil.generateKey(4));
 		call.setString(2, akey);
 		call.setString(3, bkey);
 
-		if(call.execute()){ 
+		if(call.execute()){
 			//Tout va bien
 		}
 		else{
@@ -120,11 +121,11 @@ public class JDBCCalls {
 
 	public static void DeleteFriendship(String akey, String bkey) throws SQLException{
 		String sql="{call DeleteFriendship(?,?)}";
-		CallableStatement call = conn.prepareCall(sql); 
+		CallableStatement call = conn.prepareCall(sql);
 		call.setString(1, akey);
 		call.setString(2, bkey);
 
-		if(call.execute()){ 
+		if(call.execute()){
 			//Tout va bien
 		}
 		else{
@@ -134,11 +135,11 @@ public class JDBCCalls {
 
 	public static void GetFriendship(String akey, String bkey) throws SQLException{
 		String sql="{call GetFriendship(?,?)}";
-		CallableStatement call = conn.prepareCall(sql); 
+		CallableStatement call = conn.prepareCall(sql);
 		call.setString(1, akey);
 		call.setString(2, bkey);
 
-		if(call.execute()){ 
+		if(call.execute()){
 			//Tout va bien
 		}
 		else{
@@ -148,12 +149,12 @@ public class JDBCCalls {
 
 	public static void SearchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException{
 		String sql="{call SearchUser(?,?,?,?)}";
-		CallableStatement call = conn.prepareCall(sql); 
+		CallableStatement call = conn.prepareCall(sql);
 		call.setString(1, search_str);
 		call.setInt(2, offset_pos);
 		call.setInt(3, limit_l);
 		call.setBoolean(4, in_bool_mode);
-		if(call.execute()){ 
+		if(call.execute()){
 			//Tout va bien
 		}
 		else{
