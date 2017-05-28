@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import org.apache.commons.codec.binary.Hex;
 
 import com.dant.entity.User;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
 import com.dant.util.CryptoUtil;
 
 public class UserDAO {
@@ -49,21 +51,21 @@ public class UserDAO {
 		}
 	}
 
-	public void getUserById(String id) throws SQLException{
+	public void getUserById(String id) throws UserNotFoundException, SQLException, UserFoundException{
 				String sql="{call getUserById(?)}";
 				try (CallableStatement call = connection.prepareCall(sql)) { 
 					call.setString(1,id);
 					if(call.execute()){ 
-						//Tout va bien
+						throw new UserFoundException();
 					}
 					else{
-						//Tout va mal
+						throw new UserNotFoundException();
 					}
 				}
 	
 	}
 
-	public void searchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException{
+	public void searchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException, UserFoundException{
 		String sql="{call SearchUser(?,?,?,?)}";
 		try (CallableStatement call = connection.prepareCall(sql);) { 
 			call.setString(1, search_str);
@@ -72,9 +74,11 @@ public class UserDAO {
 			call.setBoolean(4, in_bool_mode);
 			if(call.execute()){ 
 				//Tout va bien
+				//Boucle json formée depuis les users renvoyés
+				throw new UserFoundException();
 			}
 			else{
-				//Tout va mal
+				throw new SQLException();
 			}
 		}
 	}

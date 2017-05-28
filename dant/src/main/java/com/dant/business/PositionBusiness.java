@@ -2,11 +2,13 @@ package com.dant.business;
 
 import java.sql.SQLException;
 
+import com.dant.dao.MemcacheDAO;
 import com.dant.dao.PositionDAO;
 
 public class PositionBusiness {
 
 	private PositionDAO positionDAO = new PositionDAO();
+	private MemcacheDAO dao = new MemcacheDAO();
 	
 	public void updatePosition(){
 		positionDAO.updatePosition();

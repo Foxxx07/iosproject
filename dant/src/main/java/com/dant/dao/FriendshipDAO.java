@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.dant.business.SessionManager;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
 
 public class FriendshipDAO {
 
@@ -23,7 +25,7 @@ public class FriendshipDAO {
 				//Tout va bien
 			}
 			else{
-				//Tout va mal
+				throw new SQLException();
 			}
 		}
 	}
@@ -38,7 +40,7 @@ public class FriendshipDAO {
 				//Tout va bien
 			}
 			else{
-				//Tout va mal
+				throw new SQLException();
 			}
 		}
 	}
@@ -58,11 +60,18 @@ public class FriendshipDAO {
 		}
 	}
 	
-	public boolean listFriends(String id) throws SQLException{
+	public void listFriends(String id) throws SQLException, UserFoundException, UserNotFoundException{
 		String sql = "{call ListFriends(1)}";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			try (ResultSet req = ps.executeQuery(sql)) {
-				return req.next();
+				if(req.next()){
+					throw new UserFoundException();
+					//Renvoyer les amis trouvés
+				}
+				else{
+					throw new UserNotFoundException();
+					//Pas d'ami
+				}
 			}
 		}
 		

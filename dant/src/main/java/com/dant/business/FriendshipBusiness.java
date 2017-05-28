@@ -3,12 +3,14 @@ package com.dant.business;
 import java.sql.SQLException;
 
 import com.dant.dao.FriendshipDAO;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
 import com.dant.util.KeyGeneratorUtil;
 
 public class FriendshipBusiness {
 	private FriendshipDAO friendshipDAO = new FriendshipDAO();
 	
-	public void listFriends(String id) throws SQLException{
+	public void listFriends(String id) throws SQLException, UserFoundException, UserNotFoundException{
 		friendshipDAO.listFriends(id);
 	}
 	

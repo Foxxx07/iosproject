@@ -17,7 +17,9 @@ import javax.ws.rs.core.Response;
 
 import org.mariadb.jdbc.internal.util.ExceptionMapper;
 
+import com.dant.business.SessionManager;
 import com.dant.business.UserBusiness;
+import com.dant.entity.Session;
 import com.dant.entity.User;
 import com.dant.exception.EmailException;
 import com.dant.exception.EmailExceptionMapper;
@@ -27,8 +29,17 @@ import com.dant.exception.EmptyNameException;
 import com.dant.exception.EmptyNameExceptionMapper;
 import com.dant.exception.EmptyPasswordException;
 import com.dant.exception.EmptyPasswordExceptionMapper;
+import com.dant.exception.HexadecimalException;
+import com.dant.exception.HexadecimalExceptionMapper;
 import com.dant.exception.InvalidEmailException;
 import com.dant.exception.InvalidEmailExceptionMapper;
+import com.dant.exception.InvalidUserKeyException;
+import com.dant.exception.InvalidUserKeyExceptionMapper;
+import com.dant.exception.SQLExceptionMapper;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
+import com.dant.exception.UserNotFoundExceptionMapper;
+import com.dant.util.UserFoundExceptionMapper;
 
 
 @Path("/u")
@@ -44,7 +55,7 @@ public class UserController {
 			@DefaultValue("") @FormParam("lname") String lname,
 			@DefaultValue("") @FormParam("email") String email,
 			@DefaultValue("") @FormParam("password") String password) throws SQLException
-			{
+	{
 
 		try {
 			userBusiness.createSession(userBusiness.createUser(fname,lname,email,password));
@@ -83,16 +94,45 @@ public class UserController {
 
 
 	@GET
-	public String searchP(@DefaultValue("Null") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
-		userBusiness.searchUser(query, page);
+	public Response searchP(@DefaultValue("Null") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
+
+		try {
+			userBusiness.searchUser(query, page);
+
+		} catch (UserFoundException e) {
+			UserFoundExceptionMapper ufem = new UserFoundExceptionMapper();
+			return ufem.toResponse(e);
+		}
+		catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		}
+
 		return null;
 	}
 
 
 	@Path("/{id}")
 	@GET
-	public String listMetaDataForUser(@PathParam("id") String id) throws SQLException {
-		userBusiness.getUserById(id);
+	public Response listMetaDataForUser(@PathParam("id") String id) {
+		try {
+			userBusiness.getUserById(id);
+		} catch (HexadecimalException e) {
+			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
+			return hem.toResponse(e);
+		} catch (InvalidUserKeyException e) {
+			InvalidUserKeyExceptionMapper iukem = new InvalidUserKeyExceptionMapper();
+			return iukem.toResponse(e);
+		} catch (UserNotFoundException e) {
+			UserNotFoundExceptionMapper iukem = new UserNotFoundExceptionMapper();
+			return iukem.toResponse(e);
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		} catch (UserFoundException e) {
+			UserFoundExceptionMapper ufem = new UserFoundExceptionMapper();
+			return ufem.toResponse(e);
+		}
 		return null;
 
 	}
@@ -100,16 +140,33 @@ public class UserController {
 
 	@Path("/me")
 	@GET
-	public String listMetaData(String id) throws SQLException{
-		userBusiness.listUserMetaData(id);
+	public Response listMetaData(String id){
+
 		// Si connecté, on récupère les méta-données, puis HTTP 200 OK
 		// Sinon, HTTP 404 Not Found
-		//Session s = Session.getSess(...)
-		//if (s == NULL) {
-		// 404
 
-		//	}
+		try {
+			userBusiness.getUserById(id);
+		} catch (HexadecimalException e) {
+			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
+			return hem.toResponse(e);
+		} catch (InvalidUserKeyException e) {
+			InvalidUserKeyExceptionMapper iukem = new InvalidUserKeyExceptionMapper();
+			return iukem.toResponse(e);
+		} catch (UserNotFoundException e) {
+			UserNotFoundExceptionMapper iukem = new UserNotFoundExceptionMapper();
+			return iukem.toResponse(e);
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		} catch (UserFoundException e) {
+			UserFoundExceptionMapper ufem = new UserFoundExceptionMapper();
+			return ufem.toResponse(e);
+		}
+
 		return null;
+		//TODO renvoyer response userFound avec les infos
+
 	}
 
 
@@ -121,15 +178,13 @@ public class UserController {
 			@DefaultValue("Null") @FormParam("email") String email,
 			@DefaultValue("Null") @FormParam("password") String password
 			) throws SQLException
-			{
-		System.out.println(fname);
-		System.out.println(lname);
-		System.out.println(email);
-		System.out.println(password);
+	{
+
 		//Récupérer l'id
 		String id=null;
 		userBusiness.updateUser(id,fname,lname,email,password);
+		
 		return "";
-			}
+	}
 
 }

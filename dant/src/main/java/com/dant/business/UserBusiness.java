@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.ws.rs.core.Response;
+
 import com.dant.dao.UserDAO;
 import com.dant.entity.Session;
 import com.dant.entity.User;
@@ -11,8 +13,14 @@ import com.dant.exception.EmailException;
 import com.dant.exception.EmptyEmailException;
 import com.dant.exception.EmptyNameException;
 import com.dant.exception.EmptyPasswordException;
+import com.dant.exception.HexadecimalException;
 import com.dant.exception.InvalidEmailException;
+import com.dant.exception.InvalidUserKeyException;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
+import com.dant.exception.UserNotFoundExceptionMapper;
 import com.dant.util.KeyGeneratorUtil;
+import com.dant.util.UserFoundExceptionMapper;
 
 public class UserBusiness {
 
@@ -52,7 +60,7 @@ public class UserBusiness {
 		return user;
 	}
 	
-	public void searchUser(String query,int page) throws SQLException{
+	public void searchUser(String query,int page) throws SQLException, UserFoundException{
 		int limit = 10;
 		if (1 > page) {
 			limit = -1;
@@ -64,7 +72,7 @@ public class UserBusiness {
 		userDAO.searchUser(query, page, limit, false);
 	}
 
-	public void getUserById(String id) throws SQLException{
+	public void getUserById(String id) throws HexadecimalException, SQLException, InvalidUserKeyException, UserNotFoundException, UserFoundException{
 		boolean isHexa=true;
 		if(id.length()==8){
 			for(int i=0; i<8;i++){
@@ -73,22 +81,50 @@ public class UserBusiness {
 				break;
 				//pas hexa
 			}
+			
 			if(isHexa){
-				userDAO.getUserById(id);
-
+				
+					userDAO.getUserById(id);
+				
 			}
-			else{//pas une clé en hexa
+			else{
+				throw new HexadecimalException();
 			}
 		}
 
 		else{
-			//pas une clé valide
+			throw new InvalidUserKeyException();
 		}
 	}
 
-	public void listUserMetaData(String id) throws SQLException{
-		userDAO.getUserById(id);
+	public void listUserMetaData(String id) throws UserNotFoundException, SQLException, HexadecimalException, InvalidUserKeyException, UserFoundException{
+		boolean isHexa=true;
+		if(id.length()==8){
+			for(int i=0; i<8;i++){
+				if(Character.digit(id.charAt(i),16)==-1)
+					isHexa=false;
+				break;
+				//pas hexa
+			}
+			
+			if(isHexa){
+				try{
+					userDAO.getUserById(id);
+				}
+				catch(UserFoundException e){
+					throw new UserFoundException();
+					//Passer les infos utilisateurs ici
+				}
+				
+			}
+			else{
+				throw new HexadecimalException();
+			}
+		}
 
+		else{
+			throw new InvalidUserKeyException();
+		}
 	}
 
 	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException{

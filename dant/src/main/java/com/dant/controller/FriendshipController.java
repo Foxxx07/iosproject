@@ -14,10 +14,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.dant.business.FriendshipBusiness;
 import com.dant.business.UserBusiness;
 import com.dant.entity.User;
+import com.dant.exception.SQLExceptionMapper;
+import com.dant.exception.UserFoundException;
+import com.dant.exception.UserNotFoundException;
+import com.dant.exception.UserNotFoundExceptionMapper;
+import com.dant.util.UserFoundExceptionMapper;
 
 
 @Path("/friends")
@@ -28,9 +34,24 @@ public class FriendshipController {
 	private FriendshipBusiness friendshipBusiness = new FriendshipBusiness();
 
 	@GET
-	public void listFriends(String id) throws SQLException{
-		friendshipBusiness.listFriends(id);
-		//Lister les amis de l'utilisateur connecté
+	public Response listFriends(String id){
+		try {
+			friendshipBusiness.listFriends(id);
+ 	} catch (UserFoundException e) {
+			UserFoundExceptionMapper ufem = new UserFoundExceptionMapper();
+			return ufem.toResponse(e);
+			//Lister les amis de l'utilisateur connecté
+		}
+		catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		
+		} catch (UserNotFoundException e) {
+			UserNotFoundExceptionMapper ufem = new UserNotFoundExceptionMapper();
+			return ufem.toResponse(e);
+		}
+		return null;
+		
 	}
 
 
@@ -48,20 +69,31 @@ public class FriendshipController {
 	// - /friends/{idUser}
 	@POST
 	@Path("/{idUser}")
-	public void requestFriendship(@PathParam("idUser") String idUser) throws SQLException{
+	public Response requestFriendship(@PathParam("idUser") String idUser){
 		String id=null;
-		friendshipBusiness.requestFriendship(id,idUser);
-		//Faire requete amitié
+		try {
+			friendshipBusiness.requestFriendship(id,idUser);
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		}
+		return null;
 	}
 
 	// --- DELETE
 	// - /friends/{idUser}
 	@DELETE
 	@Path("/{iduser}")
-	public void deleteFriend(@PathParam("idUser") String idUser) throws SQLException{
+	public Response deleteFriend(@PathParam("idUser") String idUser){
 		String id=null;
-		friendshipBusiness.deleteFriend(id,idUser);
+		try {
+			friendshipBusiness.deleteFriend(id,idUser);
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		}
 		//Delete friendship
+		return null;
 	}
 
 }

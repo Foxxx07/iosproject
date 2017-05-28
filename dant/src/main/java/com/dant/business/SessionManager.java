@@ -12,11 +12,11 @@ public class SessionManager {
 
 	private MemcacheDAO dao = new MemcacheDAO();
 
-	public Session getSession(String idUser) {
-		Session session = new Session(idUser,(String)dao.get(idUser)); 
-		return session;
-
-	}
+//	public static Session getSession(String idUser) {
+//		//Session session = new Session(idUser,(String)dao.get(idUser)); 
+//	//	return session;
+//
+//	}
 
 	public void setSession(Session s){
 		//dao.set(s.getIdUser(), s);
