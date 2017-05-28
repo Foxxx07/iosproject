@@ -57,6 +57,31 @@ $iptables -I INPUT -i lo -j ACCEPT
 exit 0
 ```
 
+## Application
+Le répertoir de l'application se trouve dans `/opt/ntw-back/` .<br>
+Le DAEMON est écrit dans `/usr/lib/systemd/system/imapcs.service` .
+```plain
+[Unit]
+After=network.target
+Description=iMap Contacts Server
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/ntw-back/dant/
+ExecStart=/usr/bin/mvn jetty:run
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Logs**
+
+Pour visionner les logs:
+```bash
+$ journalctl -xeu imapcs.service
+```
+
 ## MariaDB & Galera Cluster
 La configuration principale de MariaDB se trouve dans `/etc/my.cnf.d/server.cnf`.<br>
 Galera Cluster se configure à la section `[galera]` :
