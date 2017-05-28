@@ -1,5 +1,7 @@
 # Configuration des serveurs
 
+**API URL** : [http://imapc.lessonsharing.fr/](http://imapc.lessonsharing.fr/)
+
 ### Règles iptables
 Des règles iptables on été mise en place sur les serveurs physique, afin que les services puissent dialoguer entre eux via des ports filtré, donc les accès sont contrôlé.
 
