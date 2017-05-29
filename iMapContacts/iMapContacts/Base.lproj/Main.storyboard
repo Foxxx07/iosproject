@@ -333,8 +333,8 @@
                                     <navigationItem title="Mon Profil" id="4Bn-V1-65o"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Afficher ma position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOe-5j-n2O">
-                                <frame key="frameInset" minX="41" minY="280" width="154" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Partager ma position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOe-5j-n2O">
+                                <frame key="frameInset" minX="41" minY="280" width="159" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -347,15 +347,13 @@
                                     <action selector="onOffPosition:" destination="2fu-bQ-6Xp" eventType="valueChanged" id="Y6z-j6-4qV"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeB-7O-5Km">
-                                <frame key="frameInset" minX="37" minY="337" width="198" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Changer mon adresse e-mail"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZm-ta-ZG6">
                                 <frame key="frameInset" minX="37" minY="403" width="189" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Changer mon mot de passe"/>
+                                <connections>
+                                    <action selector="changePassword:" destination="2fu-bQ-6Xp" eventType="touchUpInside" id="KJ2-cI-TiL"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="jFp-Nu-vx6">
                                 <constraints>
@@ -363,6 +361,26 @@
                                     <constraint firstAttribute="height" constant="100" id="Z0L-4M-X4G"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJ7-Of-Eb3">
+                                <frame key="frameInset" minX="67" minY="82" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeB-7O-5Km">
+                                <frame key="frameInset" minX="37" minY="343" width="198" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Changer mon adresse e-mail"/>
+                                <connections>
+                                    <action selector="changeMail:" destination="2fu-bQ-6Xp" eventType="touchUpInside" id="1OU-rA-4h1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-09-JAr">
+                                <frame key="frameInset" minX="128" minY="212" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Changer la photo"/>
+                                <connections>
+                                    <action selector="selectPicture:" destination="2fu-bQ-6Xp" eventType="touchUpInside" id="ofW-MH-DOL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -374,6 +392,7 @@
                     <tabBarItem key="tabBarItem" title="" image="myProfileYellow" id="WKY-lT-Hap"/>
                     <connections>
                         <outlet property="displayPosition" destination="VlY-ey-tA1" id="7us-Ku-N7B"/>
+                        <outlet property="profilePicture" destination="kJ7-Of-Eb3" id="Sr4-12-GXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWN-li-Oc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
