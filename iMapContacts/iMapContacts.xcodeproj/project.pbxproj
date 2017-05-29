@@ -102,12 +102,9 @@
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
-<<<<<<< HEAD
 				D6AF7FB01ED986B700B1677D /* Collections */,
-=======
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
 				D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */,
->>>>>>> 5cb2445000de2ae48307547782f466adea1c110f
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
