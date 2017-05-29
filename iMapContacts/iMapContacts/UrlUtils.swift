@@ -10,37 +10,51 @@ import Foundation
 import UIKit
 
 class UrlUtils {
+    let serveur = "http://132.227.113.237:8083"
     
-    func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents  ) -> DataTask? {
-        
-        let dataTask : DataTask? = DataTask()
-        var request = URLRequest(url: URL(string:"http://www.google.fr\(collection)")!)
+    private var map :[Int : String] = [0:"Succes",
+                                       1:"Renseigner un nom",
+                                       2:"E-mail déjà utilisé",
+                                       3:"Renseigner un e-mail",
+                                       4:"Renseigner un mot de passe",
+                                       5:"Format d'email invalide",
+                                       6:"Format de clé utilisateur invalide",
+                                       7:"Format de clé héxadécimale invalide",
+                                       8:"Aucun utilisateur",
+                                       9:"Erreur de requête",
+                                       10:"Erreur SQL",
+                                       11:"Utilisateur non connecté"
+                                       ]
+    
+    func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents, callback : @escaping (_ data : Data?, _ response: URLResponse?, _ error: Error?) ->()) {
+        var request = URLRequest(url: URL(string:"\(serveur)\(collection)")!)
         request.httpMethod = httpMethod.rawValue
         
-        guard let parameters = urlComponents.query else {return dataTask!}
+        guard let parameters = urlComponents.query else {return }
         request.httpBody = parameters.data(using: .ascii)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type" )
         
         let session = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data { dataTask?.data = data }
-            if let response = response { dataTask?.response = response }
-            if let error = error{ dataTask?.error = error }
+            
+            callback(data, response, error)
         })
         
 //        print( request.httpBody)
 //        print(urlComponents.url)
-          session.resume()
-          return dataTask
+        session.resume()
+    
     }
     
-    func convertToJsonObject(data : Data?) -> Any? {
-        do {
-            return try  JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-        }
-        catch let jsonError {
-            print("problem to convert to json")
-        }
-        return nil
+    func getMessage(code : Int) -> String {
+        
+             if let message = map[code]{
+                return message
+            }
+            else{
+                return "Unknow code"
+            }
+        
+        return "Unknow code"
     }
 }
 

@@ -15,6 +15,7 @@ class Inscription: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordRepeat: UITextField!
+    var alertView = AlertView.init(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,12 @@ class Inscription: UIViewController {
     
     
     private func checkPassword() -> Bool{
-        return ( !(password.text! == passwordRepeat.text) && !(password.text!.isEmpty) && !(passwordRepeat.text!.isEmpty) )
+        return ( (password.text! == passwordRepeat.text) && !(password.text!.isEmpty) && !(passwordRepeat.text!.isEmpty) )
     }
     
     private func sendInscription() -> Bool{
         var urlComponents = URLComponents()
         guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return false }
-        guard mail.characters.count >= 6, pass.characters.count >= 4 else { return false} // Handle error todo
         
         urlComponents.queryItems = [
             URLQueryItem(name: "lname" , value : lastname.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
@@ -40,7 +40,31 @@ class Inscription: UIViewController {
             URLQueryItem(name: "email" , value : email.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
             URLQueryItem(name: "password" , value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
         ]
-        let urlUtils = UrlUtils().sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents)
+        
+        let urlUtil = UrlUtils()
+        urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
+            if let data = data {
+            let json =  ( try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? NSDictionary
+                print(json)
+            }
+            
+            do {
+                if let data = data {
+                    let json =  try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as Any
+                    print(json)
+                    let jsonRead = json as! NSDictionary
+                    print(jsonRead.value(forKey: "c"))
+                    
+                    
+                }
+                
+            }
+            catch let error{
+                print(error)
+            
+            }
+            print(data)
+        })
         
         let ableToConnect : Bool = true
         //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
@@ -54,7 +78,8 @@ class Inscription: UIViewController {
     
     private func isNotEmpty() -> Bool {
         if ((lastname.text?.isEmpty)! || (firstName.text?.isEmpty)! || (email.text?.isEmpty)! || (password.text?.isEmpty)! || (passwordRepeat.text?.isEmpty)! ) {
-            AlertView().showAlertView(targetVC: self, title: "Veuillez remplir tous les champs", message: "")
+            self.alertView.setTitle(title: "Veuillez remplir tous les champs")
+            self.alertView.showAlertView(targetVC: self)
             return false
         }
         else {

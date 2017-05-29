@@ -22,12 +22,12 @@
 		D684D7471ED05A6800B98189 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73C1ED05A6800B98189 /* Friends.swift */; };
 		D684D7481ED05A6800B98189 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73D1ED05A6800B98189 /* HttpMethod.swift */; };
 		D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73E1ED05A6800B98189 /* ListeAmis.swift */; };
-		D684D74A1ED05A6800B98189 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D73F1ED05A6800B98189 /* Map.swift */; };
 		D684D74B1ED05A6800B98189 /* Pos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7401ED05A6800B98189 /* Pos.swift */; };
 		D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7411ED05A6800B98189 /* SearchContact.swift */; };
 		D684D74D1ED05A6800B98189 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7421ED05A6800B98189 /* User.swift */; };
 		D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0331EBB7BD50001FD91 /* UrlUtils.swift */; };
 		D695D0361EBB7E720001FD91 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0351EBB7E720001FD91 /* Collection.swift */; };
+		D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,12 +48,12 @@
 		D684D73C1ED05A6800B98189 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		D684D73D1ED05A6800B98189 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		D684D73E1ED05A6800B98189 /* ListeAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeAmis.swift; sourceTree = "<group>"; };
-		D684D73F1ED05A6800B98189 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		D684D7401ED05A6800B98189 /* Pos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pos.swift; sourceTree = "<group>"; };
 		D684D7411ED05A6800B98189 /* SearchContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContact.swift; sourceTree = "<group>"; };
 		D684D7421ED05A6800B98189 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D695D0331EBB7BD50001FD91 /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		D695D0351EBB7E720001FD91 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,26 +89,22 @@
 		D67154181EB2286100017D55 /* iMapContacts */ = {
 			isa = PBXGroup;
 			children = (
+				D67154201EB2286100017D55 /* Assets.xcassets */,
+				D671541D1EB2286100017D55 /* Main.storyboard */,
 				D684D7381ED05A6800B98189 /* AlertView.swift */,
 				D684D7391ED05A6800B98189 /* Amis.swift */,
-				D684D73A1ED05A6800B98189 /* Conf.swift */,
 				D684D73B1ED05A6800B98189 /* DataTask.swift */,
-				D684D73C1ED05A6800B98189 /* Friends.swift */,
-				D684D73D1ED05A6800B98189 /* HttpMethod.swift */,
 				D684D73E1ED05A6800B98189 /* ListeAmis.swift */,
-				D684D73F1ED05A6800B98189 /* Map.swift */,
-				D684D7401ED05A6800B98189 /* Pos.swift */,
 				D684D7411ED05A6800B98189 /* SearchContact.swift */,
-				D684D7421ED05A6800B98189 /* User.swift */,
 				D67154191EB2286100017D55 /* AppDelegate.swift */,
 				D671541B1EB2286100017D55 /* Connexion.swift */,
-				D671541D1EB2286100017D55 /* Main.storyboard */,
-				D67154201EB2286100017D55 /* Assets.xcassets */,
 				D67154251EB2286100017D55 /* Info.plist */,
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
+				D6AF7FB01ED986B700B1677D /* Collections */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
+				D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -120,6 +116,19 @@
 				D67154321EB2462700017D55 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6AF7FB01ED986B700B1677D /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				D695D0351EBB7E720001FD91 /* Collection.swift */,
+				D684D73C1ED05A6800B98189 /* Friends.swift */,
+				D684D73A1ED05A6800B98189 /* Conf.swift */,
+				D684D7401ED05A6800B98189 /* Pos.swift */,
+				D684D73D1ED05A6800B98189 /* HttpMethod.swift */,
+				D684D7421ED05A6800B98189 /* User.swift */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,11 +209,11 @@
 				D684D7461ED05A6800B98189 /* DataTask.swift in Sources */,
 				D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */,
 				D684D74B1ED05A6800B98189 /* Pos.swift in Sources */,
+				D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */,
 				D684D7451ED05A6800B98189 /* Conf.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */,
 				D684D7471ED05A6800B98189 /* Friends.swift in Sources */,
-				D684D74A1ED05A6800B98189 /* Map.swift in Sources */,
 				D684D7431ED05A6800B98189 /* AlertView.swift in Sources */,
 				D684D74D1ED05A6800B98189 /* User.swift in Sources */,
 				D695D0361EBB7E720001FD91 /* Collection.swift in Sources */,
@@ -322,11 +331,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMapContacts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -334,11 +346,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMapContacts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

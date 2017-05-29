@@ -8,7 +8,7 @@
 
 
 import UIKit
-class Contacts: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var contactList: [Amis] = []
     
@@ -19,7 +19,6 @@ class Contacts: UIViewController, UITableViewDelegate, UITableViewDataSource {
         contactList.append(contactB)
     }
 
-    
     let cellReuseIdentifier = "cell"
     
 
