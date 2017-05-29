@@ -19,7 +19,6 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
         contactList.append(contactB)
     }
 
-    
     let cellReuseIdentifier = "cell"
     
 
