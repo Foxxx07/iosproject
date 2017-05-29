@@ -121,7 +121,6 @@
 		D6AF7FB01ED986B700B1677D /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				D695D0351EBB7E720001FD91 /* Collection.swift */,
 				D684D73C1ED05A6800B98189 /* Friends.swift */,
 				D684D73A1ED05A6800B98189 /* Conf.swift */,
 				D684D7401ED05A6800B98189 /* Pos.swift */,
@@ -163,6 +162,7 @@
 				TargetAttributes = {
 					D67154151EB2286100017D55 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = YFTVMQYRHR;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -331,11 +331,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YFTVMQYRHR;
 				INFOPLIST_FILE = iMapContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
+				PRODUCT_BUNDLE_IDENTIFIER = Bundle.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -346,11 +346,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YFTVMQYRHR;
 				INFOPLIST_FILE = iMapContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TestIHM.iMapContacts;
+				PRODUCT_BUNDLE_IDENTIFIER = Bundle.iMapContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

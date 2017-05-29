@@ -263,10 +263,10 @@
             </objects>
             <point key="canvasLocation" x="2046" y="130"/>
         </scene>
-        <!--Accueil-->
+        <!--Acceuil-->
         <scene sceneID="1Ph-GB-0x2">
             <objects>
-                <viewController id="W8F-pg-WdA" customClass="Accueil" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W8F-pg-WdA" customClass="Acceuil" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mgh-qO-SIi"/>
                         <viewControllerLayoutGuide type="bottom" id="yz1-hr-iKi"/>
