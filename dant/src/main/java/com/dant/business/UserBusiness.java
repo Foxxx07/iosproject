@@ -59,7 +59,7 @@ public class UserBusiness {
 		userDAO.createUser(user);
 		return user;
 	}
-	
+
 	public void searchUser(String query,int page) throws SQLException, UserFoundException{
 		int limit = 10;
 		if (1 > page) {
@@ -81,11 +81,11 @@ public class UserBusiness {
 				break;
 				//pas hexa
 			}
-			
+
 			if(isHexa){
-				
+
 					userDAO.getUserById(id);
-				
+
 			}
 			else{
 				throw new HexadecimalException();
@@ -106,7 +106,7 @@ public class UserBusiness {
 				break;
 				//pas hexa
 			}
-			
+
 			if(isHexa){
 				try{
 					userDAO.getUserById(id);
@@ -115,7 +115,7 @@ public class UserBusiness {
 					throw new UserFoundException();
 					//Passer les infos utilisateurs ici
 				}
-				
+
 			}
 			else{
 				throw new HexadecimalException();
@@ -147,7 +147,7 @@ public class UserBusiness {
 
 	}
 
-	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
 			Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
 	public static boolean validateEmail(String emailStr) {
@@ -157,12 +157,12 @@ public class UserBusiness {
 
 	public String createSession(User user) {
 		Session sessionTmp = new Session(user.getKey(),"");
-		
+
 		//TODO exception insertion memcache
 		//TODO insertion sessionTMP dans memecach
-		
+
 		return sessionTmp.getSessionId();
-		
+
 	}
 
 }
