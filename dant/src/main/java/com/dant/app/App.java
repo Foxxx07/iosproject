@@ -4,17 +4,12 @@ import com.dant.controller.FriendshipController;
 import com.dant.controller.PositionController;
 import com.dant.controller.UserController;
 
-import com.dant.dao.MemcacheDAO;
-import com.dant.entity.Session;
 import com.dant.exception.RuntimeExceptionMapper;
 import com.dant.filter.GsonProvider;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import net.spy.memcached.MemcachedClient;
-
-import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 

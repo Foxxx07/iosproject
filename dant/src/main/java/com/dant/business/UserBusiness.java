@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.ws.rs.core.Response;
+import org.mariadb.jdbc.internal.util.dao.QueryException;
 
 import com.dant.dao.UserDAO;
 import com.dant.entity.Session;
@@ -18,9 +18,7 @@ import com.dant.exception.InvalidEmailException;
 import com.dant.exception.InvalidUserKeyException;
 import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
-import com.dant.exception.UserNotFoundExceptionMapper;
 import com.dant.util.KeyGeneratorUtil;
-import com.dant.util.UserFoundExceptionMapper;
 
 public class UserBusiness {
 
@@ -127,7 +125,7 @@ public class UserBusiness {
 		}
 	}
 
-	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException{
+	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException, QueryException{
 
 		// Si connecté, alors on met à jour ses données.
 		userDAO.updateUser(id, fname, lname, email, password);

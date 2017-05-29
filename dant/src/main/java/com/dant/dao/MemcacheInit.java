@@ -1,4 +1,4 @@
-package com.dant.dao;
+/*package com.dant.dao;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,17 +15,19 @@ class MemcacheInit {
 
 		private final static MemcachedClient mcc = init();
 
-		private static MemcachedClient init() {
-			System.out.println("init memcache 1");
-			 try {
-				return new MemcachedClient(new InetSocketAddress("127.0.0.1", 11211));
-			} catch (IOException e) {
-				e.printStackTrace();
+				private static MemcachedClient init() {
+					System.out.println("init memcache 1");
+					 try {
+						return new MemcachedClient(new InetSocketAddress("169.254.47.97", 11211));
+				} catch (IOException e) {
+						e.printStackTrace();
 			}
-			 return null;
-		}
+					 return null;
+				}
+			}
+
+
 	}
+} */
 
 
-
-}

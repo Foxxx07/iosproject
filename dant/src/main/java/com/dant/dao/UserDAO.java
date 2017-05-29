@@ -1,15 +1,12 @@
 package com.dant.dao;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.commons.codec.binary.Hex;
+import org.mariadb.jdbc.internal.util.dao.QueryException;
 
 import com.dant.entity.User;
 import com.dant.exception.UserFoundException;
@@ -38,7 +35,7 @@ public class UserDAO {
 		}
 	}
 
-	public void getUserByCredentials(String email, String password) throws SQLException {
+	public void getUserByCredentials(String email, String password) throws SQLException, QueryException {
 		String sql="{call getUserByCredentials(?,0x" + CryptoUtil.encrypt(password)  + ")}";
 		try (CallableStatement call = connection.prepareCall(sql)) {
 			call.setString(1,email);
@@ -47,6 +44,7 @@ public class UserDAO {
 			}
 			else{
 				//Tout va mal
+				throw new QueryException("Non");
 			}
 		}
 	}
@@ -74,7 +72,7 @@ public class UserDAO {
 			call.setBoolean(4, in_bool_mode);
 			if(call.execute()){ 
 				//Tout va bien
-				//Boucle json formée depuis les users renvoyés
+				//Boucle json formï¿½e depuis les users renvoyï¿½s
 				throw new UserFoundException();
 			}
 			else{
@@ -101,8 +99,9 @@ public class UserDAO {
 		}
 	}
 	
-	public void updateUser(String id, String fname, String lname, String email, String password){
+	public void updateUser(String id, String fname, String lname, String email, String password) throws QueryException{
 		//Requete mise Ã  jour
+		//throw new QueryException();
 	}
 
 }

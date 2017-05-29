@@ -6,7 +6,7 @@ public class InvalidEmailExceptionMapper {
 
 
 	public Response toResponse(InvalidEmailException e) {
-		return Response.status(200).entity(e.getMessage()).type("text/plain").build();
+		return Response.status(200).type("application/json").entity("{\"c\":5}").build();
 	}
 	
 }

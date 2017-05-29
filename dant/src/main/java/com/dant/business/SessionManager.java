@@ -1,10 +1,6 @@
 package com.dant.business;
 
-import net.spy.memcached.CachedData;
-import net.spy.memcached.transcoders.BaseSerializingTranscoder;
 import net.spy.memcached.transcoders.SerializingTranscoder;
-import net.spy.memcached.transcoders.Transcoder;
-
 import com.dant.dao.MemcacheDAO;
 import com.dant.entity.Session;
 

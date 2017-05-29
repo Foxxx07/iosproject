@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.dant.business.SessionManager;
 import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
 
@@ -66,7 +65,7 @@ public class FriendshipDAO {
 			try (ResultSet req = ps.executeQuery(sql)) {
 				if(req.next()){
 					throw new UserFoundException();
-					//Renvoyer les amis trouvés
+					//Renvoyer les amis trouvï¿½s
 				}
 				else{
 					throw new UserNotFoundException();

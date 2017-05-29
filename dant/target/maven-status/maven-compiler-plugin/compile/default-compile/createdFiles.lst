@@ -7,10 +7,8 @@ com/dant/exception/HexadecimalException.class
 com/dant/entity/Position.class
 com/dant/exception/EmptyNameExceptionMapper.class
 com/dant/exception/InvalidEmailException.class
-com/dant/dao/MemcacheInit$Init.class
 com/dant/filter/GsonProvider.class
 com/dant/dao/PositionDAO.class
-com/dant/dao/MemcacheInit.class
 com/dant/entity/User.class
 com/dant/entity/Account.class
 com/dant/dao/JDBCCalls.class

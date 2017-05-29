@@ -25,7 +25,7 @@ class Init {
 		private static Connection init() {
 			try {
 				Class.forName("org.mariadb.jdbc.Driver");
-				return DriverManager.getConnection("jdbc:mariadb://address=(host=imapc.lessonsharing.fr)(port=3306)(type=master)/imap_contacts", "imap_contacts", "VVpVk>*ATqoe-(f|a99Wz</7s7anri/[");
+				return DriverManager.getConnection("jdbc:mariadb://address=(host=localhost)(port=3306)(type=master)/imap_contacts", "imap_contacts", "VVpVk>*ATqoe-(f|a99Wz</7s7anri/[");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -41,7 +41,7 @@ class Init {
 		private static MemcachedClient init() {
 			System.out.println("init memcache 2");
 			 try {
-				return new MemcachedClient(new InetSocketAddress("127.0.0.1", 11211));
+				return new MemcachedClient(new InetSocketAddress("169.254.47.97", 11211));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

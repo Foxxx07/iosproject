@@ -5,6 +5,8 @@ import javax.ws.rs.core.Response;
 public class InvalidUserKeyExceptionMapper {
 
 	public Response toResponse(InvalidUserKeyException e) {
-		return Response.status(200).entity(e.getMessage()).type("text/plain").build();
+		return Response.status(404).type("application/json").entity("{\"c\":6}").build();
 	}
+	
+	
 }

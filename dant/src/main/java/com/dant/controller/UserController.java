@@ -1,7 +1,6 @@
 package com.dant.controller;
 
 import java.sql.SQLException;
-import java.util.Objects;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -15,12 +14,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.mariadb.jdbc.internal.util.ExceptionMapper;
+import org.mariadb.jdbc.internal.util.dao.QueryException;
 
-import com.dant.business.SessionManager;
 import com.dant.business.UserBusiness;
-import com.dant.entity.Session;
-import com.dant.entity.User;
 import com.dant.exception.EmailException;
 import com.dant.exception.EmailExceptionMapper;
 import com.dant.exception.EmptyEmailException;
@@ -35,6 +31,7 @@ import com.dant.exception.InvalidEmailException;
 import com.dant.exception.InvalidEmailExceptionMapper;
 import com.dant.exception.InvalidUserKeyException;
 import com.dant.exception.InvalidUserKeyExceptionMapper;
+import com.dant.exception.QueryExceptionMapper;
 import com.dant.exception.SQLExceptionMapper;
 import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
@@ -45,6 +42,7 @@ import com.dant.util.UserFoundExceptionMapper;
 @Path("/u")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.APPLICATION_JSON)
+
 public class UserController {
 
 	private UserBusiness userBusiness = new UserBusiness();
@@ -54,11 +52,10 @@ public class UserController {
 			@DefaultValue("") @FormParam("fname") String fname,
 			@DefaultValue("") @FormParam("lname") String lname,
 			@DefaultValue("") @FormParam("email") String email,
-			@DefaultValue("") @FormParam("password") String password) throws SQLException
-	{
+			@DefaultValue("") @FormParam("password") String password)	{
 
 		try {
-			userBusiness.createSession(userBusiness.createUser(fname,lname,email,password));
+			userBusiness.createUser(fname,lname,email,password);
 			//Créer la session
 			return Response.status(200).build();
 		}
@@ -90,11 +87,12 @@ public class UserController {
 		catch(SQLException e){
 			return Response.status(500).build();
 		}
+
 	}
 
 
 	@GET
-	public Response searchP(@DefaultValue("Null") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
+	public Response searchP(@DefaultValue("") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException{
 
 		try {
 			userBusiness.searchUser(query, page);
@@ -108,7 +106,7 @@ public class UserController {
 			return sem.toResponse(e);
 		}
 
-		return null;
+		return Response.status(500).build();
 	}
 
 
@@ -133,7 +131,7 @@ public class UserController {
 			UserFoundExceptionMapper ufem = new UserFoundExceptionMapper();
 			return ufem.toResponse(e);
 		}
-		return null;
+		return Response.status(500).build();
 
 	}
 
@@ -164,7 +162,7 @@ public class UserController {
 			return ufem.toResponse(e);
 		}
 
-		return null;
+		return Response.status(500).build();
 		//TODO renvoyer response userFound avec les infos
 
 	}
@@ -172,19 +170,29 @@ public class UserController {
 
 	@Path("/me")
 	@POST
-	public String updateUser(
-			@DefaultValue("Null") @FormParam("fname") String fname,
-			@DefaultValue("Null") @FormParam("lname") String lname,
-			@DefaultValue("Null") @FormParam("email") String email,
-			@DefaultValue("Null") @FormParam("password") String password
+	public Response updateUser(
+			@DefaultValue("") @FormParam("fname") String fname,
+			@DefaultValue("") @FormParam("lname") String lname,
+			@DefaultValue("") @FormParam("email") String email,
+			@DefaultValue("") @FormParam("password") String password
 			) throws SQLException
-	{
+			{
 
 		//Récupérer l'id
 		String id=null;
-		userBusiness.updateUser(id,fname,lname,email,password);
 
-		return "";
-	}
+		try {
+			userBusiness.updateUser(id,fname,lname,email,password);
+		} catch (QueryException e) {
+			QueryExceptionMapper qem = new QueryExceptionMapper();
+			return qem.toResponse(e);
+		}catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		}
 
+
+		return Response.status(500).build();
+
+			}
 }

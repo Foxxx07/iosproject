@@ -1,21 +1,7 @@
 package com.dant.app;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import org.apache.commons.codec.binary.Hex;
-import org.mariadb.jdbc.Driver;
-
 import com.dant.dao.JDBCCalls;
-import com.dant.dao.UserDAO;
-import com.dant.entity.User;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -26,15 +12,15 @@ import javax.ws.rs.core.MediaType;
 public class API {
 
 	// ------ Collection /u/
-	// --- GET	
+	// --- GET
 	// -- /u/?search
 	// -- /u/search?&n
 
 	// -- /u/{idUser}
-	
+
 
 	// -- /u/me
-	@GET 
+	@GET
 	@Path("/u/me")
 	public String listMetaData(){
 
@@ -50,7 +36,7 @@ public class API {
 
 	// --- POST
 	// - /u/
-	
+
 	// - /u/me/
 	@POST
 	@Path("/u/me")
@@ -86,8 +72,8 @@ public class API {
 	public void listFriends(){
 		//Lister les amis de l'utilisateur connecté
 	}
-	
-	
+
+
 	// - /friends/{idUser}
 	@GET
 	@Path("/friends/{idUser}")
@@ -135,7 +121,7 @@ public class API {
 	@Path("/pos/friends/{n}")
 	public String getFriendsPositionsP(@PathParam("n") int page){
 
-		return null;	
+		return null;
 	}
 
 	// - /pos/{idUser}
@@ -159,5 +145,3 @@ public class API {
 
 
 }
-
-
