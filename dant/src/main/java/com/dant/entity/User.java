@@ -105,4 +105,13 @@ public class User implements Serializable {
 		str+=" registrationDate: "+ parserDate.print(new DateTime(registration,DateTimeZone.forTimeZone(TimeZone.getTimeZone("Europe/Paris"))));
 		return str;
 	}
+	
+	public String toJson(){
+		String str;
+		str="{\"fname\":\""+this.fname+"\"";
+		str+=",\"lname\":\""+this.lname+"\"";
+		str+=",\"email\":\""+this.email+"\"";
+		str+=",\"password\":\""+this.password+"\"}";
+		return str;
+	}
 }

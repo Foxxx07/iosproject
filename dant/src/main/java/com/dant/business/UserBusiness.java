@@ -58,7 +58,7 @@ public class UserBusiness {
 		return user;
 	}
 
-	public void searchUser(String query,int page) throws SQLException, UserFoundException{
+	public String searchUser(String query,int page) throws SQLException{
 		int limit = 10;
 		if (1 > page) {
 			limit = -1;
@@ -66,11 +66,10 @@ public class UserBusiness {
 		} else {
 			page *= limit;
 		}
-
-		userDAO.searchUser(query, page, limit, false);
+		return userDAO.searchUser(query, page, limit, true);
 	}
 
-	public void getUserById(String id) throws HexadecimalException, SQLException, InvalidUserKeyException, UserNotFoundException, UserFoundException{
+	public String getUserById(String id) throws HexadecimalException, SQLException, InvalidUserKeyException, UserNotFoundException{
 		boolean isHexa=true;
 		if(id.length()==8){
 			for(int i=0; i<8;i++){
@@ -82,7 +81,7 @@ public class UserBusiness {
 
 			if(isHexa){
 
-					userDAO.getUserById(id);
+				return userDAO.getUserById(id);
 
 			}
 			else{
@@ -95,7 +94,7 @@ public class UserBusiness {
 		}
 	}
 
-	public void listUserMetaData(String id) throws UserNotFoundException, SQLException, HexadecimalException, InvalidUserKeyException, UserFoundException{
+	public String listUserMetaData(String id) throws UserNotFoundException, SQLException, HexadecimalException, InvalidUserKeyException, UserFoundException{
 		boolean isHexa=true;
 		if(id.length()==8){
 			for(int i=0; i<8;i++){
@@ -106,13 +105,10 @@ public class UserBusiness {
 			}
 
 			if(isHexa){
-				try{
-					userDAO.getUserById(id);
-				}
-				catch(UserFoundException e){
-					throw new UserFoundException();
-					//Passer les infos utilisateurs ici
-				}
+
+
+				return userDAO.getUserById(id);
+
 
 			}
 			else{
@@ -125,23 +121,66 @@ public class UserBusiness {
 		}
 	}
 
-	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException, QueryException{
+	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException, EmptyEmailException, InvalidEmailException, EmptyNameException, EmptyPasswordException, HexadecimalException, UserNotFoundException, InvalidUserKeyException, QueryException{
 
-		// Si connecté, alors on met à jour ses données.
-		userDAO.updateUser(id, fname, lname, email, password);
-		/*
-		 * @DefaultValue("Null") @FormParam("fname") String fname,
-					@DefaultValue("Null") @FormParam("lname") String lname,
-					@DefaultValue("Null") @FormParam("email") String email,
-					@DefaultValue("Null") @FormParam("password") String password
-		 * */
 
-		// Sinon, on le connecte.
-		userDAO.getUserByCredentials(email, password);
-		/*
-					@DefaultValue("Null") @FormParam("email") String email,
-					@DefaultValue("Null") @FormParam("password") String password
-		 * */
+		if(email.length()==0){
+			throw new EmptyEmailException();
+		}
+		if(!validateEmail(email)){
+			throw new InvalidEmailException();
+		}
+
+		if(fname.length()==0 || lname.length()==0){
+			throw new EmptyNameException();
+		}
+		if(password.length()==0){
+			throw new EmptyPasswordException();
+		}
+
+		boolean isHexa=true;
+		if(id.length()==8){
+			for(int i=0; i<8;i++){
+				if(Character.digit(id.charAt(i),16)==-1)
+					isHexa=false;
+				break;
+				//pas hexa
+			}
+
+			if(isHexa){
+
+				//TODO verif conenction
+				// Si connecté, alors on met à jour ses données.
+				userDAO.updateUser(id, fname, lname, email, password);
+				/*
+				 * @DefaultValue("Null") @FormParam("fname") String fname,
+							@DefaultValue("Null") @FormParam("lname") String lname,
+							@DefaultValue("Null") @FormParam("email") String email,
+							@DefaultValue("Null") @FormParam("password") String password
+				 * */
+
+				// Sinon, on le connecte.
+
+				userDAO.getUserByCredentials(email, password);
+				/*
+							@DefaultValue("Null") @FormParam("email") String email,
+							@DefaultValue("Null") @FormParam("password") String password
+				 * */
+				
+
+
+			}
+			else{
+				throw new HexadecimalException();
+			}
+		}
+
+		else{
+			throw new InvalidUserKeyException();
+		}
+
+
+		
 
 	}
 

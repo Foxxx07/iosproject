@@ -1,4 +1,4 @@
-package com.dant.dao;
+/*package com.dant.dao;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -176,4 +176,4 @@ public class JDBCCalls {
 
 
 
-}
+} */

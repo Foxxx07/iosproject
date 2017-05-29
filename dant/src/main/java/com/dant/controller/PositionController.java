@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.dant.business.PositionBusiness;
 
@@ -21,41 +22,43 @@ public class PositionController {
 	private PositionBusiness positionBusiness = new PositionBusiness();
 
 	@POST
-	public void updatePosition(){
+	public Response updatePosition(){
 	positionBusiness.updatePosition();
+	return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 		//Regle la nouvelle position du user à sa position actuelle
 	}
 
 	@GET
-	public String getPosition(){
+	public Response getPosition(){
 		positionBusiness.getPosition();
+		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
 		//Récuperer position utilisateur
-		return null;
+
 	}
 
 	// - /pos/friends
 	@GET
 	@Path("/friends")
-	public String getFriendsPositions(){
-		positionBusiness.getFriendsPositions();
+	public Response getFriendsPositions(){
+		positionBusiness.getFriendsPositions(0);
 		//Récuperer les positions des amis de l'utilisateurs
-		return null;
+		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
 	}
 
 	// - /pos/friends/{userFriendId}
 	@GET
 	@Path("/friends/{n}")
-	public String getFriendsPositionsP(@PathParam("n") int page){
-		positionBusiness.getFriendsPositionsP(page);
-		return null;
+	public Response getFriendsPositionsP(@PathParam("n") int page){
+		positionBusiness.getFriendsPositions(page);
+		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
 	}
 
 	// - /pos/{idUser}
 	@GET
 	@Path("/{idUser}")
-	public String getFriendPosition(@PathParam("idUser") String id) throws SQLException{
+	public Response getFriendPosition(@PathParam("idUser") String id) throws SQLException{
 		positionBusiness.getFriendPosition(id);
-		return null;
+		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
 	}
 
 	// --- POST

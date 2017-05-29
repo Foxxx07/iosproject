@@ -36,7 +36,6 @@ com/dant/business/PositionBusiness.class
 com/dant/exception/RuntimeExceptionMapper.class
 com/dant/exception/EmptyNameException.class
 com/dant/exception/UserNotConnectedExceptionMapper.class
-com/dant/controller/FriendshipController.class
 com/dant/exception/HexadecimalExceptionMapper.class
 com/dant/exception/EmailExceptionMapper.class
 com/dant/exception/InvalidUserKeyException.class

@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
 
 public class FriendshipDAO {
@@ -36,7 +35,6 @@ public class FriendshipDAO {
 			call.setString(2, bkey);
 
 			if(call.execute()){ 
-				//Tout va bien
 			}
 			else{
 				throw new SQLException();
@@ -44,36 +42,44 @@ public class FriendshipDAO {
 		}
 	}
 
-	public void getFriendship(String akey, String bkey) throws SQLException{
+	public boolean getFriendship(String akey, String bkey) throws SQLException{
 		String sql="{call GetFriendship(?,?)}";
 		try (CallableStatement call = connection.prepareCall(sql)) { 
 			call.setString(1, akey);
 			call.setString(2, bkey);
 
 			if(call.execute()){ 
-				//Tout va bien
+				ResultSet rs = (ResultSet)call.getObject(1);
+				if(rs.next()){
+					return true;
+				}
+				else{
+					return false;
+				}
 			}
 			else{
-				//Tout va mal
+				return false;
 			}
 		}
 	}
-	
-	public void listFriends(String id) throws SQLException, UserFoundException, UserNotFoundException{
+
+	public String listFriends(String id) throws SQLException, UserNotFoundException{
 		String sql = "{call ListFriends(1)}";
+		String str = null;
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			try (ResultSet req = ps.executeQuery(sql)) {
 				if(req.next()){
-					throw new UserFoundException();
-					//Renvoyer les amis trouv�s
+					while(req.next()){
+						str+=req.getString("{key}");
+					}
+					return str;
 				}
 				else{
 					throw new UserNotFoundException();
-					//Pas d'ami
 				}
 			}
 		}
-		
+
 	}
 
 

@@ -3,7 +3,6 @@ package com.dant.dao;
 import net.spy.memcached.MemcachedClient;
 
 import com.dant.entity.Session;
-import com.dant.exception.UserNotConnectedException;
 import com.dant.exception.UserNotFoundException;
 
 public class MemcacheDAO {

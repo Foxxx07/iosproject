@@ -11,7 +11,7 @@ public class PositionDAO {
 		
 	}
 	
-	public void getPositon(){
+	public void getPosition(){
 		
 	}
 	

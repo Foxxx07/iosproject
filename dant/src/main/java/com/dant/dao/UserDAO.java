@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import org.mariadb.jdbc.internal.util.dao.QueryException;
 
 import com.dant.entity.User;
-import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
 import com.dant.util.CryptoUtil;
 
@@ -27,11 +26,11 @@ public class UserDAO {
 			call.setString(3,u.getEmail()); 
 			call.execute();
 
-//			if (1 != call.getUpdateCount()) {
-//				System.out.println("UpdateCount : " + call.getUpdateCount());
-//
-//			}
-//			System.out.println("UpdateCount : " + call.getUpdateCount());
+			//			if (1 != call.getUpdateCount()) {
+			//				System.out.println("UpdateCount : " + call.getUpdateCount());
+			//
+			//			}
+			//			System.out.println("UpdateCount : " + call.getUpdateCount());
 		}
 	}
 
@@ -41,6 +40,10 @@ public class UserDAO {
 			call.setString(1,email);
 			if(call.execute()){ 
 				//Tout va bien
+				ResultSet rs = (ResultSet)call.getObject(1);
+				if(rs.next()){
+					//TODO Créer la session dans memcached
+				}
 			}
 			else{
 				//Tout va mal
@@ -49,59 +52,105 @@ public class UserDAO {
 		}
 	}
 
-	public void getUserById(String id) throws UserNotFoundException, SQLException, UserFoundException{
-				String sql="{call getUserById(?)}";
-				try (CallableStatement call = connection.prepareCall(sql)) { 
-					call.setString(1,id);
-					if(call.execute()){ 
-						throw new UserFoundException();
-					}
-					else{
-						throw new UserNotFoundException();
-					}
-				}
-	
-	}
-
-	public void searchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException, UserFoundException{
-		String sql="{call SearchUser(?,?,?,?)}";
-		try (CallableStatement call = connection.prepareCall(sql);) { 
-			call.setString(1, search_str);
-			call.setInt(2, offset_pos);
-			call.setInt(3, limit_l);
-			call.setBoolean(4, in_bool_mode);
+	public String getUserById(String id) throws UserNotFoundException, SQLException{
+		String sql="{call getUserById(?)}";
+		String str="";
+		try (CallableStatement call = connection.prepareCall(sql)) { 
+			call.setString(1,id);
 			if(call.execute()){ 
-				//Tout va bien
-				//Boucle json form�e depuis les users renvoy�s
-				throw new UserFoundException();
+				ResultSet rs = (ResultSet)call.getObject(1);
+				while(rs.next()){
+					if (0 < str.length()) {
+						str += ",";
+					}
+					str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
+					return str;
+				}
+				
+				
+				return "[" + str + "]";
 			}
 			else{
-				throw new SQLException();
+				throw new UserNotFoundException();
 			}
 		}
+
 	}
 
-	public boolean keyAlreadyExists(String key) throws SQLException{
-		String sql="Select 1 from users where `key`=0x"+key;
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			try (ResultSet req = ps.executeQuery(sql)) {
-				return req.next();
+	public String searchUser(String search_str, int offset_pos, int limit_l, boolean in_bool_mode) throws SQLException{
+
+		String str="";
+		User u1 = new User("toto","lepabo","a@b.cr","password");
+		User u2 = new User("tatata","lep","d@b.cr","password");
+		System.out.println("Users created");
+		User[] usrs = new User[2];
+		usrs[0] = u1;
+		usrs[1] = u2;
+		for(int i = 0 ; i<usrs.length; i++){
+			if (0 < str.length()) {
+				str += ",";
 			}
+			str += usrs[i].toJson();
 		}
+		
+		
+		return "[" + str + "]";
 	}
 
-	public boolean emailAlreadyExists(String email) throws SQLException{
-		String sql="Select 1 from users where `email`= '" + email + "'";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			try (ResultSet req = ps.executeQuery(sql)) {
-				return req.next();
-			}
+
+
+
+//		String sql="{call SearchUser(?,?,?,?)}";
+//		try (CallableStatement call = connection.prepareCall(sql);) { 
+//			call.setString(1, search_str);
+//			call.setInt(2, offset_pos);
+//			call.setInt(3, limit_l);
+//			call.setBoolean(4, in_bool_mode);
+//			if(call.execute()){ 
+//				//Tout va bien
+//				//Boucle json form�e depuis les users renvoy�s
+//				ResultSet rs = (ResultSet)call.getObject(1);
+//			
+//						
+//						while(rs.next()){
+//							if (0 < str.length()) {
+//								str += ",";
+//							}
+//							
+//							str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
+//						}
+//						
+//						
+//						return "[" + str + "]";
+//					}
+//					else{
+//						
+//						throw new SQLException();
+//					}
+//	}
+
+public boolean keyAlreadyExists(String key) throws SQLException{
+	String sql="Select 1 from users where `key`=0x"+key;
+	try (PreparedStatement ps = connection.prepareStatement(sql)) {
+		try (ResultSet req = ps.executeQuery(sql)) {
+			return req.next();
 		}
 	}
+}
+
+public boolean emailAlreadyExists(String email) throws SQLException{
+	String sql="Select 1 from users where `email`= '" + email + "'";
+	try (PreparedStatement ps = connection.prepareStatement(sql)) {
+		try (ResultSet req = ps.executeQuery(sql)) {
+			return req.next();
+		}
+	}
+}
+
+public void updateUser(String id, String fname, String lname, String email, String password) {
+	//Requete mise à jour
 	
-	public void updateUser(String id, String fname, String lname, String email, String password) throws QueryException{
-		//Requete mise à jour
-		//throw new QueryException();
-	}
+	//throw new QueryException();
+}
 
 }
