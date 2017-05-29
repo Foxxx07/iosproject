@@ -6,7 +6,6 @@
 //  Copyright © 2017 m2sar. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import MapKit
 
@@ -17,13 +16,23 @@ class Acceuil: UIViewController, MKMapViewDelegate {
     var updateLocalUserLocation = true
     
     @IBOutlet weak var viewMap: MKMapView!
+    @IBOutlet weak var recentrerButton: UIButton!
+    
+    @IBAction func recentrer(_ sender: AnyObject) {
+        viewMap.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewMap.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+<<<<<<< HEAD
         
         timerWithTimeInrterval()
        
+=======
+>>>>>>> 5cb2445000de2ae48307547782f466adea1c110f
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

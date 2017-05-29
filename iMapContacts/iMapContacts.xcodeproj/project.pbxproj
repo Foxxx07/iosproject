@@ -27,6 +27,7 @@
 		D684D74D1ED05A6800B98189 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D7421ED05A6800B98189 /* User.swift */; };
 		D695D0341EBB7BD50001FD91 /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0331EBB7BD50001FD91 /* UrlUtils.swift */; };
 		D695D0361EBB7E720001FD91 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D695D0351EBB7E720001FD91 /* Collection.swift */; };
+		D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		D684D7421ED05A6800B98189 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D695D0331EBB7BD50001FD91 /* UrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		D695D0351EBB7E720001FD91 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +102,12 @@
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
 				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
+<<<<<<< HEAD
 				D6AF7FB01ED986B700B1677D /* Collections */,
+=======
+				D695D0351EBB7E720001FD91 /* Collection.swift */,
+				D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */,
+>>>>>>> 5cb2445000de2ae48307547782f466adea1c110f
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 				D684D7461ED05A6800B98189 /* DataTask.swift in Sources */,
 				D684D7491ED05A6800B98189 /* ListeAmis.swift in Sources */,
 				D684D74B1ED05A6800B98189 /* Pos.swift in Sources */,
+				D6E0B0F01ED9E09F0051C4FF /* Profil.swift in Sources */,
 				D684D7451ED05A6800B98189 /* Conf.swift in Sources */,
 				D671541A1EB2286100017D55 /* AppDelegate.swift in Sources */,
 				D684D74C1ED05A6800B98189 /* SearchContact.swift in Sources */,

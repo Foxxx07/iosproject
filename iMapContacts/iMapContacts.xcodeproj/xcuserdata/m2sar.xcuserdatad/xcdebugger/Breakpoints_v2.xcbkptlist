@@ -25,6 +25,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "iMapContacts/AlertView.swift"
             timestampString = "517575856.648037"
             startingColumnNumber = "9223372036854775807"
@@ -288,6 +289,15 @@
             startingLineNumber = "78"
             endingLineNumber = "78"
             landmarkName = "sendConnexion()"
+=======
+            filePath = "iMapContacts/SearchContact.swift"
+            timestampString = "517586767.091041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "findContacts()"
+>>>>>>> 5cb2445000de2ae48307547782f466adea1c110f
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
