@@ -188,11 +188,8 @@
             </objects>
             <point key="canvasLocation" x="-1564" y="-98"/>
         </scene>
-<<<<<<< HEAD
         <!--Item-->
-=======
         <!--Search Contact-->
->>>>>>> fs
         <scene sceneID="kDa-g2-Rih">
             <objects>
                 <viewController id="lBr-UG-kE3" customClass="SearchContact" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
@@ -213,11 +210,8 @@
                                 <frame key="frameInset" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-<<<<<<< HEAD
                                     <navigationItem title="Title" id="Ow7-Uq-sP0"/>
-=======
                                     <navigationItem title="Rechercher un contact" id="Ow7-Uq-sP0"/>
->>>>>>> fs
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oT7-V6-cEE">
@@ -228,7 +222,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-<<<<<<< HEAD
                     <tabBarItem key="tabBarItem" title="Item" id="nMW-aq-6sp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryi-uh-hKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,7 +229,6 @@
             <point key="canvasLocation" x="2109.5999999999999" y="472.71364317841085"/>
         </scene>
         <!--Amis-->
-=======
                     <tabBarItem key="tabBarItem" title="" image="searchYellow" id="nMW-aq-6sp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryi-uh-hKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,7 +236,6 @@
             <point key="canvasLocation" x="2910" y="130"/>
         </scene>
         <!--Liste Amis-->
->>>>>>> fs
         <scene sceneID="P6U-Sx-hzh">
             <objects>
                 <viewController id="foX-lR-HK7" customClass="ListeAmis" customModule="iMapContacts" customModuleProvider="target" sceneMemberID="viewController">
@@ -271,11 +262,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-<<<<<<< HEAD
                     <tabBarItem key="tabBarItem" title="Amis" id="sle-cs-zb7"/>
-=======
                     <tabBarItem key="tabBarItem" title="" image="groupYellow" id="sle-cs-zb7"/>
->>>>>>> fs
                     <navigationItem key="navigationItem" id="Mu2-pv-Z0z"/>
                     <connections>
                         <outlet property="tableView" destination="8lQ-sZ-zy7" id="0ma-f0-Kpi"/>
@@ -283,11 +271,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNo-kz-D9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2110" y="-313"/>
-=======
             <point key="canvasLocation" x="2046" y="130"/>
->>>>>>> fs
         </scene>
         <!--Accueil-->
         <scene sceneID="1Ph-GB-0x2">
@@ -338,9 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mak-ao-iDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2111" y="-1047"/>
-=======
             <point key="canvasLocation" x="2046" y="-649"/>
         </scene>
         <!--Profil-->
@@ -427,7 +410,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWN-li-Oc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2864.8000000000002" y="-649.02548725637189"/>
->>>>>>> fs
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gjB-iC-sWg">
@@ -442,10 +424,7 @@
                         <segue destination="W8F-pg-WdA" kind="relationship" relationship="viewControllers" id="Rky-dC-0Qx"/>
                         <segue destination="foX-lR-HK7" kind="relationship" relationship="viewControllers" id="lz1-EP-OQa"/>
                         <segue destination="lBr-UG-kE3" kind="relationship" relationship="viewControllers" id="6gc-UG-bbs"/>
-<<<<<<< HEAD
-=======
                         <segue destination="2fu-bQ-6Xp" kind="relationship" relationship="viewControllers" id="MOB-jx-WEc"/>
->>>>>>> fs
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6W-Ui-2gA" userLabel="First Responder" sceneMemberID="firstResponder"/>
