@@ -361,7 +361,7 @@ PORT="11211"
 USER="memcached"
 MAXCONN="1024"
 CACHESIZE="64"
-OPTIONS="-s /var/run/memcached/memcached.sock -a 777 -P /var/run/memcached/memcached.pid"
+OPTIONS="-l 127.0.0.1 -P /var/run/memcached/memcached.pid"
  ```
 
  Et le daemon dans `/usr/lib/systemd/system/memcached.service` :
