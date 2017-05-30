@@ -84,7 +84,7 @@ public class FriendshipController {
 	// - /friends/{idUser}
 	@DELETE
 	@Path("/{iduser}")
-	public Response deleteFriend(@PathParam("idUser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester){
+	public Response deleteFriend(@PathParam("iduser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester){
 		
 		try {
 			friendshipBusiness.deleteFriend(idRequester,idUser);

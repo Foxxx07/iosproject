@@ -43,17 +43,28 @@ public class FriendshipDAO {
 	}
 
 	public void deleteFriendship(String akey, String bkey) throws SQLException{
-		String sql="{call DeleteFriendship(?,?)}";
-		try (CallableStatement call = connection.prepareCall(sql)) {
-			call.setString(1, akey);
-			call.setString(2, bkey);
-
-			if(call.execute()){ 
-			}
-			else{
-				throw new SQLException();
+		String sql="DELETE FROM friends where `user_a`=0x"+akey+" AND `user_b`=0x"+bkey;
+		System.out.println(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet req = ps.executeQuery(sql)) {
+				System.out.println("Friendship deleted.");
 			}
 		}
+		
+		
+		
+		
+//		String sql="{call DeleteFriendship(?,?)}";
+//		try (CallableStatement call = connection.prepareCall(sql)) {
+//			call.setString(1, akey);
+//			call.setString(2, bkey);
+//
+//			if(call.execute()){ 
+//			}
+//			else{
+//				throw new SQLException();
+//			}
+//		}
 	}
 
 	public boolean getFriendship(String akey, String bkey) throws SQLException{
@@ -106,6 +117,7 @@ public class FriendshipDAO {
 					if (0 < str.length()) {
 						str += ",";
 					}
+					//TODO convert string to binary
 					str += "\""+req.getNString("user_b")+"\"";
 
 
