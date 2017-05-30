@@ -1,7 +1,6 @@
 package com.dant.app;
 
 import java.sql.SQLException;
-import com.dant.dao.JDBCCalls;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -128,7 +127,7 @@ public class API {
 	@GET
 	@Path("/pos/{idUser}")
 	public String getFriendPosition(@PathParam("idUser") String id) throws SQLException{
-		JDBCCalls.getUserById(id);
+		//JDBCCalls.getUserById(id);
 		return null;
 	}
 

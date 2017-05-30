@@ -12,6 +12,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.dant.business.PositionBusiness;
+import com.dant.exception.SQLExceptionMapper;
+import com.dant.exception.UserNotFoundException;
+import com.dant.exception.UserNotFoundExceptionMapper;
 
 
 @Path("/pos")
@@ -22,15 +25,26 @@ public class PositionController {
 	private PositionBusiness positionBusiness = new PositionBusiness();
 
 	@POST
-	public Response updatePosition(){
-	positionBusiness.updatePosition();
-	return Response.status(200).type("application/json").entity("{\"c\":0}").build();
-		//Regle la nouvelle position du user à sa position actuelle
+	//TODO x-token header
+	public Response updatePosition(String sessionId, String lat, String longi){
+		if(positionBusiness.getUser(sessionId).length()==0){
+			return Response.status(404).build();
+		}
+		else{		
+			positionBusiness.updatePosition(sessionId,lat,longi);
+			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+			//Regle la nouvelle position du user à sa position actuelle
+		}
 	}
 
 	@GET
-	public Response getPosition(){
-		positionBusiness.getPosition();
+	public Response getPosition(String sessionId){
+		try {
+			positionBusiness.getFriendPosition(sessionId);
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		}
 		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
 		//Récuperer position utilisateur
 
@@ -39,26 +53,43 @@ public class PositionController {
 	// - /pos/friends
 	@GET
 	@Path("/friends")
-	public Response getFriendsPositions(){
-		positionBusiness.getFriendsPositions(0);
+	public Response getFriendsPositions(String id){
+		try {
+			String str = positionBusiness.getFriendsPositionsP(0,id);
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		} catch (UserNotFoundException e) {
+			UserNotFoundExceptionMapper unfem = new UserNotFoundExceptionMapper();
+			return unfem.toResponse(e);
+		}
 		//Récuperer les positions des amis de l'utilisateurs
-		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
+	
 	}
 
 	// - /pos/friends/{userFriendId}
 	@GET
 	@Path("/friends/{n}")
-	public Response getFriendsPositionsP(@PathParam("n") int page){
-		positionBusiness.getFriendsPositions(page);
-		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
+	public Response getFriendsPositionsP(@PathParam("n") int page, String id){
+		try {
+			String str = positionBusiness.getFriendsPositionsP(page, id);
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
+		} catch (SQLException e) {
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
+		} catch (UserNotFoundException e) {
+			UserNotFoundExceptionMapper unfem = new UserNotFoundExceptionMapper();
+			return unfem.toResponse(e);
+		}
 	}
 
 	// - /pos/{idUser}
 	@GET
 	@Path("/{idUser}")
 	public Response getFriendPosition(@PathParam("idUser") String id) throws SQLException{
-		positionBusiness.getFriendPosition(id);
-		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
+		String str = positionBusiness.getFriendPosition(id);
+		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
 	}
 
 	// --- POST

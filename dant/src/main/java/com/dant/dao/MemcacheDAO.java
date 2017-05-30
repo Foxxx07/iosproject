@@ -2,28 +2,69 @@ package com.dant.dao;
 
 import net.spy.memcached.MemcachedClient;
 
-import com.dant.entity.Session;
-import com.dant.exception.UserNotFoundException;
-
 public class MemcacheDAO {
 
 	private final MemcachedClient memcachedClient = Init.getMemcache();
 
 
 
-	public <T> T get(String key) throws UserNotFoundException {
-		if((T) memcachedClient.get(key)==null){
-			throw new UserNotFoundException();
-		}
-		else{
-			return (T) memcachedClient.get(key);
-		}
+//	public <T> T get(String key) throws UserNotFoundException {
+//		if((T) memcachedClient.get(key)==null){
+//			throw new UserNotFoundException();
+//		}
+//		else{
+//			return (T) memcachedClient.get(key);
+//		}
+//
+//	}
+	
 
+	
+	
+	// UserBySession
+	public void createUserBySessionKey(String sessionId, String ukey) {
+		memcachedClient.set(sessionId, 360000, ukey);
+		
+	}
+	
+	public String getUserBySessionKey(String sessionId){
+		return (String) memcachedClient.get(sessionId);
+	}
+	
+	public void dropUserBySessionKey(String sessionId){
+		memcachedClient.delete(sessionId);
+	}
+	
+	//Session by user
+	public void createSessionByUserKey(String ukey, String sessionData){
+		memcachedClient.set(ukey, 360000, sessionData);
+	}
+	
+	public String getSessionByUserKey(String ukey){
+		return (String) memcachedClient.get(ukey);
+		
+	}
+	
+	public void dropSessionByUserKey(String ukey){
+		memcachedClient.delete(ukey);
+	}
+	
+	//Overall
+	public void updateSessionPosition(String sessionId, String lat, String longi){
+		String ukey = getUserBySessionKey(sessionId);
+		String data = ""+sessionId+";"+lat+";"+System.currentTimeMillis() % 1000;
+		memcachedClient.set(ukey,360000,data);
+		memcachedClient.set(sessionId, 360000, ukey);
+		
 	}
 
-	public void setSessionByIdUser(String userKey, Session ob) {
-		//	memcachedClient.set
-	}
+
+	
+//	public void updateSessionByUserKey(String ukey, Session ob){
+//		dropSessionByUserKey(ukey);
+//		createSessionByUserKey(ukey, ob);
+//	}
+
 
 
 }

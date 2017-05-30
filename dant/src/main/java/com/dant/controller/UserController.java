@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.Response;
 import org.mariadb.jdbc.internal.util.dao.QueryException;
 
 import com.dant.business.UserBusiness;
+import com.dant.entity.User;
 import com.dant.exception.EmailException;
 import com.dant.exception.EmailExceptionMapper;
 import com.dant.exception.EmptyEmailException;
@@ -54,9 +56,9 @@ public class UserController {
 			@DefaultValue("") @FormParam("password") String password)	{
 
 		try {
-			userBusiness.createUser(fname,lname,email,password);
-			//Créer la session
-			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+			String sessionId = userBusiness.createUser(fname,lname,email,password);
+
+			return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":\""+sessionId+"\"}").build();
 		}
 		catch (EmptyNameException e) {
 			EmptyNameExceptionMapper enem = new EmptyNameExceptionMapper();
@@ -84,7 +86,8 @@ public class UserController {
 		}
 
 		catch(SQLException e){
-			return Response.status(500).build();
+			SQLExceptionMapper sem = new SQLExceptionMapper();
+			return sem.toResponse(e);
 		}
 
 	}
@@ -113,13 +116,17 @@ public class UserController {
 		return null;
 	}
 
+
 	@Path("/{id}")
 	@GET
-	public Response listMetaDataForUser(@PathParam("id") String id) {
-		String str;
+	public Response listMetaDataForUser(@PathParam("id") String id, @DefaultValue("") @HeaderParam("x-token") String sessionId) {
+		User tmp;
+		if(id.equals("me")){
+			id=userBusiness.getUser(sessionId);
+		}
 		try {
-			str = userBusiness.getUserById(id);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
+			tmp = userBusiness.getUserById(id);
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\"}").build();
 		} catch (HexadecimalException e) {
 			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
 			return hem.toResponse(e);
@@ -134,57 +141,24 @@ public class UserController {
 			return sem.toResponse(e);
 		} 
 
-
-	}
-
-
-	@Path("/me")
-	@GET
-	public Response listMetaData(String id){
-
-		// Si connecté, on récupère les méta-données, puis HTTP 200 OK
-		// Sinon, HTTP 404 Not Found
-
-		try {
-			String str;
-			str=userBusiness.getUserById(id);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
-		} catch (HexadecimalException e) {
-			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
-			return hem.toResponse(e);
-		} catch (InvalidUserKeyException e) {
-			InvalidUserKeyExceptionMapper iukem = new InvalidUserKeyExceptionMapper();
-			return iukem.toResponse(e);
-		} catch (UserNotFoundException e) {
-			UserNotFoundExceptionMapper iukem = new UserNotFoundExceptionMapper();
-			return iukem.toResponse(e);
-		} catch (SQLException e) {
-			SQLExceptionMapper sem = new SQLExceptionMapper();
-			return sem.toResponse(e);
-		} 
-
-
-		//TODO renvoyer response userFound avec les infos
 
 	}
 
 
 	@Path("/me")
 	@POST
+	//TODO x-token header
 	public Response updateUser(
 			@DefaultValue("") @FormParam("fname") String fname,
 			@DefaultValue("") @FormParam("lname") String lname,
 			@DefaultValue("") @FormParam("email") String email,
-			@DefaultValue("") @FormParam("password") String password
+			@DefaultValue("") @FormParam("password") String password,
+			@DefaultValue("") @HeaderParam("x-token") String sessionId
 			){
-
-		//Récupérer l'id
-		String id=null;
-
 		try {
-			userBusiness.updateUser(id,fname,lname,email,password);
-			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
-		} catch (QueryException e) {
+			userBusiness.updateUser(sessionId, fname, lname, email, password);
+		}		
+		catch (QueryException e) {
 			QueryExceptionMapper qem = new QueryExceptionMapper();
 			return qem.toResponse(e);
 		}catch (SQLException e) {
@@ -216,7 +190,5 @@ public class UserController {
 			UserNotFoundExceptionMapper unfem = new UserNotFoundExceptionMapper();
 			return unfem.toResponse(e);
 		}
-
-
 	}
 }

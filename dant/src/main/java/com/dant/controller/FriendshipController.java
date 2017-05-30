@@ -25,6 +25,7 @@ public class FriendshipController {
 	private FriendshipBusiness friendshipBusiness = new FriendshipBusiness();
 
 	@GET
+	//TODO x-token header
 	public Response listFriends(String id){
 		try {
 			String str;
@@ -47,6 +48,7 @@ public class FriendshipController {
 	// - /friends/{idUser}
 	@GET
 	@Path("/{idUser}")
+	//TODO x-token header
 	public Response isFriendWith(@PathParam("idUser") String idUser) throws SQLException{
 		String id=null;
 		if(friendshipBusiness.getFriendship(id,idUser)){
@@ -61,6 +63,7 @@ public class FriendshipController {
 	// --- POST
 	// - /friends/{idUser}
 	@POST
+	//TODO
 	@Path("/{idUser}")
 	public Response requestFriendship(@PathParam("idUser") String idUser){
 		String id=null;

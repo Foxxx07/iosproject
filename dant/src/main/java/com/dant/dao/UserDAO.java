@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.mariadb.jdbc.internal.util.dao.QueryException;
 
+import com.dant.business.SessionManager;
 import com.dant.entity.User;
 import com.dant.exception.UserNotFoundException;
 import com.dant.util.CryptoUtil;
@@ -15,6 +16,7 @@ import com.dant.util.CryptoUtil;
 public class UserDAO {
 
 	private final Connection connection = Init.getJDBC();
+	private SessionManager sm = new SessionManager();
 
 	public void createUser(User u) throws SQLException {
 		String sql="{call CreateUser(0x" + u.getKey() + ",?,?,?, 0x" + CryptoUtil.encrypt(u.getPassword()) + ")}";
@@ -34,7 +36,7 @@ public class UserDAO {
 		}
 	}
 
-	public void getUserByCredentials(String email, String password) throws SQLException, QueryException {
+	public boolean getUserByCredentials(String email, String password) throws SQLException, QueryException {
 		String sql="{call getUserByCredentials(?,0x" + CryptoUtil.encrypt(password)  + ")}";
 		try (CallableStatement call = connection.prepareCall(sql)) {
 			call.setString(1,email);
@@ -42,7 +44,7 @@ public class UserDAO {
 				//Tout va bien
 				ResultSet rs = (ResultSet)call.getObject(1);
 				if(rs.next()){
-					//TODO Créer la session dans memcached
+					return true;
 				}
 			}
 			else{
@@ -50,30 +52,55 @@ public class UserDAO {
 				throw new QueryException("Non");
 			}
 		}
+		return false;
 	}
 
-	public String getUserById(String id) throws UserNotFoundException, SQLException{
-		String sql="{call getUserById(?)}";
-		String str="";
-		try (CallableStatement call = connection.prepareCall(sql)) { 
-			call.setString(1,id);
-			if(call.execute()){ 
-				ResultSet rs = (ResultSet)call.getObject(1);
-				while(rs.next()){
-					if (0 < str.length()) {
-						str += ",";
-					}
-					str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
-					return str;
+	public User getUserById(String id) throws UserNotFoundException, SQLException{
+		String sql="Select * from users where `key`=x'" + id +"'" ;
+		System.out.println(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet rs = ps.executeQuery(sql)) {
+				if(rs.next()){
+					return new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password"));
 				}
-				
-				
-				return "[" + str + "]";
-			}
-			else{
-				throw new UserNotFoundException();
 			}
 		}
+		return null;
+	
+		
+		
+		
+		
+//		String sql="{call getUserById(?)}";
+//		//String sql="select key from users;";
+//		String str="";
+//		System.out.println("avant try");
+//		try (CallableStatement call = connection.prepareCall(sql)) {
+//			System.out.println("apres try");
+//			 call.setBytes(1,id.getBytes());
+//			//call.setClob(1,("0x"+id).getBytes());
+//			
+////			System.out.println(call.getNString(1));
+////			System.out.println(sql);
+////			System.out.println(id);
+//			if(call.execute()){ 
+//				ResultSet rs = (ResultSet)call.getObject(1);
+//				while(rs.next()){
+//					
+//					if (0 < str.length()) {
+//						str += ",";
+//					}
+//					System.out.println(rs.getString("fname")+rs.getString("lname")+rs.getString("email")+rs.getString("password"));
+//					str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
+//					System.out.println("str "+ str);
+//					return str;
+//				}
+//
+//				System.out.println(str);
+//				return "[" + str + "]";
+//			}
+//		}
+//		return str;
 
 	}
 
@@ -92,65 +119,65 @@ public class UserDAO {
 			}
 			str += usrs[i].toJson();
 		}
-		
-		
+
+
 		return "[" + str + "]";
 	}
 
 
 
 
-//		String sql="{call SearchUser(?,?,?,?)}";
-//		try (CallableStatement call = connection.prepareCall(sql);) { 
-//			call.setString(1, search_str);
-//			call.setInt(2, offset_pos);
-//			call.setInt(3, limit_l);
-//			call.setBoolean(4, in_bool_mode);
-//			if(call.execute()){ 
-//				//Tout va bien
-//				//Boucle json form�e depuis les users renvoy�s
-//				ResultSet rs = (ResultSet)call.getObject(1);
-//			
-//						
-//						while(rs.next()){
-//							if (0 < str.length()) {
-//								str += ",";
-//							}
-//							
-//							str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
-//						}
-//						
-//						
-//						return "[" + str + "]";
-//					}
-//					else{
-//						
-//						throw new SQLException();
-//					}
-//	}
+	//		String sql="{call SearchUser(?,?,?,?)}";
+	//		try (CallableStatement call = connection.prepareCall(sql);) { 
+	//			call.setString(1, search_str);
+	//			call.setInt(2, offset_pos);
+	//			call.setInt(3, limit_l);
+	//			call.setBoolean(4, in_bool_mode);
+	//			if(call.execute()){ 
+	//				//Tout va bien
+	//				//Boucle json form�e depuis les users renvoy�s
+	//				ResultSet rs = (ResultSet)call.getObject(1);
+	//			
+	//						
+	//						while(rs.next()){
+	//							if (0 < str.length()) {
+	//								str += ",";
+	//							}
+	//							
+	//							str += new User(rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("password")).toJson();
+	//						}
+	//						
+	//						
+	//						return "[" + str + "]";
+	//					}
+	//					else{
+	//						
+	//						throw new SQLException();
+	//					}
+	//	}
 
-public boolean keyAlreadyExists(String key) throws SQLException{
-	String sql="Select 1 from users where `key`=0x"+key;
-	try (PreparedStatement ps = connection.prepareStatement(sql)) {
-		try (ResultSet req = ps.executeQuery(sql)) {
-			return req.next();
+	public boolean keyAlreadyExists(String key) throws SQLException{
+		String sql="Select 1 from users where `key`=0x"+key;
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet req = ps.executeQuery(sql)) {
+				return req.next();
+			}
 		}
 	}
-}
 
-public boolean emailAlreadyExists(String email) throws SQLException{
-	String sql="Select 1 from users where `email`= '" + email + "'";
-	try (PreparedStatement ps = connection.prepareStatement(sql)) {
-		try (ResultSet req = ps.executeQuery(sql)) {
-			return req.next();
+	public boolean emailAlreadyExists(String email) throws SQLException{
+		String sql="Select 1 from users where `email`= '" + email + "'";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet req = ps.executeQuery(sql)) {
+				return req.next();
+			}
 		}
 	}
-}
 
-public void updateUser(String id, String fname, String lname, String email, String password) {
-	//Requete mise à jour
-	
-	//throw new QueryException();
-}
+	public void updateUser(String id, String fname, String lname, String email, String password) {
+		//Requete mise à jour
+
+		//throw new QueryException();
+	}
 
 }

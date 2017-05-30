@@ -1,6 +1,5 @@
 package com.dant.business;
 
-import net.spy.memcached.transcoders.SerializingTranscoder;
 import com.dant.dao.MemcacheDAO;
 import com.dant.entity.Session;
 
@@ -15,17 +14,35 @@ public class SessionManager {
 //	}
 
 	public void setSession(Session s){
-		//dao.set(s.getIdUser(), s);
+
+		//dao.updateSessionByUserKey(s.getIdUser(), s);
 	}
 
 	public void storeSession(Session s){
-		dao.setSessionByIdUser(s.getIdUser(),s);
+		String data = ""+s.getSessionId()+";"+s.getLatitude()+";"+s.getLongitude()+";"+s.getTime();
+		dao.createSessionByUserKey(s.getIdUser(),data);
 	}
 	
-	public void testTranscoder(Object str){
-		SerializingTranscoder transcoder = new SerializingTranscoder();
-		System.out.println(transcoder.encode(str));
-		System.out.println(transcoder.toString());
+	public void storeUserSession(String ukey, String sessionId){
+		dao.createUserBySessionKey(sessionId, ukey);
 	}
+	
+	public void dropSession(String ukey){
+		dao.dropSessionByUserKey(ukey);
+	}
+	
+	public String getSession(String ukey){
+		return dao.getSessionByUserKey(ukey);
+	}
+	
+	public String getUserKey(String sessionId){
+		return dao.getUserBySessionKey(sessionId);
+	}
+	
+//	public void testTranscoder(Object str){
+//		SerializingTranscoder transcoder = new SerializingTranscoder();
+//		System.out.println(transcoder.encode(str));
+//		System.out.println(transcoder.toString());
+//	}
 	
 }
