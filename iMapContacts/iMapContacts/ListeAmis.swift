@@ -11,12 +11,14 @@ import UIKit
 class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var contactList: [Amis] = []
+    var alertView = AlertView.init(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
     
     func createContact() {
         let contactA = Amis(n: "contact A", f: 1)
         let contactB = Amis(n: "contact B", f: 1)
         contactList.append(contactA)
         contactList.append(contactB)
+        //findcontacts()
     }
 
     let cellReuseIdentifier = "cell"
@@ -72,6 +74,57 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Supprimer"
+    }
+    
+    func findContact() {
+        
+//        var urlComponents = URLComponents()
+//        
+//        let urlUtil = UrlUtils()
+//        urlUtil.sendToServ(httpMethod: HTTPMETHOD.GET, collection: FRIENDS.ROOT.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
+//            if let statusCode = response as? HTTPURLResponse {
+//                if (statusCode.statusCode == 200) {
+//                    do {
+//                        if let data = data {
+//                            let json =  try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
+//                            print(json)
+//                            
+//                            if let value : Int = json?.value(forKey: "c") as! Int? {
+//                                if (value == 0) {
+//                                //add friends to contactList
+//                                    
+//                                    }
+//                                }
+//                        } else {
+//                                    if ( value == 3){
+//                                        self.alertView.setMessage(message: urlUtil.getMessage(code: 3))
+//                                    }
+//                                    if (value == 4) {
+//                                        self.alertView.setMessage(message: urlUtil.getMessage(code: 4))
+//                                    }
+//                                    if (value == 5) {
+//                                        self.alertView.setMessage(message: urlUtil.getMessage(code: 5))
+//                                    }
+//                                    self.alertView.showAlertView(targetVC: self)
+//                                }
+//                            }
+//                        }
+//                    
+//                    catch let error{
+//                        print(error)// Todo ?
+//                    }®
+//                } else if (statusCode.statusCode == 404) {
+//                    
+//                }
+//            } else {
+//                // ...
+//            }
+//        })
+//        
+        //let ableToConnect : Bool = true
+        
+
+        
     }
    
 }

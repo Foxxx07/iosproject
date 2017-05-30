@@ -15,8 +15,10 @@ class Profil: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let defaults = UserDefaults.standard
-//        let token = defaults.string(forKey: "profilePicture")
+       // if (UserDefaults.standard.value(forKey: "profilePicture") != nil){
+        //    profilePicture = UserDefaults.standard.value(forKey: "profilePicture") as! UIImageView
+       // }
+        
     }
     
     
@@ -29,7 +31,7 @@ class Profil: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
     }
     
-    @IBAction func changeMail(_ sender: AnyObject) { 
+    @IBAction func changeMail(_ sender: AnyObject) {
     }
     
     @IBAction func changePassword(_ sender: AnyObject) {
@@ -47,13 +49,16 @@ class Profil: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         actionSheet.addAction(UIAlertAction(title:"Choisir une photo", style: .default, handler: { (action: UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: nil)
+            
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        //UserDefaults.standard.setValue(image, forKey: "profilePicture")
         profilePicture.image = image
         picker.dismiss(animated: true, completion: nil)
     }

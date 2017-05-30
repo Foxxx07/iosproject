@@ -66,17 +66,20 @@ class Inscription: UIViewController {
                                         }
                                     }
                                     
-                                } else{
+                                } else if (value == 2){
+                                    self.alertView.setMessage(message: "E-mail déjà utilisé")
+                                    self.alertView.showAlertView(targetVC: self)
                                     
                                 }
                             }
                         }
                     }
                     catch let error{
-                        print(error)// Todo ?
+                        print(error)
+                        
                     }
                 } else if (statusCode.statusCode == 404) {
-                    // Invalide credentials
+                    self.alertView.setMessage(message: "L'insciption a échoué")
                 }
             } else {
                 // ...
@@ -102,9 +105,7 @@ class Inscription: UIViewController {
             if (checkPassword()) {
                 sendInscription()
             }
-            else {
-              
-            }
+           
         }
     }
     

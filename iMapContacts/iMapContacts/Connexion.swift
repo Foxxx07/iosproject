@@ -64,6 +64,7 @@ class Connexion: UIViewController {
             ]
             
             let urlUtil = UrlUtils()
+            //self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
             urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
                 if let statusCode = response as? HTTPURLResponse {
                     if (statusCode.statusCode == 200) {
@@ -74,14 +75,22 @@ class Connexion: UIViewController {
                                 print(UserDefaults.standard.value(forKey: "token"))
 
                                 if let value : Int = json?.value(forKey: "c") as! Int? {
-                                    if (value == 0) { // valeur a 0 pour Succes
+                                    if (value == 0) { // valeur 0 pour Succes
                                         if (UserDefaults.standard.value(forKey: "token") != nil){
                                             print(UserDefaults.standard.value(forKey: "token"))
                                             self.performSegue(withIdentifier: "acceuil", sender: self)
-                                            print("PIKAAAACHUUUUUUU")
                                         }
                                     } else {
-                                        
+                                        if ( value == 3){
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 3))
+                                        }
+                                        if (value == 4) {
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 4))
+                                        }
+                                        if (value == 5) {
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 5))
+                                        }
+                                        self.alertView.showAlertView(targetVC: self)
                                     }
                                 }
                             }
@@ -90,7 +99,7 @@ class Connexion: UIViewController {
                             print(error)// Todo ?
                         }
                     } else if (statusCode.statusCode == 404) {
-                        // Invalide credentials
+                        
                     }
                 } else {
                     // ...
@@ -106,7 +115,6 @@ class Connexion: UIViewController {
     @IBAction func seConnecter(_ sender: UIButton) {
         sendConnexion()
     }
-
     
     @IBAction func signUp(_  : UIButton) {
         self.performSegue(withIdentifier: "inscrire", sender: self)

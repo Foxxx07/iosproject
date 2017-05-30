@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class UrlUtils {
-    let serveur =  "http://132.227.113.237:8081" // http://imapc.lessonsharing.fr
+    let serveur =  "http://imapc.lessonsharing.fr" //http://132.227.113.237:8081
     
     private var map :[Int : String] = [0:"Succes",
                                        1:"Renseigner un nom",
