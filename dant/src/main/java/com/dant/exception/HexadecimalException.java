@@ -1,7 +1,9 @@
 package com.dant.exception;
 
 public class HexadecimalException extends Exception{
+	
 	public HexadecimalException(){
-		super("La clÃ© utilisateur n'est pas hexadecimale");
+		super("La clé utilisateur n'est pas hexadecimale");
 	}
+
 }
