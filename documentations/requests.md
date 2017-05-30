@@ -81,7 +81,7 @@ Les méthodes HTTP utilisé seront:
 	* /u/				: créer un utilisateur.
 	* /u/me :
 		* met à jour les méta-données de l'utilisateur actuellement connecté.
-		* ou, connecte l'utilisateur.
+		* ou, connecte l'utilisateur, si l'authentification échoue, alors: 404, sinon: 200.
 
 ## Collection: /pos/
 * **GET** :
