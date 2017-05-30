@@ -17,8 +17,13 @@ class Inscription: UIViewController {
     @IBOutlet weak var passwordRepeat: UITextField!
     var alertView = AlertView.init(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
     
+    
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,9 +35,9 @@ class Inscription: UIViewController {
         return ( (password.text! == passwordRepeat.text) && !(password.text!.isEmpty) && !(passwordRepeat.text!.isEmpty) )
     }
     
-    private func sendInscription() -> Bool{
+    private func sendInscription(){
         var urlComponents = URLComponents()
-        guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return false }
+        guard let mail = email.text, let pass = password.text, let passR = passwordRepeat.text, let lname = lastname.text , let fname = firstName.text else { return  }
         
         urlComponents.queryItems = [
             URLQueryItem(name: "lname" , value : lastname.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
@@ -43,37 +48,41 @@ class Inscription: UIViewController {
         
         let urlUtil = UrlUtils()
         urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ROOT.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
-            if let data = data {
-            let json =  ( try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? NSDictionary
-                print(json)
-            }
-            
-            do {
-                if let data = data {
-                    let json =  try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as Any
-                    print(json)
-                    let jsonRead = json as! NSDictionary
-                    print(jsonRead.value(forKey: "c"))
-                    
-                    
+            if let statusCode = response as? HTTPURLResponse {
+                if (statusCode.statusCode == 200) {
+                    do {
+                        if let data = data {
+                            let json =  try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
+                            print(json)
+                            
+                            if let value : Int = json?.value(forKey: "c") as! Int? {
+                                if (value == 0) {
+                                    if let token = json?.value(forKey: "data") as! String? {
+                                        if (token.characters.count == 8){
+                                            UserDefaults.standard.set(token, forKey: "token")
+                                            UserDefaults.standard.synchronize()
+                                            //self.performSegue(withIdentifier: "acceuil", sender: self)
+                                        }
+                                    }
+                                    
+                                } else{
+                                    
+                                }
+                            }
+                        }
+                    }
+                    catch let error{
+                        print(error)// Todo ?
+                    }
+                } else if (statusCode.statusCode == 404) {
+                    // Invalide credentials
                 }
-                
+            } else {
+                // ...
             }
-            catch let error{
-                print(error)
-            
-            }
-            print(data)
         })
         
-        let ableToConnect : Bool = true
-        //TODO : Faire un check des données reçu puis set le bool en fonction de si la connexion est possible ou non
-        
-        if (ableToConnect) {
-            return true
-        }else{
-            return false
-        }
+      
     }
     
     private func isNotEmpty() -> Bool {
@@ -89,7 +98,6 @@ class Inscription: UIViewController {
     
     @IBAction func valider_Action(_ sender: UIButton) {
         if (isNotEmpty()) {
-            print("test passe")
             if (checkPassword()) {
                 sendInscription()
             }

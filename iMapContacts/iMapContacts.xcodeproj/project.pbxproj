@@ -98,13 +98,13 @@
 				D684D7411ED05A6800B98189 /* SearchContact.swift */,
 				D67154191EB2286100017D55 /* AppDelegate.swift */,
 				D671541B1EB2286100017D55 /* Connexion.swift */,
+				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D67154251EB2286100017D55 /* Info.plist */,
 				D671542D1EB228F000017D55 /* Acceuil.swift */,
-				D671542F1EB2290B00017D55 /* Inscription.swift */,
 				D695D0331EBB7BD50001FD91 /* UrlUtils.swift */,
-				D6AF7FB01ED986B700B1677D /* Collections */,
 				D695D0351EBB7E720001FD91 /* Collection.swift */,
 				D6E0B0EF1ED9E09F0051C4FF /* Profil.swift */,
+				D6AF7FB01ED986B700B1677D /* Collections */,
 			);
 			path = iMapContacts;
 			sourceTree = "<group>";
@@ -121,7 +121,6 @@
 		D6AF7FB01ED986B700B1677D /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				D695D0351EBB7E720001FD91 /* Collection.swift */,
 				D684D73C1ED05A6800B98189 /* Friends.swift */,
 				D684D73A1ED05A6800B98189 /* Conf.swift */,
 				D684D7401ED05A6800B98189 /* Pos.swift */,

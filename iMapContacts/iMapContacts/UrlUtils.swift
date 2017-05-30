@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class UrlUtils {
-    let serveur = "http://132.227.113.237:8083"
+    let serveur =  "http://132.227.113.237:8081"
     
     private var map :[Int : String] = [0:"Succes",
                                        1:"Renseigner un nom",
@@ -30,7 +30,7 @@ class UrlUtils {
         var request = URLRequest(url: URL(string:"\(serveur)\(collection)")!)
         request.httpMethod = httpMethod.rawValue
         
-        guard let parameters = urlComponents.query else {return }
+        guard let parameters = urlComponents.query else {return  }
         request.httpBody = parameters.data(using: .ascii)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type" )
         
@@ -38,22 +38,19 @@ class UrlUtils {
             
             callback(data, response, error)
         })
-        
-//        print( request.httpBody)
+//        print(request.httpBody)
 //        print(urlComponents.url)
         session.resume()
     
     }
     
     func getMessage(code : Int) -> String {
-        
              if let message = map[code]{
                 return message
             }
             else{
                 return "Unknow code"
             }
-        
         return "Unknow code"
     }
 }
