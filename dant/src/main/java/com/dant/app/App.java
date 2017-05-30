@@ -3,6 +3,7 @@ package com.dant.app;
 import com.dant.controller.FriendshipController;
 import com.dant.controller.PositionController;
 import com.dant.controller.UserController;
+import com.dant.controller.TestController;
 
 import com.dant.exception.RuntimeExceptionMapper;
 import com.dant.filter.GsonProvider;
@@ -22,6 +23,8 @@ public class App extends Application {
 		sets.add(new UserController());
 		sets.add(new FriendshipController());
 		sets.add(new PositionController());
+		// TODO: à supprimer.
+		sets.add(new TestController());
 		return sets;
 	}
 

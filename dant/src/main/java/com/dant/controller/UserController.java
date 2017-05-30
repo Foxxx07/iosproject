@@ -45,107 +45,67 @@ import com.dant.exception.UserNotFoundExceptionMapper;
 @Path("/u")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class UserController {
-
 	private UserBusiness userBusiness = new UserBusiness();
 
 	@POST
 	public Response createUser(
-			@DefaultValue("") @FormParam("fname") String fname,
-			@DefaultValue("") @FormParam("lname") String lname,
-			@DefaultValue("") @FormParam("email") String email,
-			@DefaultValue("") @FormParam("password") String password)	{
-
+		@DefaultValue("") @FormParam("fname") String fname,
+		@DefaultValue("") @FormParam("lname") String lname,
+		@DefaultValue("") @FormParam("email") String email,
+		@DefaultValue("") @FormParam("password") String password
+	) {
 		try {
-			String sessionId = userBusiness.createUser(fname,lname,email,password);
-
-			return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":\""+sessionId+"\"}").build();
+			return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":\"" + userBusiness.createUser(fname, lname, email, password) + "\"}").build();
+		} catch (EmptyNameException e) {
+			return new EmptyNameExceptionMapper().toResponse(e);
+		} catch (EmailException e) {
+			return new EmailExceptionMapper().toResponse(e);
+		} catch(EmptyEmailException e) {
+			return new EmptyEmailExceptionMapper().toResponse(e);
+		} catch(EmptyPasswordException e) {
+			return new EmptyPasswordExceptionMapper().toResponse(e);
+		} catch(InvalidEmailException e) {
+			return new InvalidEmailExceptionMapper().toResponse(e);
+		} catch(SQLException e) {
+			return new SQLExceptionMapper().toResponse(e);
 		}
-		catch (EmptyNameException e) {
-			EmptyNameExceptionMapper enem = new EmptyNameExceptionMapper();
-			return enem.toResponse(e);
-		}
-
-		catch (EmailException e) {
-			EmailExceptionMapper eem = new EmailExceptionMapper();
-			return eem.toResponse(e);
-		}
-
-		catch(EmptyEmailException e){
-			EmptyEmailExceptionMapper eeem = new EmptyEmailExceptionMapper();
-			return eeem.toResponse(e);
-		}
-
-		catch(EmptyPasswordException e){
-			EmptyPasswordExceptionMapper epem = new EmptyPasswordExceptionMapper();
-			return epem.toResponse(e);
-		}
-
-		catch(InvalidEmailException e){
-			InvalidEmailExceptionMapper ieem = new InvalidEmailExceptionMapper();
-			return ieem.toResponse(e);
-		}
-
-		catch(SQLException e){
-			SQLExceptionMapper sem = new SQLExceptionMapper();
-			return sem.toResponse(e);
-		}
-
 	}
-
 
 	@GET
 	public Response searchP(@DefaultValue("") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException, UserFoundException{
+<<<<<<< HEAD
 		String users=null;
 		
+=======
+>>>>>>> 733407d496f00f04fb3b5a93c633aff6fa2b301f
 		try {
-			users=userBusiness.searchUser(query, page);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+users+"}").build();
-
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":" + userBusiness.searchUser(query, page) + "}").build();
+		} catch (SQLException e) {
+			return new SQLExceptionMapper().toResponse(e);
 		}
-		catch (SQLException e) {
-			SQLExceptionMapper sem = new SQLExceptionMapper();
-			return sem.toResponse(e);
-		}
-
-
 	}
-
-
-	@Path("/test")
-	@GET
-	public Response test(){
-		return null;
-	}
-
 
 	@Path("/{id}")
 	@GET
 	public Response listMetaDataForUser(@PathParam("id") String id, @DefaultValue("") @HeaderParam("x-token") String sessionId) {
 		User tmp;
-		if(id.equals("me")){
-			id=userBusiness.getUser(sessionId);
-			System.out.println("id: "+id +"sessionId: "+ sessionId);
+		if (id.equals("me")) {
+			id = userBusiness.getUser(sessionId);
 		}
+
 		try {
 			tmp = userBusiness.getUserById(id);
 			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\"}}").build();
 		} catch (HexadecimalException e) {
-			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
-			return hem.toResponse(e);
+			return new HexadecimalExceptionMapper().toResponse(e);
 		} catch (InvalidUserKeyException e) {
-			InvalidUserKeyExceptionMapper iukem = new InvalidUserKeyExceptionMapper();
-			return iukem.toResponse(e);
+			return new InvalidUserKeyExceptionMapper().toResponse(e);
 		} catch (UserNotFoundException e) {
-			UserNotFoundExceptionMapper iukem = new UserNotFoundExceptionMapper();
-			return iukem.toResponse(e);
+			return new UserNotFoundExceptionMapper().toResponse(e);
 		} catch (SQLException e) {
-			SQLExceptionMapper sem = new SQLExceptionMapper();
-			return sem.toResponse(e);
-		} 
-
-
+			return new SQLExceptionMapper().toResponse(e);
+		}
 	}
 
 
@@ -153,14 +113,14 @@ public class UserController {
 	@POST
 	//TODO x-token header
 	public Response updateUser(
-			@DefaultValue("") @FormParam("fname") String fname,
-			@DefaultValue("") @FormParam("lname") String lname,
-			@DefaultValue("") @FormParam("email") String email,
-			@DefaultValue("") @FormParam("password") String password,
-			@DefaultValue("") @HeaderParam("x-token") String sessionId
-			)
-	{
+		@DefaultValue("") @FormParam("fname") String fname,
+		@DefaultValue("") @FormParam("lname") String lname,
+		@DefaultValue("") @FormParam("email") String email,
+		@DefaultValue("") @FormParam("password") String password,
+		@DefaultValue("") @HeaderParam("x-token") String sessionId
+	) {
 		try {
+<<<<<<< HEAD
 			
 			String sessionKey = userBusiness.updateUser(sessionId, fname, lname, email, password);
 			if(sessionKey==null){
@@ -191,18 +151,30 @@ public class UserController {
 		catch(InvalidEmailException e){
 			InvalidEmailExceptionMapper ieem = new InvalidEmailExceptionMapper();
 			return ieem.toResponse(e);
+=======
+			userBusiness.updateUser(sessionId, fname, lname, email, password);
+			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+		} catch (QueryException e) {
+			return new QueryExceptionMapper().toResponse(e);
+		} catch (SQLException e) {
+			return new SQLExceptionMapper().toResponse(e);
+		} catch (EmptyNameException e) {
+			return new EmptyNameExceptionMapper().toResponse(e);
+		} catch(EmptyEmailException e) {
+			return new EmptyEmailExceptionMapper().toResponse(e);
+		} catch(EmptyPasswordException e) {
+			return new EmptyPasswordExceptionMapper().toResponse(e);
+		} catch(InvalidEmailException e) {
+			return new InvalidEmailExceptionMapper().toResponse(e);
+>>>>>>> 733407d496f00f04fb3b5a93c633aff6fa2b301f
 		} catch (HexadecimalException e) {
-			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
-			return hem.toResponse(e);
+			return new HexadecimalExceptionMapper().toResponse(e);
 		} catch (InvalidUserKeyException e) {
-			InvalidUserKeyExceptionMapper iukem = new InvalidUserKeyExceptionMapper();
-			return iukem.toResponse(e);
+			return new InvalidUserKeyExceptionMapper().toResponse(e);
 		} catch (UserNotFoundException e) {
-			UserNotFoundExceptionMapper unfem = new UserNotFoundExceptionMapper();
-			return unfem.toResponse(e);
+			return new UserNotFoundExceptionMapper().toResponse(e);
 		} catch (InvalidTokenException e) {
-			InvalidTokenExceptionMapper unfem = new InvalidTokenExceptionMapper();
-			return unfem.toResponse(e);
+			return new InvalidTokenExceptionMapper().toResponse(e);
 		}
 	}
 }
