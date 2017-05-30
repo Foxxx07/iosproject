@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import org.mariadb.jdbc.internal.util.dao.QueryException;
 
@@ -31,23 +32,26 @@ public class UserDAO {
 		}
 	}
 
-	public boolean getUserByCredentials(String email, String password) throws SQLException, QueryException {
+	public String getUserByCredentials(String email, String password) throws SQLException, QueryException {
 		String sql="{call getUserByCredentials(?,0x" + CryptoUtil.encrypt(password)  + ")}";
 		try (CallableStatement call = connection.prepareCall(sql)) {
 			call.setString(1,email);
+			call.registerOutParameter(1, Types.BINARY);
 			if(call.execute()){ 
 				//Tout va bien
-				ResultSet rs = (ResultSet)call.getObject(1);
+				ResultSet rs = call.getResultSet();
 				if(rs.next()){
-					return true;
+					return rs.getString("key");
 				}
+				else{
+				System.out.println("mauvais id");}
 			}
 			else{
 				//Tout va mal
 				throw new QueryException("Non");
 			}
 		}
-		return false;
+		return null;
 	}
 
 	public User getUserById(String id) throws UserNotFoundException, SQLException{
@@ -170,11 +174,11 @@ public class UserDAO {
 	}
 
 	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException {
-		String sql="UPDATE users set fname="+fname+",lname="+lname+",email="+email+",password="+password+"where `key`=0x"+id;
+		String sql="UPDATE users set fname=\""+fname+"\",lname=\""+lname+"\",email=\""+email+"\",password=0x"+CryptoUtil.encrypt(password)+" where `key`=0x"+id;
 		System.out.println(sql);
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			try (ResultSet req = ps.executeQuery(sql)) {
-				
+				System.out.println("Update done. uKey:0x"+id);
 			}
 		}
 		//Requete mise à jour

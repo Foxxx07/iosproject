@@ -148,20 +148,17 @@ public class UserBusiness {
 		}
 	}
 
-	public void updateUser(String sessionId, String fname, String lname, String email, String password) throws SQLException, EmptyEmailException, InvalidEmailException, EmptyNameException, EmptyPasswordException, HexadecimalException, UserNotFoundException, InvalidUserKeyException, QueryException, InvalidTokenException
+	public String updateUser(String sessionId, String fname, String lname, String email, String password) throws SQLException, EmptyEmailException, InvalidEmailException, EmptyNameException, EmptyPasswordException, HexadecimalException, UserNotFoundException, InvalidUserKeyException, QueryException, InvalidTokenException
 	{
 
 		if(sessionId.length()==8){
-			System.out.println("l:");
-			System.out.println(getUser(sessionId).length());
-			if(getUser(sessionId).length()==0){
+			if(getUser(sessionId)==null){
 				//Session expirée
-				System.out.println("expiree 1");
 				throw new InvalidTokenException();
 			}
 			else{
 				//X-token donc update infos
-			
+				System.out.println("x-token");
 				if(email.length()==0){
 					throw new EmptyEmailException();
 				}
@@ -175,21 +172,21 @@ public class UserBusiness {
 				if(password.length()==0){
 					throw new EmptyPasswordException();
 				}
-
 				userDAO.updateUser(getUser(sessionId), fname, lname, email, password);
-
+				return null;
 
 			}
 
 		}
 
 		else{
-			System.out.println("expiree");
-			if(userDAO.getUserByCredentials(email, password)){
-				createSession(getUser(sessionId));
+			String ukey = userDAO.getUserByCredentials(email, password);
+			if(ukey.length()!=0){
+				return createSession(ukey);
 			}
-
+			throw new UserNotFoundException();
 		}
+
 	}
 
 
@@ -200,28 +197,28 @@ public class UserBusiness {
 
 
 
-public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+			Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-public static boolean validateEmail(String emailStr) {
-	Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
-	return matcher.find();
-}
+	public static boolean validateEmail(String emailStr) {
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+		return matcher.find();
+	}
 
-public String createSession(String ukey) {
-	Session sessionTmp = new Session(ukey,"");
-	sm.storeSession(sessionTmp);
-	sm.storeUserSession(ukey,sessionTmp.getSessionId());
-	return sessionTmp.getSessionId();
-	//TODO exception insertion memcache
-}
+	public String createSession(String ukey) {
+		Session sessionTmp = new Session(ukey,"");
+		sm.storeSession(sessionTmp);
+		sm.storeUserSession(ukey,sessionTmp.getSessionId());
+		return sessionTmp.getSessionId();
+		//TODO exception insertion memcache
+	}
 
-public String getSession(String ukey){
-	return sm.getSession(ukey);
-}
+	public String getSession(String ukey){
+		return sm.getSession(ukey);
+	}
 
-public String getUser(String sessionId){
-	return sm.getUserKey(sessionId);
-}
+	public String getUser(String sessionId){
+		return sm.getUserKey(sessionId);
+	}
 
 }

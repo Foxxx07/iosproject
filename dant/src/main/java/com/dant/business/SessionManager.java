@@ -20,6 +20,7 @@ public class SessionManager {
 
 	public void storeSession(Session s){
 		String data = ""+s.getSessionId()+";"+s.getLatitude()+";"+s.getLongitude()+";"+s.getTime();
+		System.out.println("data: " +data);
 		dao.createSessionByUserKey(s.getIdUser(),data);
 	}
 	

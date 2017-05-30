@@ -98,6 +98,7 @@ public class UserController {
 	@GET
 	public Response searchP(@DefaultValue("") @QueryParam("search") String query, @DefaultValue("0") @QueryParam("n") int page) throws SQLException, UserFoundException{
 		String users=null;
+		
 		try {
 			users=userBusiness.searchUser(query, page);
 			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+users+"}").build();
@@ -129,7 +130,7 @@ public class UserController {
 		}
 		try {
 			tmp = userBusiness.getUserById(id);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\"}").build();
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\"}}").build();
 		} catch (HexadecimalException e) {
 			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
 			return hem.toResponse(e);
@@ -161,8 +162,13 @@ public class UserController {
 	{
 		try {
 			
-			userBusiness.updateUser(sessionId, fname, lname, email, password);
+			String sessionKey = userBusiness.updateUser(sessionId, fname, lname, email, password);
+			if(sessionKey==null){
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+			}
+			else{
+				return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":{\"sessionId\":\""+sessionKey+"\"}}").build();
+			}
 		}
 		catch (QueryException e) {
 			QueryExceptionMapper qem = new QueryExceptionMapper();
@@ -178,7 +184,6 @@ public class UserController {
 			EmptyEmailExceptionMapper eeem = new EmptyEmailExceptionMapper();
 			return eeem.toResponse(e);
 		}
-
 		catch(EmptyPasswordException e){
 			EmptyPasswordExceptionMapper epem = new EmptyPasswordExceptionMapper();
 			return epem.toResponse(e);
