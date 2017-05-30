@@ -18,7 +18,8 @@ class Connexion: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view, typically from a nib.
     }
    
@@ -114,6 +115,10 @@ class Connexion: UIViewController {
     
     @IBAction func signUp(_ sender: UIButton) {
         self.performSegue(withIdentifier: "inscrire", sender: self)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }

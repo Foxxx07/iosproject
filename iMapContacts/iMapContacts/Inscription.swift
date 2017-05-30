@@ -19,6 +19,8 @@ class Inscription: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,6 +119,11 @@ class Inscription: UIViewController {
     //        }catch _ {
     //            print("FAIL")
     //        }
+    
+    func dismissKeyboard() {
+
+        view.endEditing(true)
+    }
     
 }
 
