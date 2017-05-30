@@ -16,7 +16,7 @@ public class PositionBusiness {
 	}
 	
 	public String getFriendsPositionsP(int page, String sessionId) throws SQLException, UserNotFoundException{
-		return positionDAO.getFriendsPositionsP(page,getUser(sessionId));
+		return positionDAO.getFriendsPositions(page,getUser(sessionId));
 	}
 	
 	public String getFriendPosition(String id) throws SQLException{

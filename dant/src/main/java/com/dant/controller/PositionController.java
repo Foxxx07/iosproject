@@ -3,7 +3,9 @@ package com.dant.controller;
 import java.sql.SQLException;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -53,9 +55,9 @@ public class PositionController {
 	// - /pos/friends
 	@GET
 	@Path("/friends")
-	public Response getFriendsPositions(String id){
+	public Response getFriendsPositions(@DefaultValue("") @HeaderParam("x-token") String sessionId){
 		try {
-			String str = positionBusiness.getFriendsPositionsP(0,id);
+			String str = positionBusiness.getFriendsPositionsP(0,sessionId);
 			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
 		} catch (SQLException e) {
 			SQLExceptionMapper sem = new SQLExceptionMapper();
@@ -71,7 +73,7 @@ public class PositionController {
 	// - /pos/friends/{userFriendId}
 	@GET
 	@Path("/friends/{n}")
-	public Response getFriendsPositionsP(@PathParam("n") int page, String id){
+	public Response getFriendsPositionsP(@PathParam("n") int page, @DefaultValue("") @HeaderParam("x-token") String id){
 		try {
 			String str = positionBusiness.getFriendsPositionsP(page, id);
 			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();

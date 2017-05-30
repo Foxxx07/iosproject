@@ -35,7 +35,8 @@ public class PositionDAO {
 						if (0 < str.length()) {
 							str += ",";
 						}
-						str += rs.getString("user_b");
+						//TODO getpositio,
+						str += (rs.getString("user_b"));
 					}
 					return "[" + str + "]";
 				}
@@ -44,25 +45,10 @@ public class PositionDAO {
 		}
 	}
 
-	public String getFriendsPositionsP(int page, String id) throws SQLException, UserNotFoundException{
-		String sql="select user_b from friends where user_a = "+id +"limit "+(page-1*10)+","+page*10;
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			try (ResultSet rs = ps.executeQuery(sql)) {
-				String str = null;
-				if(rs.next()){
-					while(rs.next()){
-						if (0 < str.length()) {
-							str += ",";
-						}
-						str += rs.getString("user_b");
-					}
-					return "[" + str + "]";
-				}
-				else{throw new UserNotFoundException();}
-			}
-		}
-
-	}
+//	public String getFriendsPositionsP(int page, String id) throws SQLException, UserNotFoundException{
+//		
+//
+//	}
 
 	public String getUserById(String id) {
 		return dao.getSessionByUserKey(id);
