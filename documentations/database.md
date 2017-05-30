@@ -1,14 +1,5 @@
 # Introduction
 
-## MariaDB
-> TODO: La documentation de la mise en service de MariaDB.
-
-## Galera Cluster
-> TODO: La documentation de la mise en service de Galera Cluster.
-
-## MaxScale
-> TODO: La documentation de la mise en service de MaxScale.
-
 # Tables
 
 ## users
