@@ -125,6 +125,7 @@ public class UserController {
 		User tmp;
 		if(id.equals("me")){
 			id=userBusiness.getUser(sessionId);
+			System.out.println("id: "+id +"sessionId: "+ sessionId);
 		}
 		try {
 			tmp = userBusiness.getUserById(id);
@@ -156,11 +157,13 @@ public class UserController {
 			@DefaultValue("") @FormParam("email") String email,
 			@DefaultValue("") @FormParam("password") String password,
 			@DefaultValue("") @HeaderParam("x-token") String sessionId
-			){
-				try {
-					userBusiness.updateUser(sessionId, fname, lname, email, password);
-					return Response.status(200).type("application/json").entity("{\"c\":0}").build();
-				}
+			)
+	{
+		try {
+			
+			userBusiness.updateUser(sessionId, fname, lname, email, password);
+			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+		}
 		catch (QueryException e) {
 			QueryExceptionMapper qem = new QueryExceptionMapper();
 			return qem.toResponse(e);

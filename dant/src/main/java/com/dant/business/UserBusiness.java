@@ -152,13 +152,16 @@ public class UserBusiness {
 	{
 
 		if(sessionId.length()==8){
+			System.out.println("l:");
+			System.out.println(getUser(sessionId).length());
 			if(getUser(sessionId).length()==0){
 				//Session expirée
+				System.out.println("expiree 1");
 				throw new InvalidTokenException();
 			}
 			else{
 				//X-token donc update infos
-
+			
 				if(email.length()==0){
 					throw new EmptyEmailException();
 				}
@@ -181,6 +184,7 @@ public class UserBusiness {
 		}
 
 		else{
+			System.out.println("expiree");
 			if(userDAO.getUserByCredentials(email, password)){
 				createSession(getUser(sessionId));
 			}
