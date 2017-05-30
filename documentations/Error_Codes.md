@@ -1,7 +1,7 @@
 #   Les codes erreurs
 | Code | Nom | Description |
 |:----:|:---:|:-----------:|
-| 0 | UserFoundException | Success |
+| 0 | *default* | Success |
 | 1 | EmptyNameException | Renseigner un nom |
 | 2 | EmailException | Email déjà utilisé |
 | 3 | EmptyEmailException | Renseigner un email |
@@ -13,7 +13,7 @@
 | 9 | QueryException | Erreur de requête |
 | 10 | SQLException | Erreur SQL |
 | 11 | UserNotConnectedException | Utilisateur non connecté |
-| 12 |  |  |
+| 12 | InvalidTokenException | Token de session invalide |
 | 13 |  |  |
 | 14 |  |  |
 | 15 |  |  |
