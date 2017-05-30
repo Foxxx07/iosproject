@@ -50,8 +50,6 @@ class Acceuil: UIViewController, MKMapViewDelegate {
 //            }
 //        }
         
-    
-    
         
         let width = 30.0
         let height = 30.0

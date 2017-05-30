@@ -63,7 +63,7 @@ class Connexion: UIViewController {
             URLQueryItem(name: "email" , value : email.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)),
             URLQueryItem(name: "password", value : password.text!.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics))
             ]
-        
+            
             let urlUtil = UrlUtils()
             urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
                 if let statusCode = response as? HTTPURLResponse {
@@ -109,7 +109,7 @@ class Connexion: UIViewController {
     }
 
     
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func signUp(_  : UIButton) {
         self.performSegue(withIdentifier: "inscrire", sender: self)
     }
     
