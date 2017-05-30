@@ -19,7 +19,7 @@ class SearchContact: UIViewController{
     var identities = ["A", "B"]
      
      override func viewDidLoad() {
-     super.viewDidLoad()
+     	super.viewDidLoad()
      }
     
 //    override func viewDidLoad() {
@@ -106,6 +106,4 @@ class SearchContact: UIViewController{
         }*/
         return cell
     }
-    
-  
 }

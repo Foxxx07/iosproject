@@ -16,10 +16,9 @@ class Connexion: UIViewController {
     var ableToConnect: Bool? = nil
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        // Do any additional setup |after loading the view, typically from a nib.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
    
     override func didReceiveMemoryWarning() {
@@ -111,6 +110,10 @@ class Connexion: UIViewController {
     
     @IBAction func signUp(_  : UIButton) {
         self.performSegue(withIdentifier: "inscrire", sender: self)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
