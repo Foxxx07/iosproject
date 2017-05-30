@@ -1,9 +1,12 @@
 package com.dant.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,13 +28,17 @@ public class FriendshipController {
 	private FriendshipBusiness friendshipBusiness = new FriendshipBusiness();
 
 	@GET
-	//TODO x-token header
-	public Response listFriends(String id){
+	public Response listFriends(@DefaultValue("") @HeaderParam("x-token") String id) throws UnsupportedEncodingException{
 		try {
-			String str;
-			str=friendshipBusiness.listFriends(id);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
+			String str=friendshipBusiness.listFriends(id);
 			
+			if(str.length()==0){
+				return Response.status(400).type("application/json").entity("{\"c\":8}").build();
+			}
+			else{
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}}").build();
+
+			}
  	} 
 		catch (SQLException e) {
 			SQLExceptionMapper sem = new SQLExceptionMapper();
@@ -48,10 +55,9 @@ public class FriendshipController {
 	// - /friends/{idUser}
 	@GET
 	@Path("/{idUser}")
-	//TODO x-token header
-	public Response isFriendWith(@PathParam("idUser") String idUser) throws SQLException{
+	public Response isFriendWith(@PathParam("idUser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester) throws SQLException{
 		String id=null;
-		if(friendshipBusiness.getFriendship(id,idUser)){
+		if(friendshipBusiness.getFriendship(idRequester,idUser)){
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 		}
 		else{
@@ -63,12 +69,10 @@ public class FriendshipController {
 	// --- POST
 	// - /friends/{idUser}
 	@POST
-	//TODO
 	@Path("/{idUser}")
-	public Response requestFriendship(@PathParam("idUser") String idUser){
-		String id=null;
+	public Response requestFriendship(@PathParam("idUser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester){
 		try {
-			friendshipBusiness.requestFriendship(id,idUser);
+			friendshipBusiness.requestFriendship(idRequester,idUser);
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 		} catch (SQLException e) {
 			SQLExceptionMapper sem = new SQLExceptionMapper();
@@ -80,10 +84,10 @@ public class FriendshipController {
 	// - /friends/{idUser}
 	@DELETE
 	@Path("/{iduser}")
-	public Response deleteFriend(@PathParam("idUser") String idUser){
-		String id=null;
+	public Response deleteFriend(@PathParam("idUser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester){
+		
 		try {
-			friendshipBusiness.deleteFriend(id,idUser);
+			friendshipBusiness.deleteFriend(idRequester,idUser);
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 		} catch (SQLException e) {
 			SQLExceptionMapper sem = new SQLExceptionMapper();

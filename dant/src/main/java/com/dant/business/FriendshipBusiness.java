@@ -1,5 +1,6 @@
 package com.dant.business;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import com.dant.dao.FriendshipDAO;
@@ -9,7 +10,7 @@ import com.dant.util.KeyGeneratorUtil;
 public class FriendshipBusiness {
 	private FriendshipDAO friendshipDAO = new FriendshipDAO();
 	
-	public String listFriends(String id) throws SQLException, UserNotFoundException{
+	public String listFriends(String id) throws SQLException, UserNotFoundException, UnsupportedEncodingException{
 		return friendshipDAO.listFriends(id);
 	}
 	
