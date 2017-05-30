@@ -13,8 +13,8 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var contactList: [Amis] = []
     
     func createContact() {
-        let contactA = Amis(n: "contact A", f: 1)
-        let contactB = Amis(n: "contact B", f: 1)
+        let contactA = Amis(n: "Contact A", f: 1)
+        let contactB = Amis(n: "Contact B", f: 1)
         contactList.append(contactA)
         contactList.append(contactB)
     }
