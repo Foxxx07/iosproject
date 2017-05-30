@@ -174,7 +174,14 @@ public class UserDAO {
 		}
 	}
 
-	public void updateUser(String id, String fname, String lname, String email, String password) {
+	public void updateUser(String id, String fname, String lname, String email, String password) throws SQLException {
+		String sql="UPDATE users set fname="+fname+",lname="+lname+",email="+email+",password="+password+"where `key`=0x"+id;
+		System.out.println(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (ResultSet req = ps.executeQuery(sql)) {
+				
+			}
+		}
 		//Requete mise à jour
 
 		//throw new QueryException();

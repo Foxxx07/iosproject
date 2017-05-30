@@ -4,29 +4,20 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.ws.rs.core.Response;
-
 import org.mariadb.jdbc.internal.util.dao.QueryException;
 
-import com.dant.controller.InvalidTokenException;
+import com.dant.exception.InvalidTokenException;
 import com.dant.dao.UserDAO;
 import com.dant.entity.Session;
 import com.dant.entity.User;
 import com.dant.exception.*;
 import com.dant.exception.EmptyEmailException;
-import com.dant.exception.EmptyEmailExceptionMapper;
 import com.dant.exception.EmptyNameException;
-import com.dant.exception.EmptyNameExceptionMapper;
 import com.dant.exception.EmptyPasswordException;
 import com.dant.exception.HexadecimalException;
-import com.dant.exception.HexadecimalExceptionMapper;
 import com.dant.exception.InvalidUserKeyException;
-import com.dant.exception.InvalidUserKeyExceptionMapper;
-import com.dant.exception.QueryExceptionMapper;
-import com.dant.exception.SQLExceptionMapper;
 import com.dant.exception.UserFoundException;
 import com.dant.exception.UserNotFoundException;
-import com.dant.exception.UserNotFoundExceptionMapper;
 import com.dant.util.KeyGeneratorUtil;
 
 public class UserBusiness {
@@ -65,7 +56,7 @@ public class UserBusiness {
 		User user = new User(fname,lname,email,password);
 		user.setKey(key);
 		userDAO.createUser(user);
-		String sessionId = createSession(user);
+		String sessionId = createSession(user.getKey());
 		return sessionId;
 	}
 
@@ -104,7 +95,7 @@ public class UserBusiness {
 			throw new InvalidUserKeyException();
 		}
 	}
-	
+
 	public User getUserById(String id) throws HexadecimalException, SQLException, InvalidUserKeyException, UserNotFoundException{
 		boolean isHexa=true;
 		if(id.length()==8){
@@ -157,9 +148,8 @@ public class UserBusiness {
 		}
 	}
 
-	public String updateUser(String sessionId, String fname, String lname, String email, String password) throws SQLException, EmptyEmailException, InvalidEmailException, EmptyNameException, EmptyPasswordException, HexadecimalException, UserNotFoundException, InvalidUserKeyException, QueryException{
-
-
+	public void updateUser(String sessionId, String fname, String lname, String email, String password) throws SQLException, EmptyEmailException, InvalidEmailException, EmptyNameException, EmptyPasswordException, HexadecimalException, UserNotFoundException, InvalidUserKeyException, QueryException, InvalidTokenException
+	{
 
 		if(sessionId.length()==8){
 			if(getUser(sessionId).length()==0){
@@ -168,7 +158,7 @@ public class UserBusiness {
 			}
 			else{
 				//X-token donc update infos
-				
+
 				if(email.length()==0){
 					throw new EmptyEmailException();
 				}
@@ -182,64 +172,52 @@ public class UserBusiness {
 				if(password.length()==0){
 					throw new EmptyPasswordException();
 				}
-				if(sm.getSession(id).length()==0){
-							if(userDAO.getUserByCredentials(email, password)){
-								Session tmp = new Session(id,"");
-								sm.storeSession(tmp);
-								sm.storeUserSession(id, tmp.getSessionId());
-								return tmp.getSessionId();
-							}
-						}
-						else
-						{
-							userDAO.updateUser(id, fname, lname, email, password);
-						}
 
-					}
-					
-				}
-
-				else{
-					throw new InvalidUserKeyException();
-				}
-	
-			
-		
-	}
-		else
-			{
-		
-		
-		
-		return "";
+				userDAO.updateUser(getUser(sessionId), fname, lname, email, password);
 
 
+			}
 
+		}
 
+		else{
+			if(userDAO.getUserByCredentials(email, password)){
+				createSession(getUser(sessionId));
+			}
+
+		}
 	}
 
-	public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-			Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-	public static boolean validateEmail(String emailStr) {
-		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
-		return matcher.find();
-	}
 
-	public String createSession(User user) {
-		Session sessionTmp = new Session(user.getKey(),"");
-		sm.storeSession(sessionTmp);
-		sm.storeUserSession(user.getKey(),sessionTmp.getSessionId());
-		return sessionTmp.getSessionId();
-		//TODO exception insertion memcache
-	}
 
-	public String getSession(String ukey){
-		return sm.getSession(ukey);
-	}
-	
-	public String getUser(String sessionId){
-		return sm.getUserKey(sessionId);
-	}
+
+
+
+
+
+public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+public static boolean validateEmail(String emailStr) {
+	Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+	return matcher.find();
+}
+
+public String createSession(String ukey) {
+	Session sessionTmp = new Session(ukey,"");
+	sm.storeSession(sessionTmp);
+	sm.storeUserSession(ukey,sessionTmp.getSessionId());
+	return sessionTmp.getSessionId();
+	//TODO exception insertion memcache
+}
+
+public String getSession(String ukey){
+	return sm.getSession(ukey);
+}
+
+public String getUser(String sessionId){
+	return sm.getUserKey(sessionId);
+}
 
 }

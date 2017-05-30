@@ -31,6 +31,8 @@ import com.dant.exception.HexadecimalException;
 import com.dant.exception.HexadecimalExceptionMapper;
 import com.dant.exception.InvalidEmailException;
 import com.dant.exception.InvalidEmailExceptionMapper;
+import com.dant.exception.InvalidTokenException;
+import com.dant.exception.InvalidTokenExceptionMapper;
 import com.dant.exception.InvalidUserKeyException;
 import com.dant.exception.InvalidUserKeyExceptionMapper;
 import com.dant.exception.QueryExceptionMapper;
@@ -155,9 +157,10 @@ public class UserController {
 			@DefaultValue("") @FormParam("password") String password,
 			@DefaultValue("") @HeaderParam("x-token") String sessionId
 			){
-		try {
-			userBusiness.updateUser(sessionId, fname, lname, email, password);
-		}		
+				try {
+					userBusiness.updateUser(sessionId, fname, lname, email, password);
+					return Response.status(200).type("application/json").entity("{\"c\":0}").build();
+				}
 		catch (QueryException e) {
 			QueryExceptionMapper qem = new QueryExceptionMapper();
 			return qem.toResponse(e);
@@ -188,6 +191,9 @@ public class UserController {
 			return iukem.toResponse(e);
 		} catch (UserNotFoundException e) {
 			UserNotFoundExceptionMapper unfem = new UserNotFoundExceptionMapper();
+			return unfem.toResponse(e);
+		} catch (InvalidTokenException e) {
+			InvalidTokenExceptionMapper unfem = new InvalidTokenExceptionMapper();
 			return unfem.toResponse(e);
 		}
 	}
