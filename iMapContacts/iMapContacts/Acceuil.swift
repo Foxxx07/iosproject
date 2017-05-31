@@ -11,6 +11,7 @@ import MapKit
 
 class Acceuil: UIViewController, MKMapViewDelegate {
     var timer = Timer()
+    var timer2 = Timer()
     var localUserLocation = CLLocation(latitude: MKUserLocation().coordinate.latitude, longitude: MKUserLocation().coordinate.longitude)
     var n = 0
     var updateLocalUserLocation = true
@@ -59,6 +60,7 @@ class Acceuil: UIViewController, MKMapViewDelegate {
     
     func timerWithTimeInrterval(){
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(Acceuil.testDistance), userInfo: nil, repeats: true)
+         timer2 = Timer.scheduledTimer(timeInterval: 5, target: self, selector:#selector(Acceuil.afficherContacts), userInfo: nil, repeats: true)
     }
     
     func testDistance(location : CLLocation) -> Bool{
@@ -71,5 +73,10 @@ class Acceuil: UIViewController, MKMapViewDelegate {
 //        }
         return true
     }
+    
+    func afficherContacts(){
+        
+    }
+    
 }
 

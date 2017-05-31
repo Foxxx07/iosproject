@@ -105,7 +105,8 @@ class Connexion: UIViewController {
                         
                     }
                 } else {
-                    // ...
+                    self.alertView.setMessage(message: "Impossible de se connecter")
+                    self.alertView.showAlertView(targetVC: self)
                 }
     })
         
