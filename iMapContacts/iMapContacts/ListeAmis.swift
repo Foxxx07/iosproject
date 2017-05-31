@@ -14,10 +14,12 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var alertView = AlertView.init(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
     
     func createContact() {
-        let contactA = Amis(n: "contact A", f: 1)
-        let contactB = Amis(n: "contact B", f: 1)
+        let contactA = Amis(n: "Gaëtan Maiuri", f: 1)
+        let contactB = Amis(n: "Sujithan Karukanaran", f: 1)
+        let contactC = Amis(n: "William Sergeant", f: 1)
         contactList.append(contactA)
         contactList.append(contactB)
+        contactList.append(contactCs)
         //findcontacts()
     }
 
@@ -112,7 +114,7 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //                    
 //                    catch let error{
 //                        print(error)// Todo ?
-//                    }®
+//                    }
 //                } else if (statusCode.statusCode == 404) {
 //                    
 //                }
