@@ -20,7 +20,7 @@ public class PositionBusiness {
 	}
 	
 	public String getFriendPosition(String id) throws SQLException{
-		return positionDAO.getUserById(id);
+		return positionDAO.getPosition(id);
 	}
 	
 	public String getPosition(String sessionId){

@@ -56,7 +56,6 @@ public class FriendshipController {
 	@GET
 	@Path("/{idUser}")
 	public Response isFriendWith(@PathParam("idUser") String idUser, @DefaultValue("") @HeaderParam("x-token") String idRequester) throws SQLException{
-		String id=null;
 		if(friendshipBusiness.getFriendship(idRequester,idUser)){
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 		}

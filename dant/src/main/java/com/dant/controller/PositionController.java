@@ -27,8 +27,7 @@ public class PositionController {
 	private PositionBusiness positionBusiness = new PositionBusiness();
 
 	@POST
-	//TODO x-token header
-	public Response updatePosition(String sessionId, String lat, String longi){
+	public Response updatePosition(@DefaultValue("") @HeaderParam("x-token") String sessionId,@DefaultValue("") @HeaderParam("x-lat") String lat,@DefaultValue("") @HeaderParam("x-longi") String longi){
 		if(positionBusiness.getUser(sessionId).length()==0){
 			return Response.status(404).build();
 		}
@@ -40,14 +39,15 @@ public class PositionController {
 	}
 
 	@GET
-	public Response getPosition(String sessionId){
+	public Response getPosition(@DefaultValue("") @HeaderParam("x-token") String sessionId){
 		try {
-			positionBusiness.getFriendPosition(sessionId);
+			String str = positionBusiness.getFriendPosition(sessionId);
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":"+str+"}").build();
 		} catch (SQLException e) {
 			SQLExceptionMapper sem = new SQLExceptionMapper();
 			return sem.toResponse(e);
 		}
-		return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":lat=exemple1,long=exemple2}").build();
+		
 		//Récuperer position utilisateur
 
 	}

@@ -22,7 +22,7 @@ public class PositionDAO {
 	}
 
 	public String getPosition(String id){
-		return null;
+		return dao.getSessionByUserKey(dao.getUserBySessionKey(id));
 	}
 
 	public String getFriendsPositions(int page, String id) throws SQLException, UserNotFoundException{
