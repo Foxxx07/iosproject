@@ -121,7 +121,7 @@ class ListeAmis: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //            }
 //        })
 //        
-        //let ableToConnect : Bool = true
+    
         
 
         

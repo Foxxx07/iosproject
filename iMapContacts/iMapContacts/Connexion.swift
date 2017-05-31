@@ -13,7 +13,7 @@ class Connexion: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     var alertView = AlertView.init(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
-    var ableToConnect: Bool? = nil
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +31,13 @@ class Connexion: UIViewController {
         var urlComponents = URLComponents()
         
         guard let pass = password.text else {
-            alertView.setTitle(title: "password non renseigné")
+            alertView.setTitle(title: "Password non renseigné")
+            alertView.showAlertView(targetVC: self)
             return
         }
         guard let mail = email.text else {
             alertView.setTitle(title: "Email non renseigné")
+            alertView.showAlertView(targetVC: self)
             return
         }
       
@@ -54,6 +56,7 @@ class Connexion: UIViewController {
             }
 
             alertView.setTitle(title: title)
+            alertView.showAlertView(targetVC: self)
             return
         }
         
@@ -64,8 +67,8 @@ class Connexion: UIViewController {
             ]
             
             let urlUtil = UrlUtils()
-            //self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
-            urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
+            self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
+           urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
                 if let statusCode = response as? HTTPURLResponse {
                     if (statusCode.statusCode == 200) {
                         do {
@@ -104,12 +107,9 @@ class Connexion: UIViewController {
                 } else {
                     // ...
                 }
-        })
+    })
         
-        //let ableToConnect : Bool = true
-       
-        
-        
+
     }
     
     @IBAction func seConnecter(_ sender: UIButton) {

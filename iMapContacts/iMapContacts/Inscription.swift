@@ -62,7 +62,6 @@ class Inscription: UIViewController {
                                         if (token.characters.count == 8){
                                             UserDefaults.standard.set(token, forKey: "token")
                                             UserDefaults.standard.synchronize()
-                                            //self.performSegue(withIdentifier: "acceuil", sender: self)
                                         }
                                     }
                                     
@@ -105,8 +104,17 @@ class Inscription: UIViewController {
             if (checkPassword()) {
                 sendInscription()
             }
+            else {
+                self.alertView.setMessage(message: "Password invalide")
+                self.alertView.showAlertView(targetVC: self)
+            }
            
         }
+        else {
+            self.alertView.setMessage(message: "Remplissez les champs vides")
+            self.alertView.showAlertView(targetVC: self)
+        }
+        
     }
     
     
