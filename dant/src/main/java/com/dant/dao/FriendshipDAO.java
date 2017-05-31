@@ -16,7 +16,7 @@ public class FriendshipDAO {
 	private final Connection connection = Init.getJDBC();
 
 	public void setFriendship(String rkey, String akey, String bkey) throws SQLException{
-		String sql="INSERT INTO friends values (0x"+rkey+",0x"+akey+",0x"+bkey+",1)";
+		String sql="INSERT INTO friends values (0x"+rkey+",0x"+akey+",0x"+bkey+",b'1')";
 		System.out.println(sql);
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			try (ResultSet req = ps.executeQuery(sql)) {

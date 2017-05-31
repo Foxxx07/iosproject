@@ -12,7 +12,7 @@ public class FriendshipBusiness {
 	private SessionManager sm = new SessionManager();
 	
 	public String listFriends(String id) throws SQLException, UserNotFoundException, UnsupportedEncodingException{
-		return friendshipDAO.listFriends(id);
+		return friendshipDAO.listFriends(getUser(id));
 	}
 	
 	public boolean getFriendship(String idA, String idB) throws SQLException{
@@ -20,6 +20,7 @@ public class FriendshipBusiness {
 	}
 	
 	public void requestFriendship(String idA, String idB) throws SQLException{
+		friendshipDAO.setFriendship(KeyGeneratorUtil.generateKey(4), getUser(idA), idB);
 	}
 	
 	public void deleteFriend(String id, String idUser) throws SQLException{

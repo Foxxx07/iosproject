@@ -25,7 +25,7 @@ class Init {
 		private static Connection init() {
 			try {
 				Class.forName("org.mariadb.jdbc.Driver");
-				return DriverManager.getConnection("jdbc:mariadb://address=(host=localhost)(port=3306)(type=master)/imap_contacts", "root", "");
+				return DriverManager.getConnection("jdbc:mariadb://address=(host=169.254.47.97)(port=3306)(type=master)/imap_contacts", "imap_contacts", "VVpVk>*ATqoe-(f|a99Wz</7s7anri/[");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

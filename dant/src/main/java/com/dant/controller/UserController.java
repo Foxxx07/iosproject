@@ -167,7 +167,7 @@ public class UserController {
 			return Response.status(200).type("application/json").entity("{\"c\":0}").build();
 			}
 			else{
-				return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":{\"sessionId\":\""+sessionKey+"\"}}").build();
+				return Response.status(200).type("application/json").entity("{\"c\":0, \"data\":\""+sessionKey+"\"}").build();
 			}
 		}
 		catch (QueryException e) {
