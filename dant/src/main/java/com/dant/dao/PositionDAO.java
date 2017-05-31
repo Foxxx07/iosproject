@@ -36,7 +36,7 @@ public class PositionDAO {
 							str += ",";
 						}
 						//TODO getpositio,
-						str += (rs.getString("user_b"));
+						str += rs.getString("user_b")+";"+getPosition(rs.getString("user_b"));
 					}
 					return "[" + str + "]";
 				}
