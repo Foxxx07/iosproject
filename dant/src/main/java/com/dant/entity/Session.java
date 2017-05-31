@@ -13,23 +13,25 @@ public class Session implements Serializable {
 	private float longitude;
 	private long time;
 
-	public Session(String idUser, String rawData){
-		if(idUser.length()==0){
-		}
-		else if(rawData.length()==0 ){
-			this.idUser=idUser;
-			this.sessionId=KeyGeneratorUtil.generateKey(4);
-			this.latitude=0;
-			this.longitude=0;
-			this.time=0;
-		}
-		else{
-			JSONObject obj = new JSONObject(rawData);
-			this.idUser=idUser;
-			this.sessionId= obj.getString("sId");
-			this.latitude= Float.parseFloat(obj.getString("lt"));
-			this.longitude= Float.parseFloat(obj.getString("lg"));
-			this.time= Long.parseLong(obj.getString("time"));
+	public Session(String idUser, String rawData) {
+		if (idUser.length() == 8) {
+			if (rawData.length() == 0) {
+				this.idUser = idUser;
+				this.sessionId = KeyGeneratorUtil.generateKey(4);
+				this.latitude = 0;
+				this.longitude = 0;
+				this.time = 0;
+			} else {
+				String[] array = rawData.split(";");
+
+				if (array.length == 4) {
+					this.idUser = idUser;
+					this.sessionId = array[0];
+					this.longitude = Float.parseFloat(array[1]);
+					this.latitude = Float.parseFloat(array[2]);
+					this.time = Long.parseLong(array[3]);
+				}
+			}
 		}
 	}
 
@@ -73,5 +75,8 @@ public class Session implements Serializable {
 		return this.idUser;
 	}
 
+	@Override
+	public String toString() {
+		return this.sessionId + ";" + this.longitude + ";" + this.latitude + ";" + this.time;
+	}
 }
-
