@@ -13,7 +13,7 @@ class Connexion: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     var alertView = AlertView.init(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
-    var ableToConnect: Bool? = nil
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +31,13 @@ class Connexion: UIViewController {
         var urlComponents = URLComponents()
         
         guard let pass = password.text else {
-            alertView.setTitle(title: "password non renseigné")
+            alertView.setTitle(title: "Password non renseigné")
+            alertView.showAlertView(targetVC: self)
             return
         }
         guard let mail = email.text else {
             alertView.setTitle(title: "Email non renseigné")
+            alertView.showAlertView(targetVC: self)
             return
         }
       
@@ -54,6 +56,7 @@ class Connexion: UIViewController {
             }
 
             alertView.setTitle(title: title)
+            alertView.showAlertView(targetVC: self)
             return
         }
         
@@ -64,7 +67,8 @@ class Connexion: UIViewController {
             ]
             
             let urlUtil = UrlUtils()
-            urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
+            self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
+           urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
                 if let statusCode = response as? HTTPURLResponse {
                     if (statusCode.statusCode == 200) {
                         do {
@@ -74,14 +78,22 @@ class Connexion: UIViewController {
                                 print(UserDefaults.standard.value(forKey: "token"))
 
                                 if let value : Int = json?.value(forKey: "c") as! Int? {
-                                    if (value == 0) { // valeur a 0 pour Succes
+                                    if (value == 0) { // valeur 0 pour Succes
                                         if (UserDefaults.standard.value(forKey: "token") != nil){
                                             print(UserDefaults.standard.value(forKey: "token"))
                                             self.performSegue(withIdentifier: "acceuil", sender: self)
-                                            print("PIKAAAACHUUUUUUU")
                                         }
                                     } else {
-                                        
+                                        if ( value == 3){
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 3))
+                                        }
+                                        if (value == 4) {
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 4))
+                                        }
+                                        if (value == 5) {
+                                            self.alertView.setMessage(message: urlUtil.getMessage(code: 5))
+                                        }
+                                        self.alertView.showAlertView(targetVC: self)
                                     }
                                 }
                             }
@@ -90,23 +102,19 @@ class Connexion: UIViewController {
                             print(error)// Todo ?
                         }
                     } else if (statusCode.statusCode == 404) {
-                        // Invalide credentials
+                        
                     }
                 } else {
                     // ...
                 }
-        })
+    })
         
-        //let ableToConnect : Bool = true
-       
-        
-        
+
     }
     
     @IBAction func seConnecter(_ sender: UIButton) {
         sendConnexion()
     }
-
     
     @IBAction func signUp(_  : UIButton) {
         self.performSegue(withIdentifier: "inscrire", sender: self)

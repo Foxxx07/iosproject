@@ -28,7 +28,7 @@ class Acceuil: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         viewMap.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
-        timerWithTimeInrterval()
+        timerWithTimeInrterval()	
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

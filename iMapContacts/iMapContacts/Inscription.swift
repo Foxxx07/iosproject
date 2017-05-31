@@ -62,21 +62,23 @@ class Inscription: UIViewController {
                                         if (token.characters.count == 8){
                                             UserDefaults.standard.set(token, forKey: "token")
                                             UserDefaults.standard.synchronize()
-                                            //self.performSegue(withIdentifier: "acceuil", sender: self)
                                         }
                                     }
                                     
-                                } else{
+                                } else if (value == 2){
+                                    self.alertView.setMessage(message: "E-mail déjà utilisé")
+                                    self.alertView.showAlertView(targetVC: self)
                                     
                                 }
                             }
                         }
                     }
                     catch let error{
-                        print(error)// Todo ?
+                        print(error)
+                        
                     }
                 } else if (statusCode.statusCode == 404) {
-                    // Invalide credentials
+                    self.alertView.setMessage(message: "L'insciption a échoué")
                 }
             } else {
                 // ...
@@ -103,9 +105,16 @@ class Inscription: UIViewController {
                 sendInscription()
             }
             else {
-              
+                self.alertView.setMessage(message: "Password invalide")
+                self.alertView.showAlertView(targetVC: self)
             }
+           
         }
+        else {
+            self.alertView.setMessage(message: "Remplissez les champs vides")
+            self.alertView.showAlertView(targetVC: self)
+        }
+        
     }
     
     

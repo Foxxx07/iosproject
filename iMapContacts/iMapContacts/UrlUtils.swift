@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class UrlUtils {
-    let serveur =  "http://132.227.113.237:8081" // http://imapc.lessonsharing.fr
+    let serveur =  "http://imapc.lessonsharing.fr" //http://132.227.113.237:8081
     
     private var map :[Int : String] = [0:"Succes",
                                        1:"Renseigner un nom",
@@ -29,6 +29,9 @@ class UrlUtils {
     func sendToServ(httpMethod : HTTPMETHOD ,collection : String, urlComponents : URLComponents, callback : @escaping (_ data : Data?, _ response: URLResponse?, _ error: Error?) ->()) {
         var request = URLRequest(url: URL(string:"\(serveur)\(collection)")!)
         request.httpMethod = httpMethod.rawValue
+        if ((UserDefaults.standard.value(forKey: "token")) != nil){
+            request.addValue(UserDefaults.standard.value(forKey: "token") as! String, forHTTPHeaderField: "X-Auth-Token")
+        }
         
         guard let parameters = urlComponents.query else {return  }
         request.httpBody = parameters.data(using: .ascii)
