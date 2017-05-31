@@ -130,7 +130,7 @@ public class UserController {
 		}
 		try {
 			tmp = userBusiness.getUserById(id);
-			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\"}}").build();
+			return Response.status(200).type("application/json").entity("{\"c\":0,\"data\":{\"fname\":\""+tmp.getFname()+"\",\"lname\":\""+tmp.getLname()+"\",\"email\":\""+tmp.getEmail()+"\"}}").build();
 		} catch (HexadecimalException e) {
 			HexadecimalExceptionMapper hem = new HexadecimalExceptionMapper();
 			return hem.toResponse(e);
