@@ -67,7 +67,7 @@ class Connexion: UIViewController {
             ]
             
             let urlUtil = UrlUtils()
-            self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
+            //self.performSegue(withIdentifier: "acceuil", sender: self) // HACK
            urlUtil.sendToServ(httpMethod: HTTPMETHOD.POST, collection: USER.ME.rawValue, urlComponents: urlComponents, callback: { (data, response, error) in
                 if let statusCode = response as? HTTPURLResponse {
                     if (statusCode.statusCode == 200) {
