@@ -28,7 +28,7 @@ public class MemcacheDAO {
 	}
 	
 	public String getUserBySessionKey(String sessionId){
-		System.out.println((String) memcachedClient.get(sessionId));
+		//System.out.println((String) memcachedClient.get(sessionId));
 		return (String) memcachedClient.get(sessionId);
 	}
 	
