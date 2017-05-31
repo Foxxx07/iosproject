@@ -54,6 +54,7 @@ public class MemcacheDAO {
 	public void updateSessionPosition(String sessionId, String lat, String longi){
 		String ukey = getUserBySessionKey(sessionId);
 		String data = ""+sessionId+";"+lat+";"+longi+";"+System.currentTimeMillis();
+		System.out.println("longi: "+longi);
 		memcachedClient.set(ukey,360000,data);
 		memcachedClient.set(sessionId, 360000, ukey);
 		

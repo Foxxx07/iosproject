@@ -108,7 +108,7 @@ public class FriendshipDAO {
 	}
 
 	public String listFriends(String id) throws SQLException, UserNotFoundException, UnsupportedEncodingException{
-		String sql="SELECT user_b FROM friends where `user_a`=0x"+id;
+		String sql="SELECT HEX(`user_b`) FROM friends where `user_a`=0x"+id;
 		System.out.println(sql);
 		String str="";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {

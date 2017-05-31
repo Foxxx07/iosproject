@@ -41,7 +41,7 @@ class Init {
 		private static MemcachedClient init() {
 			System.out.println("init memcache 2");
 			 try {
-				return new MemcachedClient(new InetSocketAddress("imapc.lessonsharing.fr", 11211));
+				return new MemcachedClient(new InetSocketAddress("169.254.47.97", 11211));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
